@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
+use App\Http\Controllers\IngredienteController;
 Use App\Models\Pizza;
 Use App\Models\Ingrediente;
 
@@ -22,11 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-//Api para Pizzas:
+/*
+ * Api para Pizzas:
+ */
 
 Route::get('pizzas', function() {
-    // If the Content-Type and Accept headers are set to 'application/json',
-    // this will return a JSON structure. This will be cleaned up later.
     return Pizza::all();
 });
 
@@ -56,3 +57,39 @@ Route::get('/pizzas/{pizza}', [PizzaController::class,'show']);
 Route::post('/pizzas', [PizzaController::class,'store']);
 Route::put('/pizzas/{pizza}', [PizzaController::class,'update']);
 Route::delete('/pizzas/{pizza}', [PizzaController::class,'delete']);
+
+/*
+ * Api para Ingredientes:
+ */
+
+Route::get('ingredientes', function() {
+    return Ingrediente::all();
+});
+
+Route::get('ingredientes/{id}', function($id) {
+    return Ingrediente::find($id);
+});
+
+Route::post('ingredientes', function(Request $request) {
+    return Ingrediente::store($request->all);
+});
+
+Route::put('ingredientes/{id}', function(Request $request, $id) {
+    $ingrediente = Ingrediente::findOrFail($id);
+    $ingrediente->update($request->all());
+
+    return $ingrediente;
+});
+
+Route::delete('ingredientes/{id}', function($id) {
+    $ingrediente = Ingrediente::find($id);
+    $ingrediente->delete();
+
+    return "El ingrediente ".$ingrediente->nombre." ha sido borrado con éxito";
+});
+
+Route::get('/ingredientes', [IngredienteController::class,'index']);
+Route::get('/ingredientes/{ingrediente}', [IngredienteController::class,'show']);
+Route::post('/ingredientes', [IngredienteController::class,'store']);
+Route::put('/ingredientes/{ingrediente}', [IngredienteController::class,'update']);
+Route::delete('/ingredientes/{ingrediente}', [IngredienteController::class,'delete']);

@@ -10,5 +10,7 @@ class Ingrediente extends Model
     use HasFactory;
     protected $table = "ingredientes";
 
+    protected $fillable = ['nombre','categoria','imagen'];
+
     public $timestamps = false;
 }

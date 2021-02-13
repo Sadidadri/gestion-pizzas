@@ -14,17 +14,7 @@ class IngredienteController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Ingrediente::all();
     }
 
     /**
@@ -35,7 +25,9 @@ class IngredienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingrediente = Ingrediente::create($request->all());
+
+        return response()->json($ingrediente, 201);
     }
 
     /**
@@ -46,18 +38,7 @@ class IngredienteController extends Controller
      */
     public function show(Ingrediente $ingrediente)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Ingrediente  $ingrediente
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Ingrediente $ingrediente)
-    {
-        //
+        return $ingrediente;
     }
 
     /**
@@ -69,7 +50,9 @@ class IngredienteController extends Controller
      */
     public function update(Request $request, Ingrediente $ingrediente)
     {
-        //
+        $ingrediente->update($request->all());
+
+        return response()->json($ingrediente, 200);
     }
 
     /**
@@ -78,8 +61,10 @@ class IngredienteController extends Controller
      * @param  \App\Models\Ingrediente  $ingrediente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ingrediente $ingrediente)
+    public function delete(Ingrediente $ingrediente)
     {
-        //
+        $ingrediente->delete();
+
+        return response()->json(null, 204);
     }
 }
