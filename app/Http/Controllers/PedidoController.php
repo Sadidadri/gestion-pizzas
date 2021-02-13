@@ -14,17 +14,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Pedido::all();
     }
 
     /**
@@ -35,7 +25,9 @@ class PedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pedido = Pedido::create($request->all());
+
+        return response()->json($pedido, 201);
     }
 
     /**
@@ -46,18 +38,7 @@ class PedidoController extends Controller
      */
     public function show(Pedido $pedido)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pedido  $pedido
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pedido $pedido)
-    {
-        //
+        return $pedido;
     }
 
     /**
@@ -69,7 +50,9 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $pedido->update($request->all());
+
+        return response()->json($pedido, 200);
     }
 
     /**
@@ -78,8 +61,10 @@ class PedidoController extends Controller
      * @param  \App\Models\Pedido  $pedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function delete(Pedido $pedido)
     {
-        //
+        $pedido->delete();
+
+        return response()->json(null, 204);
     }
 }
