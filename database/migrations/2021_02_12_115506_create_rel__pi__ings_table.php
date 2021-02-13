@@ -17,9 +17,9 @@ class CreateRelPiIngsTable extends Migration
             $table->id();
             //Claves foráneas
             $table->bigInteger('id_pizza')->unsigned();            
-            $table->foreign('id_pizza')->references('id')->on('pizzas');
+            $table->foreign('id_pizza')->references('id')->on('pizzas')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_ingrediente')->unsigned();            
-            $table->foreign('id_ingrediente')->references('id')->on('ingredientes');
+            $table->foreign('id_ingrediente')->references('id')->on('ingredientes')->onDelete('cascade')->onUpdate('cascade');
             //Otros atributos
         });
     }

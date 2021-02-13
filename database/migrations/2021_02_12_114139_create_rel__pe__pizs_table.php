@@ -17,9 +17,9 @@ class CreateRelPePizsTable extends Migration
             $table->id();
             //Claves foráneas de pedido y pizza:
             $table->bigInteger('id_pedido')->unsigned();            
-            $table->foreign('id_pedido')->references('id')->on('pedidos');
+            $table->foreign('id_pedido')->references('id')->on('pedidos')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('id_pizza')->unsigned();            
-            $table->foreign('id_pizza')->references('id')->on('pizzas');
+            $table->foreign('id_pizza')->references('id')->on('pizzas')->onDelete('cascade')->onUpdate('cascade');
             //Otros atributos
             $table->bigInteger('cantidad');
             $table->string('tamagno');
