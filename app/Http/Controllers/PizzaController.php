@@ -14,17 +14,7 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Pizza::all();
     }
 
     /**
@@ -35,7 +25,9 @@ class PizzaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pizza = Pizza::create($request->all());
+
+        return response()->json($pizza, 201);
     }
 
     /**
@@ -46,18 +38,7 @@ class PizzaController extends Controller
      */
     public function show(Pizza $pizza)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Pizza  $pizza
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Pizza $pizza)
-    {
-        //
+        return $pizza;
     }
 
     /**
@@ -69,7 +50,9 @@ class PizzaController extends Controller
      */
     public function update(Request $request, Pizza $pizza)
     {
-        //
+        $pizza->update($request->all());
+
+        return response()->json($pizza, 200);
     }
 
     /**
@@ -78,8 +61,10 @@ class PizzaController extends Controller
      * @param  \App\Models\Pizza  $pizza
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pizza $pizza)
+    public function delete(Pizza $pizza)
     {
-        //
+        $pizza->delete();
+
+        return response()->json(null, 204);
     }
 }

@@ -59,15 +59,23 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
+     * Modificacion: Añadimos rol de usuario de cliente
      * @param  array  $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
+
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+         // Le asignamos el rol de Cliente
+         $user->assignRole('cliente');
+
+         return $user;
     }
 }

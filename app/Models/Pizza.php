@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pizza extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nombre','imagen','precio_base'];
+
     protected $table = "pizzas";
     public $timestamps = false;
 
