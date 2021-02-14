@@ -25,3 +25,7 @@ Route::get('/pizzas', function () {
     return view('ver_pizzas');
 })->where('any', '.*');
 
+Route::get('/ingredientes', function () {
+    return view('ver_ingredientes');
+})->where('any', '.*');
+

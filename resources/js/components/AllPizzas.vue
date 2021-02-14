@@ -20,7 +20,7 @@
                 <td>{{ pizza.precio_base }}</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <!-- <router-link :to="{name: 'edit', params: { id: pizza.id }}" class="btn btn-success">Editar</router-link> -->
+                        <router-link :to="{name: 'edit', params: { id: pizza.id }}" class="btn btn-success">Editar</router-link>
                         <button class="btn btn-danger" @click="deletePizza(pizza.id)">Eliminar</button>
                     </div>
                 </td>

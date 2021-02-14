@@ -7,7 +7,6 @@
 require('./bootstrap');
 import Vue from 'vue';
 //import vue
-
 import App from './App.vue';
 import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
@@ -26,6 +25,7 @@ Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 Vue.component('ver_pizzas',require('./components/AllPizzas.vue').default);
+Vue.component('ver_ingredientes',require('./components/AllIngredientes.vue').default);
 
 const app = new Vue({
     el: '#app'

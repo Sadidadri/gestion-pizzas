@@ -1,6 +1,7 @@
 import AllPizzas from './components/AllPizzas.vue';
 //import CreateProduct from './components/CreateProduct.vue';
 //import EditProduct from './components/EditProduct.vue';
+import AllIngredientes from './components/AllIngredientes.vue';
  
 export const routes = [
     {
@@ -18,4 +19,9 @@ export const routes = [
     //    path: '/edit/:id',
     //    component: EditProduct
     //}
+    {
+        name: 'Ingredientes',
+        path: '/ingredientes',
+        component: AllIngredientes
+    },
 ];
