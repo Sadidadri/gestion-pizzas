@@ -29,3 +29,7 @@ Route::get('/ingredientes', function () {
     return view('ver_ingredientes');
 })->where('any', '.*');
 
+Route::get('/pedidos', function () {
+    return view('ver_pedidos');
+})->where('any', '.*');
+

@@ -46,13 +46,18 @@
         },
         methods: {
             deletePizza(id) { 
+                if(confirm("¿Estás seguro de que quieres eliminar la pizza con id "+id+"?")){
+
                 this.axios
                     .delete(`http://localhost:8000/api/pizzas/${id}`)
                     .then(response => {
                         let i = this.pizzas.map(data => data.id).indexOf(id);
                         this.pizzas.splice(i, 1)
-                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
             }
-        }
+        }}
     }
 </script>

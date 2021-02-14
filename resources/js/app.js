@@ -26,6 +26,7 @@ Vue.use(VueAxios, axios);
 
 Vue.component('ver_pizzas',require('./components/AllPizzas.vue').default);
 Vue.component('ver_ingredientes',require('./components/AllIngredientes.vue').default);
+Vue.component('ver_pedidos',require('./components/AllPedidos.vue').default);
 
 const app = new Vue({
     el: '#app'

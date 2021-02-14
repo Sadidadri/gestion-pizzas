@@ -21,7 +21,7 @@
                 <td>
                     <div class="btn-group" role="group">
                         <router-link :to="{name: 'edit', params: { id: ingrediente.id }}" class="btn btn-success">Editar</router-link>
-                        <button class="btn btn-danger" @click="deleteIngrediente(ingrediente.id)">Eliminar</button>
+                        <button class="btn btn-danger" @click="deleteIngredientes(ingrediente.id)">Eliminar</button>
                     </div>
                 </td>
             </tr>
@@ -45,14 +45,19 @@
                 });
         },
         methods: {
-            deleteIngrediente(id) { 
+            deleteIngredientes(id) { 
+                if(confirm("¿Estás seguro de que quieres eliminar el ingrediente con id "+id+"?")){
+
                 this.axios
                     .delete(`http://localhost:8000/api/ingredientes/${id}`)
                     .then(response => {
                         let i = this.ingredientes.map(data => data.id).indexOf(id);
                         this.ingredientes.splice(i, 1)
-                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
             }
-        }
+        }}
     }
 </script>
