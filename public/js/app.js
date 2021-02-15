@@ -38339,7 +38339,16 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(ingrediente.nombre))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(ingrediente.imagen))]),
+            _c("td", [
+              _c("img", {
+                attrs: {
+                  src: "images/ingredientes/" + ingrediente.imagen,
+                  alt: "image",
+                  width: "100",
+                  height: "100"
+                }
+              })
+            ]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(ingrediente.precio_base))]),
             _vm._v(" "),
@@ -38537,7 +38546,16 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(pizza.nombre))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(pizza.imagen))]),
+            _c("td", [
+              _c("img", {
+                attrs: {
+                  src: "images/pizzas/" + pizza.imagen,
+                  alt: "image",
+                  width: "100",
+                  height: "100"
+                }
+              })
+            ]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(pizza.precio_base))]),
             _vm._v(" "),

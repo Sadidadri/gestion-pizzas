@@ -14,17 +14,7 @@ class RelPePizController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Rel_Pe_Piz::all();
     }
 
     /**
@@ -35,51 +25,47 @@ class RelPePizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pizzas_pedido = Rel_Pe_Piz::create($request->all());
+
+        return response()->json($pizzas_pedido, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rel_Pe_Piz  $rel_Pe_Piz
+     * @param  \App\Models\Rel_Pe_Piz  $pizzas_pedido
      * @return \Illuminate\Http\Response
      */
-    public function show(Rel_Pe_Piz $rel_Pe_Piz)
+    public function show(Rel_Pe_Piz $pizzas_pedido)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rel_Pe_Piz  $rel_Pe_Piz
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Rel_Pe_Piz $rel_Pe_Piz)
-    {
-        //
+        return $pizzas_pedido;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rel_Pe_Piz  $rel_Pe_Piz
+     * @param  \App\Models\Rel_Pe_Piz  $pizzas_pedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rel_Pe_Piz $rel_Pe_Piz)
+    public function update(Request $request, Rel_Pe_Piz $pizzas_pedido)
     {
-        //
+        $pizzas_pedido->update($request->all());
+
+        return response()->json($pizzas_pedido, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rel_Pe_Piz  $rel_Pe_Piz
+     * @param  \App\Models\Rel_Pe_Piz  $pizza
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rel_Pe_Piz $rel_Pe_Piz)
+    public function delete(Rel_Pe_Piz $pizzas_pedido)
     {
-        //
+        $pizzas_pedido->delete();
+
+        return response()->json(null, 204);
     }
 }
+

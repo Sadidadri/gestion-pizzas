@@ -5,9 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PizzaController;
 use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\RelPePizController;
+use App\Http\Controllers\RelPiIngController;
 Use App\Models\Pedido;
 Use App\Models\Pizza;
 Use App\Models\Ingrediente;
+Use App\Models\Rel_Pe_Piz;
+Use App\Models\Rel_Pi_Ing;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +53,10 @@ Route::put('pizzas/{id}', function(Request $request, $id) {
 });
 
 Route::delete('pizzas/{id}', function($id) {
-    Pizza::find($id)->delete();
+    $pizza = Pizza::find($id);
+    $pizza->delete();
 
-    return 204;
+    return "La pizza ".$pizza->nombre." ha sido borrada con éxito";
 });
 
 Route::get('/pizzas', [PizzaController::class,'index']);
@@ -131,3 +136,78 @@ Route::get('/pedidos/{pedido}', [PedidoController::class,'show']);
 Route::post('/pedidos', [PedidoController::class,'store']);
 Route::put('/pedidos/{pedido}', [PedidoController::class,'update']);
 Route::delete('/pedidos/{pedido}', [PedidoController::class,'delete']);
+
+/*
+ * Api para la Relación de pizzas y sus ingredientes:
+ */
+
+Route::get('ingredientes_pizza', function() {
+    return Rel_Pi_Ing::all();
+});
+
+Route::get('ingredientes_pizza/{id}', function($id) {
+    return Rel_Pi_Ing::find($id);
+});
+
+Route::post('ingredientes_pizza', function(Request $request) {
+    return Rel_Pi_Ing::store($request->all);
+});
+
+Route::put('ingredientes_pizza/{id}', function(Request $request, $id) {
+    $ingredientes_pizza = Rel_Pi_Ing::findOrFail($id);
+    $ingredientes_pizza->update($request->all());
+
+    return $ingredientes_pizza;
+});
+
+Route::delete('ingredientes_pizza/{id}', function($id) {
+    $ingredientes_pizza = Rel_Pi_Ing::find($id);
+    $pizza = Pizza::find($ingredientes_pizza->id_pizza);
+    $ingrediente = Ingrediente::find($ingredientes_pizza->id_ingrediente);
+    $ingredientes_pizza->delete();
+
+    return "El ingrediente ".$ingrediente->nombre." de la pizza ".$pizza->nombre." se ha eliminado con éxito";
+});
+
+Route::get('/ingredientes_pizza', [RelPiIngController::class,'index']);
+Route::get('/ingredientes_pizza/{ing_piz_id}', [RelPiIngController::class,'show']);
+Route::post('/ingredientes_pizza', [RelPiIngController::class,'store']);
+Route::put('/ingredientes_pizza/{ing_piz_id}', [RelPiIngController::class,'update']);
+Route::delete('/ingredientes_pizza/{ing_piz_id}', [RelPiIngController::class,'delete']);
+
+/*
+ * Api para la Relación de pizzas solicitadas en cada pedido:
+ */
+
+Route::get('pizzas_pedido', function() {
+    return Rel_Pe_Piz::all();
+});
+
+Route::get('pizzas_pedido/{id}', function($id) {
+    return Rel_Pe_Piz::find($id);
+});
+
+Route::post('pizzas_pedido', function(Request $request) {
+    return Rel_Pe_Piz::store($request->all);
+});
+
+Route::put('pizzas_pedido/{id}', function(Request $request, $id) {
+    $pizzas_pedido = Rel_Pe_Piz::findOrFail($id);
+    $pizzas_pedido->update($request->all());
+
+    return $pizzas_pedido;
+});
+
+Route::delete('pizzas_pedido/{id}', function($id) {
+    $pizzas_pedido = Rel_Pe_Piz::find($id);
+    $pizza = Pizza::find($pizzas_pedido->id_pizza);
+    $pizzas_pedido->delete();
+
+    return "La pizza ".$pizza->nombre." del pedido con id ".$pizzas_pedido->id_pedido." se ha eliminado con éxito";
+});
+
+Route::get('/pizzas_pedido', [RelPePizController::class,'index']);
+Route::get('/pizzas_pedido/{pe_piz_id}', [RelPePizController::class,'show']);
+Route::post('/pizzas_pedido', [RelPePizController::class,'store']);
+Route::put('/pizzas_pedido/{pe_piz_id}', [RelPePizController::class,'update']);
+Route::delete('/pizzas_pedido/{pe_piz_id}', [RelPePizController::class,'delete']);

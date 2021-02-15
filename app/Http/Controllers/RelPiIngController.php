@@ -14,17 +14,7 @@ class RelPiIngController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Rel_Pi_Ing::all();
     }
 
     /**
@@ -35,51 +25,47 @@ class RelPiIngController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ingredientes_pizza = Rel_Pi_Ing::create($request->all());
+
+        return response()->json($ingredientes_pizza, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Rel_Pi_Ing  $rel_Pi_Ing
+     * @param  \App\Models\Rel_Pi_Ing  $ingredientes_pizza
      * @return \Illuminate\Http\Response
      */
-    public function show(Rel_Pi_Ing $rel_Pi_Ing)
+    public function show(Rel_Pi_Ing $ingredientes_pizza)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rel_Pi_Ing  $rel_Pi_Ing
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Rel_Pi_Ing $rel_Pi_Ing)
-    {
-        //
+        return $ingredientes_pizza;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rel_Pi_Ing  $rel_Pi_Ing
+     * @param  \App\Models\Rel_Pi_Ing  $ingredientes_pizza
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rel_Pi_Ing $rel_Pi_Ing)
+    public function update(Request $request, Rel_Pi_Ing $ingredientes_pizza)
     {
-        //
+        $ingredientes_pizza->update($request->all());
+
+        return response()->json($ingredientes_pizza, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Rel_Pi_Ing  $rel_Pi_Ing
+     * @param  \App\Models\Rel_Pi_Ing  $pizza
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rel_Pi_Ing $rel_Pi_Ing)
+    public function delete(Rel_Pi_Ing $ingredientes_pizza)
     {
-        //
+        $ingredientes_pizza->delete();
+
+        return response()->json(null, 204);
     }
 }
+

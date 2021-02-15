@@ -1,14 +1,13 @@
 <template>
     <div>
-        <h2 class="text-center">Listado de Pizzas</h2>
+        <h2 class="text-center">Listado de Relaciones Pizzas e ingredientes</h2>
  
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Imagen</th>
-                <th>Precio Base</th>
+                <th>Pizza</th>
+                <th>Ingrediente</th>
                 <th>Acciones</th>
             </tr>
             </thead>

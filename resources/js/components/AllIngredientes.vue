@@ -16,7 +16,7 @@
             <tr v-for="ingrediente in ingredientes" :key="ingrediente.id">
                 <td>{{ ingrediente.id }}</td>
                 <td>{{ ingrediente.nombre }}</td>
-                <td>{{ ingrediente.imagen }}</td>
+                <td><img :src="'images/ingredientes/'+ingrediente.imagen" alt="image" width="100" height="100" /></td>
                 <td>{{ ingrediente.precio_base }}</td>
                 <td>
                     <div class="btn-group" role="group">
