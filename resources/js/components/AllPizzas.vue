@@ -14,13 +14,13 @@
             </thead>
             <tbody>
             <tr v-for="pizza in pizzas" :key="pizza.id">
-                <td>{{ pizza.id }}</td>
-                <td>{{ pizza.nombre }}</td>
-                <td><img :src="'images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
-                <td>{{ pizza.precio_base }}</td>
-                <td>
+                <td class="align-middle">{{ pizza.id }}</td>
+                <td class="align-middle">{{ pizza.nombre }}</td>
+                <td class="align-middle"><img :src="'images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle">{{ pizza.precio_base }}</td>
+                <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: pizza.id }}" class="btn btn-success">Editar</router-link>
+                        <!-- <router-link :to="{name: 'edit', params: { id: pizza.id }}" class="btn btn-success">Editar</router-link> -->
                         <button class="btn btn-danger" @click="deletePizza(pizza.id)">Eliminar</button>
                     </div>
                 </td>
@@ -42,7 +42,9 @@
                 .get('http://localhost:8000/api/pizzas/')
                 .then(response => {
                     this.pizzas = response.data;
-                });
+                })
+                .catch(error => console.log(error));
+                
         },
         methods: {
             deletePizza(id) { 

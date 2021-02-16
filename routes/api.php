@@ -7,11 +7,13 @@ use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\RelPePizController;
 use App\Http\Controllers\RelPiIngController;
+use App\Http\Controllers\UserController;
 Use App\Models\Pedido;
 Use App\Models\Pizza;
 Use App\Models\Ingrediente;
 Use App\Models\Rel_Pe_Piz;
 Use App\Models\Rel_Pi_Ing;
+Use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
+ * Api para Usuarios:
+ */
+Route::get('usuarios', function() {
+    return User::all();
+});
+
+Route::get('usuarios/{id}', function($id) {
+    return User::find($id);
+});
+
+Route::get('/usuarios', [UserController::class,'index']);
+Route::get('/usuarios/{user}', [UserController::class,'show']);
 
 /*
  * Api para Pizzas:

@@ -6,21 +6,24 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Pizza</th>
                 <th>Ingrediente</th>
+                <th>Imagen Ingrediente</th>
+                <th>Pizza</th>
+                <th>Imagen Pizza</th>
                 <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="pizza in pizzas" :key="pizza.id">
-                <td>{{ pizza.id }}</td>
-                <td>{{ pizza.nombre }}</td>
-                <td><img :src="'images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
-                <td>{{ pizza.precio_base }}</td>
-                <td>
+            <tr v-for="rel in rel_pi_ings">
+                <td class="align-middle">{{ rel.id }}</td>
+                <td class="align-middle">{{ rel.ingrediente.nombre }}</td>
+                <td class="align-middle"><img :src="'images/ingredientes/'+rel.ingrediente.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle">{{ rel.pizza.nombre }}</td>
+                <td class="align-middle"><img :src="'images/pizzas/'+rel.pizza.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: pizza.id }}" class="btn btn-success">Editar</router-link>
-                        <button class="btn btn-danger" @click="deletePizza(pizza.id)">Eliminar</button>
+                        <!-- <router-link :to="{name: 'edit', params: { id: rel.id }}" class="btn btn-success">Editar</router-link> -->
+                        <button class="btn btn-danger" @click="deleteRel_Pi_Ing(rel.id)">Eliminar</button>
                     </div>
                 </td>
             </tr>
@@ -33,25 +36,49 @@
     export default {
         data() {
             return {
-                pizzas: []
+                rel_pi_ings: []
             }
         },
-        created() {
+        beforeCreate() {
+
             this.axios
-                .get('http://localhost:8000/api/pizzas/')
+                .get('http://localhost:8000/api/ingredientes_pizza/')
                 .then(response => {
-                    this.pizzas = response.data;
-                });
+                    let relaciones = response.data;
+                    //Recorremos todas las relaciones devueltas por la api para darle un mejor formato y más legible para el usuario
+                    for (const relacion of relaciones) {
+                        let info = {"id":0,"pizza":"","ingrediente":""};
+                        
+                        //Insertamos id de la relacion:
+                        info["id"] = relacion.id
+                        //Obtenemos la pizza
+                        this.axios
+                            .get('http://localhost:8000/api/pizzas/'+relacion.id_pizza)
+                            .then(r_pizza => {
+                                info["pizza"] = r_pizza.data;
+                            });
+                        //Obtenemos el ingrediente asociado a esa pizza
+                        this.axios
+                            .get('http://localhost:8000/api/ingredientes/'+relacion.id_ingrediente)
+                            .then(r_ingrediente => {
+                                info["ingrediente"] = r_ingrediente.data;
+                            });
+                    //Finalmente añadimos nuestro array más completo al array de relaciones
+                    this.rel_pi_ings.push(info);
+                    }
+                
+                })
+                .catch(error => console.log(error));
         },
         methods: {
-            deletePizza(id) { 
-                if(confirm("¿Estás seguro de que quieres eliminar la pizza con id "+id+"?")){
+            deleteRel_Pi_Ing(id) { 
+                if(confirm("¿Estás seguro de que quieres eliminar la relación con id "+id+"?")){
 
                 this.axios
-                    .delete(`http://localhost:8000/api/pizzas/${id}`)
+                    .delete(`http://localhost:8000/api/ingredientes_pizza/${id}`)
                     .then(response => {
-                        let i = this.pizzas.map(data => data.id).indexOf(id);
-                        this.pizzas.splice(i, 1)
+                        let i = this.rel_pi_ings.map(data => data.id).indexOf(id);
+                        this.rel_pi_ings.splice(i, 1)
                 })
                 .catch(error => {
                     console.log(error);

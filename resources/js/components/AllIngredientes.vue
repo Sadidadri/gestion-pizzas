@@ -14,13 +14,13 @@
             </thead>
             <tbody>
             <tr v-for="ingrediente in ingredientes" :key="ingrediente.id">
-                <td>{{ ingrediente.id }}</td>
-                <td>{{ ingrediente.nombre }}</td>
-                <td><img :src="'images/ingredientes/'+ingrediente.imagen" alt="image" width="100" height="100" /></td>
-                <td>{{ ingrediente.precio_base }}</td>
-                <td>
+                <td class="align-middle">{{ ingrediente.id }}</td>
+                <td class="align-middle">{{ ingrediente.nombre }}</td>
+                <td class="align-middle">{{ ingrediente.categoria }}</td>
+                <td class="align-middle"><img :src="'images/ingredientes/'+ingrediente.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: ingrediente.id }}" class="btn btn-success">Editar</router-link>
+                        <!-- <router-link :to="{name: 'edit', params: { id: ingrediente.id }}" class="btn btn-success">Editar</router-link> -->
                         <button class="btn btn-danger" @click="deleteIngredientes(ingrediente.id)">Eliminar</button>
                     </div>
                 </td>
@@ -42,7 +42,9 @@
                 .get('http://localhost:8000/api/ingredientes/')
                 .then(response => {
                     this.ingredientes = response.data;
-                });
+                })
+                .catch(error => console.log(error));
+                
         },
         methods: {
             deleteIngredientes(id) { 

@@ -10,18 +10,19 @@
                 <th>Precio Final</th>
                 <th>Hora de creación</th>
                 <th>Hora de modificación</th>
+                <th>Acciones</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="pedido in pedidos" :key="pedido.id">
-                <td>{{ pedido.id }}</td>
-                <td>{{ pedido.id_usuario }}</td>
-                <td>{{ pedido.precio_final }}€</td>
-                <td>{{ getDate(pedido.created_at) }}</td>
-                <td>{{ getDate(pedido.updated_at) }}</td>
-                <td>
+                <td class="align-middle">{{ pedido.id }}</td>
+                <td class="align-middle">{{ pedido.id_usuario }}</td>
+                <td class="align-middle">{{ pedido.precio_final }}€</td>
+                <td class="align-middle">{{ getDate(pedido.created_at) }}</td>
+                <td class="align-middle">{{ getDate(pedido.updated_at) }}</td>
+                <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <router-link :to="{name: 'edit', params: { id: pedido.id }}" class="btn btn-success">Editar</router-link>
+                        <!-- <router-link :to="{name: 'edit', params: { id: pedido.id }}" class="btn btn-success">Editar</router-link> -->
                         <button class="btn btn-danger" @click="deletePedido(pedido.id)">Eliminar</button>
                     </div>
                 </td>
@@ -43,7 +44,9 @@
                 .get('http://localhost:8000/api/pedidos/')
                 .then(response => {
                     this.pedidos = response.data;
-                });
+                })
+                .catch(error => console.log(error));
+                
         },
         methods: {
             deletePedido(id) { 
