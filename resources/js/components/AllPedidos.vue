@@ -7,6 +7,7 @@
             <tr>
                 <th>ID</th>
                 <th>Usuario</th>
+                <th>Email Usuario</th>
                 <th>Precio Final</th>
                 <th>Hora de creación</th>
                 <th>Hora de modificación</th>
@@ -16,7 +17,8 @@
             <tbody>
             <tr v-for="pedido in pedidos" :key="pedido.id">
                 <td class="align-middle">{{ pedido.id }}</td>
-                <td class="align-middle">{{ pedido.id_usuario }}</td>
+                <td class="align-middle">{{ pedido.nombre_usuario }}</td>
+                <td class="align-middle">{{ pedido.correo_usuario }}</td>
                 <td class="align-middle">{{ pedido.precio_final }}€</td>
                 <td class="align-middle">{{ getDate(pedido.created_at) }}</td>
                 <td class="align-middle">{{ getDate(pedido.updated_at) }}</td>
@@ -39,11 +41,22 @@
                 pedidos: []
             }
         },
-        created() {
+        beforeCreate() {
             this.axios
                 .get('http://localhost:8000/api/pedidos/')
-                .then(response => {
-                    this.pedidos = response.data;
+                .then(response => {                    
+                    //Obtenemos nombre de los usuarios para mostrarlos
+                    for (const pedido of response.data) {
+                        pedido["nombre_usuario"] = "loading...";
+                        let info = pedido
+                        this.axios
+                            .get('http://localhost:8000/api/usuarios/'+pedido.id_usuario)
+                            .then(usuario => {
+                                info["nombre_usuario"] = usuario.data.name;
+                                info["correo_usuario"] = usuario.data.email
+                            }).catch(error => console.log(error));
+                        this.pedidos.push(info);
+                    }
                 })
                 .catch(error => console.log(error));
                 
@@ -68,10 +81,17 @@
 
                 let date = new Date(datetime);
 
-                let dateString = date.getHours()+":"+date.getMinutes()+" "+date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+                let dateString = this.cleanTime(date.getHours())+":"+this.cleanTime(date.getMinutes())+" "+this.cleanTime(date.getDate())+"/"+this.cleanTime((date.getMonth()+1))+"/"+date.getFullYear();
 
                 return dateString
+            },
+            cleanTime(time){ //Funcion para colocar 0 delante del tiempo cuando es un numero entre 0-9
+                if( time < 10){
+                    return "0"+time;
+                }
+                return time;
             }
+            
         }
     }
 

@@ -66,6 +66,12 @@ Route::put('pizzas/{id}', function(Request $request, $id) {
 
     return $pizza;
 });
+Route::patch('pizzas/{id}', function(Request $request, $id) {
+    $pizza = Pizza::findOrFail($id);
+    $pizza->update($request->all());
+
+    return $pizza;
+});
 
 Route::delete('pizzas/{id}', function($id) {
     $pizza = Pizza::find($id);
@@ -102,6 +108,12 @@ Route::put('ingredientes/{id}', function(Request $request, $id) {
 
     return $ingrediente;
 });
+Route::patch('ingredientes/{id}', function(Request $request, $id) {
+    $ingrediente = Ingrediente::findOrFail($id);
+    $ingrediente->update($request->all());
+
+    return $ingrediente;
+});
 
 Route::delete('ingredientes/{id}', function($id) {
     $ingrediente = Ingrediente::find($id);
@@ -133,6 +145,12 @@ Route::post('pedidos', function(Request $request) {
 });
 
 Route::put('pedidos/{id}', function(Request $request, $id) {
+    $pedido = Pedido::findOrFail($id);
+    $pedido->update($request->all());
+
+    return $pedido;
+});
+Route::patch('pedidos/{id}', function(Request $request, $id) {
     $pedido = Pedido::findOrFail($id);
     $pedido->update($request->all());
 

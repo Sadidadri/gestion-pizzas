@@ -65,6 +65,7 @@
                             });
                     //Finalmente añadimos nuestro array más completo al array de relaciones
                     this.rel_pi_ings.push(info);
+                    console.log(info)
                     }
                 
                 })

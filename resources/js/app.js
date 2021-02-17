@@ -24,12 +24,28 @@ window.Vue = require('vue');
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
+//Componentes CRUD pizzas
 Vue.component('ver_pizzas',require('./components/AllPizzas.vue').default);
+Vue.component('crear_pizzas',require('./components/CreatePizza.vue').default);
+Vue.component('editar_pizzas',require('./components/EditPizza.vue').default);
+
+//Componentes CRUD ingredientes
 Vue.component('ver_ingredientes',require('./components/AllIngredientes.vue').default);
+Vue.component('crear_ingredientes',require('./components/CreateIngrediente.vue').default);
+Vue.component('editar_ingredientes',require('./components/EditIngrediente.vue').default);
+
 Vue.component('ver_pedidos',require('./components/AllPedidos.vue').default);
 Vue.component('ver_ingredientes_pizza',require('./components/AllRel_Pi_Ing.vue').default);
 Vue.component('ver_pizzas_pedido',require('./components/AllRel_Pe_Piz.vue').default);
 
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes
+});
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router: router,
+    render: h => h(App),
+    
 });

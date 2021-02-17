@@ -1,20 +1,20 @@
 <template>
     <div>
-        <h3 class="text-center">Crear Nueva Pizza</h3>
+        <h3 class="text-center">Crear Nuevo Ingrediente</h3>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form @submit.prevent="addPizza">
+                <form @submit.prevent="addIngrediente">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" v-model="pizza.nombre">
+                        <input type="text" class="form-control" v-model="ingrediente.nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <input type="text" class="form-control" v-model="ingrediente.categoria">
                     </div>
                     <div class="form-group">
                         <label>Imagen</label>
-                        <input type="text" class="form-control" v-model="pizza.imagen">
-                    </div>
-                    <div class="form-group">
-                        <label>Precio</label>
-                        <input type="text" class="form-control" v-model="pizza.precio_base">
+                        <input type="text" class="form-control" v-model="ingrediente.imagen">
                     </div>
                     <div class="text-center"> <button type="submit" class="btn btn-primary">Crear</button> </div>                    
                 </form>
@@ -27,15 +27,15 @@
     export default {
         data() {
             return {
-                pizza: {}
+                ingrediente: {}
             }
         },
         methods: {
-            addPizza() {
+            addIngrediente() {
                 this.axios
-                    .post('http://localhost:8000/api/pizzas', this.pizza)
+                    .post('http://localhost:8000/api/ingredientes', this.ingrediente)
                     .then(response => (
-                        this.$router.push({ name: 'Pizzas' })
+                        this.$router.push({ name: 'Ingredientes' })
                     ))
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)

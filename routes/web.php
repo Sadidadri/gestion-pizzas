@@ -20,11 +20,28 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
  
 
-
-Route::get('/pizzas', function () {
-    return view('ver_pizzas');
+//Prueba de vue
+Route::get('{any}', function () {
+    return view('app');
 })->where('any', '.*');
 
+/**
+ * Vistas CRUD Pizzas
+ */
+Route::get('/pizzas', function () {
+    return view('ver_pizzas');
+});
+
+Route::get('/pizzas/new', function () {
+    return view('crear_pizzas');
+});
+Route::get('/pizzas/{id}/edit', function () {
+    return view('crear_pizzas');
+})->where('id', '\d');
+
+/**
+ * Vistas CRUD ingredientes
+ */
 Route::get('/ingredientes', function () {
     return view('ver_ingredientes');
 })->where('any', '.*');

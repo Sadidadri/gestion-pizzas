@@ -1,20 +1,20 @@
 <template>
     <div>
-        <h3 class="text-center">Editar Pizza</h3>
+        <h3 class="text-center">Editar Ingrediente</h3>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form @submit.prevent="updatePizza">
+                <form @submit.prevent="updateIngrediente">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" v-model="pizza.nombre">
+                        <input type="text" class="form-control" v-model="ingrediente.nombre">
+                    </div>
+                    <div class="form-group">
+                        <label>Categoría</label>
+                        <input type="text" class="form-control" v-model="ingrediente.categoria">
                     </div>
                     <div class="form-group">
                         <label>Imagen</label>
-                        <input type="text" class="form-control" v-model="pizza.imagen">
-                    </div>
-                    <div class="form-group">
-                        <label>Precio</label>
-                        <input type="text" class="form-control" v-model="pizza.precio_base">
+                        <input type="text" class="form-control" v-model="ingrediente.imagen">
                     </div>
                     <div class="text-center"> <button type="submit" class="btn btn-primary">Editar</button> </div> 
                 </form>
@@ -27,22 +27,22 @@
     export default {
         data() {
             return {
-                pizza: {}
+                ingrediente: {}
             }
         },
         created() {
             this.axios
-                .get(`http://localhost:8000/api/pizzas/${this.$route.params.id}`)
+                .get(`http://localhost:8000/api/ingredientes/${this.$route.params.id}`)
                 .then((res) => {
-                    this.pizza = res.data;
+                    this.ingrediente = res.data;
                 });
         },
         methods: {
-            updatePizza() {
+            updateIngrediente() {
                 this.axios
-                    .patch(`http://localhost:8000/api/pizzas/${this.$route.params.id}`, this.pizza)
+                    .patch(`http://localhost:8000/api/ingredientes/${this.$route.params.id}`, this.ingrediente)
                     .then((res) => {
-                        this.$router.push({ name: 'Pizzas' });
+                        this.$router.push({ name: 'Ingredientes' });
                     });
             }
         }

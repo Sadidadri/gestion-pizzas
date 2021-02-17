@@ -90,7 +90,7 @@ class IngredienteSeeder extends Seeder
         $ingrediente = new Ingrediente();
         $ingrediente->nombre = "Ternera";
         $ingrediente->categoria = "carne";
-        $ingrediente->imagen = "pollo.jpg";
+        $ingrediente->imagen = "ternera.jpg";
         $ingrediente->save();
 
         $ingrediente = new Ingrediente();

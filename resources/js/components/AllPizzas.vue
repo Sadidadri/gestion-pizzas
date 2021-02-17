@@ -1,27 +1,29 @@
 <template>
     <div>
         <h2 class="text-center">Listado de Pizzas</h2>
- 
+        <div class="text-center"> 
+            <router-link to="/pizzas/new" class="btn btn-primary my-4 py-2">Crear pizza</router-link>
+        </div>
         <table class="table">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Imagen</th>
-                <th>Precio Base</th>
-                <th>Acciones</th>
+                <th class="text-center">ID</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Imagen</th>
+                <th class="text-center">Precio Base</th>
+                <th class="text-center">Acciones</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="pizza in pizzas" :key="pizza.id">
-                <td class="align-middle">{{ pizza.id }}</td>
-                <td class="align-middle">{{ pizza.nombre }}</td>
-                <td class="align-middle"><img :src="'images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
-                <td class="align-middle">{{ pizza.precio_base }}</td>
-                <td class="align-middle">
+                <td class="align-middle text-center">{{ pizza.id }}</td>
+                <td class="align-middle text-center">{{ pizza.nombre }}</td>
+                <td class="align-middle text-center"><img :src="'images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle text-center">{{ pizza.precio_base }}</td>
+                <td class="align-middle text-center">
                     <div class="btn-group" role="group">
-                        <!-- <router-link :to="{name: 'edit', params: { id: pizza.id }}" class="btn btn-success">Editar</router-link> -->
-                        <button class="btn btn-danger" @click="deletePizza(pizza.id)">Eliminar</button>
+                        <router-link :to="{name: 'Editar_pizza', params: { id: pizza.id }}" class="btn btn-success mx-1">Editar</router-link>
+                        <button class="btn btn-danger mx-2" @click="deletePizza(pizza.id)">Eliminar</button>
                     </div>
                 </td>
             </tr>
