@@ -34,8 +34,14 @@ Vue.component('ver_ingredientes',require('./components/AllIngredientes.vue').def
 Vue.component('crear_ingredientes',require('./components/CreateIngrediente.vue').default);
 Vue.component('editar_ingredientes',require('./components/EditIngrediente.vue').default);
 
-Vue.component('ver_pedidos',require('./components/AllPedidos.vue').default);
+//CRUD Relacion de ingredientes vinculados a cada pizza
 Vue.component('ver_ingredientes_pizza',require('./components/AllRel_Pi_Ing.vue').default);
+Vue.component('crear_ingredientes_pizza',require('./components/CreateRel_Pi_Ing.vue').default);
+Vue.component('editar_ingredientes_pizza',require('./components/EditRel_Pi_Ing.vue').default);
+
+//Componentes CRUD Pedidos
+Vue.component('ver_pedidos',require('./components/AllPedidos.vue').default);
+
 Vue.component('ver_pizzas_pedido',require('./components/AllRel_Pe_Piz.vue').default);
 
 const router = new VueRouter({

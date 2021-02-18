@@ -49,7 +49,7 @@
                 
         },
         methods: {
-            deleteIngredientes(id) { 
+            deleteIngrediente(id) { 
                 if(confirm("¿Estás seguro de que quieres eliminar el ingrediente con id "+id+"?")){
 
                 this.axios

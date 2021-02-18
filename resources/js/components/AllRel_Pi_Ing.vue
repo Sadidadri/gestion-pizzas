@@ -1,7 +1,10 @@
 <template>
     <div>
         <h2 class="text-center">Listado de Relaciones Pizzas e ingredientes</h2>
- 
+        <div class="text-center">
+            <router-link to="/ingredientes_pizza/new" class="btn btn-primary my-4 py-2">Insertar nuevo ingrediente en Pizza</router-link>
+        </div>
+
         <table class="table">
             <thead>
             <tr>
@@ -22,7 +25,7 @@
                 <td class="align-middle"><img :src="'images/pizzas/'+rel.pizza.imagen" alt="image" width="100" height="100" /></td>
                 <td class="align-middle">
                     <div class="btn-group" role="group">
-                        <!-- <router-link :to="{name: 'edit', params: { id: rel.id }}" class="btn btn-success">Editar</router-link> -->
+                        <router-link :to="{name: 'Editar_ingredientes_pizza', params: { id: rel.id }}" class="btn btn-success mx-1">Editar</router-link>
                         <button class="btn btn-danger" @click="deleteRel_Pi_Ing(rel.id)">Eliminar</button>
                     </div>
                 </td>

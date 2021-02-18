@@ -44,17 +44,29 @@ Route::get('/pizzas/{id}/edit', function () {
  */
 Route::get('/ingredientes', function () {
     return view('ver_ingredientes');
-})->where('any', '.*');
+});
 
 Route::get('/pedidos', function () {
     return view('ver_pedidos');
-})->where('any', '.*');
+});
 
+/**
+ * Vistas CRUD Ingredientes asociados a las pizzas
+ */
 Route::get('/ingredientes_pizza', function () {
     return view('ver_ingredientes_pizza');
-})->where('any', '.*');
+});
+
+Route::get('/ingredientes_pizza/new', function () {
+    return view('crear_ingredientes_pizza');
+});
+
+Route::get('/ingredientes_pizza/{id}/edit', function () {
+    return view('editar_ingredientes_pizza');
+})->where('id', '\d');
+
 
 Route::get('/pizzas_pedido', function () {
     return view('ver_pizzas_pedido');
-})->where('any', '.*');
+});
 

@@ -192,6 +192,12 @@ Route::put('ingredientes_pizza/{id}', function(Request $request, $id) {
 
     return $ingredientes_pizza;
 });
+Route::patch('ingredientes_pizza/{id}', function(Request $request, $id) {
+    $ingredientes_pizza = Rel_Pi_Ing::findOrFail($id);
+    $ingredientes_pizza->update($request->all());
+
+    return $ingredientes_pizza;
+});
 
 Route::delete('ingredientes_pizza/{id}', function($id) {
     $ingredientes_pizza = Rel_Pi_Ing::find($id);
@@ -225,6 +231,12 @@ Route::post('pizzas_pedido', function(Request $request) {
 });
 
 Route::put('pizzas_pedido/{id}', function(Request $request, $id) {
+    $pizzas_pedido = Rel_Pe_Piz::findOrFail($id);
+    $pizzas_pedido->update($request->all());
+
+    return $pizzas_pedido;
+});
+Route::patch('pizzas_pedido/{id}', function(Request $request, $id) {
     $pizzas_pedido = Rel_Pe_Piz::findOrFail($id);
     $pizzas_pedido->update($request->all());
 
