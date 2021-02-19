@@ -24,6 +24,11 @@ window.Vue = require('vue');
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
+Vue.component('login', require('./components/Login.vue'));
+
+//Obtener roles del usuario
+Vue.prototype.$userRoles = document.querySelector("meta[name='user-role']").getAttribute('content');
+
 //Componentes CRUD pizzas
 Vue.component('ver_pizzas',require('./components/AllPizzas.vue').default);
 Vue.component('crear_pizzas',require('./components/CreatePizza.vue').default);

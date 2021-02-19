@@ -111,10 +111,16 @@
 
                 let date = new Date(datetime);
 
-                let dateString = date.getHours()+":"+date.getMinutes()+" "+date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+                let dateString = this.cleanTime(date.getHours())+":"+this.cleanTime(date.getMinutes())+" "+this.cleanTime(date.getDate())+"/"+this.cleanTime((date.getMonth()+1))+"/"+date.getFullYear();
 
                 return dateString
+        },
+        cleanTime(time){ //Funcion para colocar 0 delante del tiempo cuando es un numero entre 0-9
+            if( time < 10){
+                return "0"+time;
             }
+            return time;
+        }
         
         }
     }

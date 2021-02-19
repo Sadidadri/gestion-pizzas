@@ -1,3 +1,5 @@
+import Login from './components/Login.vue';
+
 import AllPizzas from './components/AllPizzas.vue';
 import CreatePizza from './components/CreatePizza.vue';
 import EditPizza from './components/EditPizza.vue';
@@ -17,6 +19,11 @@ import AllRel_Pe_Piz from './components/AllRel_Pe_Piz.vue';
  
 export const routes = [
     //CRUD Pizzas
+    {
+        name: 'Login',
+        path: '/login',
+        component: Login
+    },
     {
         name: 'Pizzas',
         path: '/pizzas',
