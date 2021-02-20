@@ -13,8 +13,8 @@
                             <router-link to="/" class="nav-item nav-link">Inicio</router-link>
                             <router-link to="/" class="nav-item nav-link">Sobre Nosotros</router-link>
                             <router-link to="/" v-if="this.$userRoles == 'admin'" class="nav-item nav-link">Panel Administración</router-link>
-                            <router-link to="/login" v-if="this.$userRoles == 'invitado'" class="nav-item nav-link">Iniciar Sesión</router-link>
-                            <router-link to="/logout" v-if="this.$userRoles != 'invitado'" class="nav-item nav-link">Cerrar Sesión</router-link>
+                            <router-link to="/login" v-show="!user" class="nav-item nav-link">Iniciar Sesión</router-link>
+                            <router-link to="to"@click.native="logout" id="logout-link" v-on:click.native="logout" v-show="user" class="nav-item nav-link">Cerrar Sesión</router-link>
                         </div>
                     </div>
                 </nav>
@@ -27,9 +27,22 @@
 </template>
  
 <script>
-    export default {
-        mounted(){
-            console.log(this.$userRoles);
-        }
+import { mapGetters, mapActions } from "vuex";
+export default {
+  computed: {
+    ...mapGetters("auth", ["user"])
+  },
+  mounted() {
+    if (localStorage.getItem("authToken")) {
+      this.getUserData();
     }
+  },
+  methods: {
+    ...mapActions("auth", ["sendLogoutRequest", "getUserData"]),
+    logout() {
+      this.sendLogoutRequest();
+      this.$router.push("/");
+    }
+  }
+};
 </script>

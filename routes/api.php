@@ -8,6 +8,10 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\RelPePizController;
 use App\Http\Controllers\RelPiIngController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Api\AuthenticationController;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\VerificationController;
 Use App\Models\Pedido;
 Use App\Models\Pizza;
 Use App\Models\Ingrediente;
@@ -26,13 +30,33 @@ Use App\Models\User;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
+
+    Route::post('/login', [LoginController::class,'login']);
+
+    Route::post('/register', [RegisterController::class,'register']);
+
+    Route::group(['middleware' => ['auth:api']], function () {
+
+    Route::get('email/verify/{hash}', [RegisterController::class,'verify']);
+
+    Route::get('email/resend', [RegisterController::class,'resend']);
+
+    Route::get('user', [AuthenticationController::class,'user']);
+
+    Route::post('/logout', [LoginController::class,'logout']);
+
+    });
 });
+
 
 /*
  * Api para Usuarios:
  */
+Route::get('user', function() {
+    return User::all();
+});
 Route::get('usuarios', function() {
     return User::all();
 });
@@ -43,6 +67,9 @@ Route::get('usuarios/{id}', function($id) {
 
 Route::get('/usuarios', [UserController::class,'index']);
 Route::get('/usuarios/{user}', [UserController::class,'show']);
+
+
+
 
 /*
  * Api para Pizzas:

@@ -7,7 +7,7 @@
     
     <!-- Envío del rol del usuario al frontend-->
     @if (!Auth::guest())
-        <meta name="user-role" content="{{ Auth::user()->getRoles() }}">
+        <meta name="user-role" content="{{ Auth::user()->getRole() }}">
     @else
         <meta name="user-role" content="invitado">
     @endif

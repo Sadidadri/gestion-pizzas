@@ -2,10 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
-
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +10,12 @@ Auth::routes();
 |
 */
 
+
+
 //Página de inicio
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-
-//Login
-Route::post('/login', 'Auth\LoginController@vuelogin');
  
 
 //Prueba de vue

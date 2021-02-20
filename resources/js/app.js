@@ -12,6 +12,7 @@ import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import { routes } from './routes';
+import store from "./store";
 
 window.Vue = require('vue');
 
@@ -24,6 +25,10 @@ window.Vue = require('vue');
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
+//Vista de Inicio/Home
+Vue.component('home', require('./components/Home.vue'));
+
+//Vista para el Login
 Vue.component('login', require('./components/Login.vue'));
 
 //Obtener roles del usuario
@@ -49,6 +54,34 @@ Vue.component('ver_pedidos',require('./components/AllPedidos.vue').default);
 
 Vue.component('ver_pizzas_pedido',require('./components/AllRel_Pe_Piz.vue').default);
 
+
+Vue.config.productionTip = false;
+
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response.status === 422) {
+      store.commit("setErrors", error.response.data.errors);
+    } else if (error.response.status === 401) {
+      store.commit("auth/setUserData", null);
+      localStorage.removeItem("authToken");
+      router.push({ name: "Login" });
+    } else {
+      return Promise.reject(error);
+    }
+  }
+);
+
+axios.interceptors.request.use(function(config) {
+  config.headers.common = {
+    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+    "Content-Type": "application/json",
+    Accept: "application/json"
+  };
+
+  return config;
+});
+
 const router = new VueRouter({
     mode: 'history',
     routes: routes
@@ -57,6 +90,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     router: router,
+    store:store,
     render: h => h(App),
     
 });

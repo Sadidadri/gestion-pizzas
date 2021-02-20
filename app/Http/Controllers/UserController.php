@@ -29,9 +29,6 @@ class UserController extends Controller
         return $user;
     }
 
-    public function getRole(User $user)
-    {
-        return $user->role;
-    }
+    
 
 }

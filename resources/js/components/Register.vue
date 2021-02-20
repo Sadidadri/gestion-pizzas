@@ -2,19 +2,33 @@
   <div class="login mt-5">
     <div class="card">
       <div class="card-header">
-        Inicio de Sesión
+        Registro
       </div>
       <div class="card-body">
-        <form method="post">
+        <form>
           <div class="form-group">
-            <label for="email">Correo electrónico</label>
+            <label for="email">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              :class="{ 'is-invalid': errors.name }"
+              id="name"
+              v-model="details.name"
+              placeholder="Introduzca nombre"
+            />
+            <div class="invalid-feedback" v-if="errors.name">
+              {{ errors.name[0] }}
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo Electrónico</label>
             <input
               type="email"
               class="form-control"
               :class="{ 'is-invalid': errors.email }"
               id="email"
               v-model="details.email"
-              placeholder="Inserte correo electrónico"
+              placeholder="Introduzca email"
             />
             <div class="invalid-feedback" v-if="errors.email">
               {{ errors.email[0] }}
@@ -34,11 +48,20 @@
               {{ errors.password[0] }}
             </div>
           </div>
-          <button type="button" @click="login" class="btn btn-primary">
-            Enviar
+          <div class="form-group">
+            <label for="password_confirmation">Repetir contraseña</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password_confirmation"
+              v-model="details.password_confirmation"
+              placeholder="Repetir contraseña"
+            />
+          </div>
+          <button type="button" @click="register" class="btn btn-primary">
+            Registrarse
           </button>
         </form>
-        <p class="text-center">Si aún no dispones de una cuenta, puedes crearte una pulsando <a href="/register">aquí</a></p>
       </div>
     </div>
   </div>
@@ -51,8 +74,10 @@ export default {
   data: function() {
     return {
       details: {
+        name: null,
         email: null,
-        password: null
+        password: null,
+        password_confirmation: null
       }
     };
   },
@@ -63,9 +88,9 @@ export default {
     this.$store.commit("setErrors", {});
   },
   methods: {
-    ...mapActions("auth", ["sendLoginRequest"]),
-    login: function() {
-      this.sendLoginRequest(this.details).then(() => {
+    ...mapActions("auth", ["sendRegisterRequest"]),
+    register: function() {
+      this.sendRegisterRequest(this.details).then(() => {
         this.$router.push({ name: "Home" });
       });
     }

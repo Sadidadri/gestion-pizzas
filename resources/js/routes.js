@@ -1,4 +1,7 @@
+import Home from './components/Home.vue';
 import Login from './components/Login.vue';
+import Register from './components/Register.vue';
+import Verify from './components/Verify.vue';
 
 import AllPizzas from './components/AllPizzas.vue';
 import CreatePizza from './components/CreatePizza.vue';
@@ -17,13 +20,57 @@ import EditRel_Pi_Ing from './components/EditRel_Pi_Ing.vue';
 
 import AllRel_Pe_Piz from './components/AllRel_Pe_Piz.vue';
  
+
+  
+import Vue from "vue";
+import VueRouter from "vue-router";
+
+Vue.use(VueRouter);
+
+const guest = (to, from, next) => {
+    if (!localStorage.getItem("authToken")) {
+      return next();
+    } else {
+      return next("/");
+    }
+  };
+
+  const auth = (to, from, next) => {
+    if (localStorage.getItem("authToken")) {
+      return next();
+    } else {
+      return next("/login");
+    }
+  };
+
+
 export const routes = [
-    //CRUD Pizzas
+    //Vista Principal Home/Inicio
+    {
+        name: 'Home',
+        path: '/',
+        component: Home
+    },
     {
         name: 'Login',
         path: '/login',
+        beforeEnter: guest,
         component: Login
     },
+    {
+        path: "/register",
+        name: "Register",
+        beforeEnter: guest,
+        component: Register
+      },
+      {
+        path: "/verify/:hash",
+        name: "Verify",
+        beforeEnter: auth,
+        props: true,
+        component: Verify
+      },
+    //CRUD Pizzas
     {
         name: 'Pizzas',
         path: '/pizzas',
