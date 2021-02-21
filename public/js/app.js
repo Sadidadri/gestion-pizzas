@@ -1882,10 +1882,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      userIsAdmin: false
+    };
+  },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)("auth", ["user"])),
   mounted: function mounted() {
     if (localStorage.getItem("authToken")) {
       this.getUserData();
+    }
+
+    if ($('meta[name=author]').attr('content') == "admin") {
+      this.userIsAdmin = true;
     }
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)("auth", ["sendLogoutRequest", "getUserData"])), {}, {
@@ -2920,12 +2929,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      pizzas: {},
+      rel_pi_ings: {},
+      ingredientes: {},
+      informacion: {}
+    };
   },
-  created: function created() {},
-  methods: {}
+  created: function created() {
+    this.getPizzas();
+  },
+  mounted: function mounted() {},
+  methods: {
+    getPizzas: function getPizzas() {
+      var _this = this;
+
+      this.axios.get('http://localhost:8000/api/pizzas/').then(function (response) {
+        _this.pizzas = response.data;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    getPizzaById: function getPizzaById(id) {
+      var _this2 = this;
+
+      return axios.get('/names/?ids=' + id).then(function (response) {
+        _this2.response = response.data;
+        return _this2.response[0].name;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -40150,7 +40212,7 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "nav-item nav-link",
+                          staticClass: "nav-item nav-link menu-item",
                           attrs: { to: "/" }
                         },
                         [_vm._v("Inicio")]
@@ -40159,17 +40221,17 @@ var render = function() {
                       _c(
                         "router-link",
                         {
-                          staticClass: "nav-item nav-link",
+                          staticClass: "nav-item nav-link menu-item",
                           attrs: { to: "/" }
                         },
                         [_vm._v("Sobre Nosotros")]
                       ),
                       _vm._v(" "),
-                      this.$userRoles == "admin"
+                      this.$userIsAdmin
                         ? _c(
                             "router-link",
                             {
-                              staticClass: "nav-item nav-link",
+                              staticClass: "nav-item nav-link menu-item",
                               attrs: { to: "/" }
                             },
                             [_vm._v("Panel Administración")]
@@ -40187,7 +40249,7 @@ var render = function() {
                               expression: "!user"
                             }
                           ],
-                          staticClass: "nav-item nav-link",
+                          staticClass: "nav-item nav-link menu-item",
                           attrs: { to: "/login" }
                         },
                         [_vm._v("Iniciar Sesión")]
@@ -40204,8 +40266,8 @@ var render = function() {
                               expression: "user"
                             }
                           ],
-                          staticClass: "nav-item nav-link",
-                          attrs: { to: "to", id: "logout-link" },
+                          staticClass: "nav-item nav-link menu-item",
+                          attrs: { to: "to", id: "logout-link " },
                           nativeOn: {
                             click: [
                               function($event) {
@@ -41742,15 +41804,107 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "content" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "pizzasContent" } }, [
+      _c("h3", { staticClass: "text-center my-5" }, [
+        _vm._v("Nuestras Pizzas")
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { attrs: { id: "pizzas" } },
+        _vm._l(_vm.pizzas, function(pizza) {
+          return _c("div", { staticClass: "card pizza-carta" }, [
+            _c("img", {
+              staticClass: "card-img-top pizza-imagen",
+              attrs: {
+                src: "images/pizzas/" + pizza.imagen,
+                alt: "Card image cap"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("h4", { staticClass: "card-title text-center mb-2" }, [
+                _vm._v(_vm._s(pizza.nombre))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [
+                _vm._v("Precio: "),
+                _c("b", [_vm._v(_vm._s(pizza.precio_base) + " €")])
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [_vm._v("Ingredientes:")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "card-text" }, [_vm._v("Tamaño:")]),
+              _vm._v(" "),
+              _c("p", [
+                _c("input", {
+                  staticClass: "mx-2",
+                  attrs: {
+                    id: "pequegna" + pizza.nombre,
+                    name: "tamagno" + pizza.nombre,
+                    type: "radio"
+                  }
+                }),
+                _c("label", { attrs: { for: "pequegna" + pizza.nombre } }, [
+                  _vm._v("Pequeña")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "mx-2",
+                  attrs: {
+                    id: "mediana" + pizza.nombre,
+                    name: "tamagno" + pizza.nombre,
+                    type: "radio"
+                  }
+                }),
+                _c("label", { attrs: { for: "mediana" + pizza.nombre } }, [
+                  _vm._v("Mediana")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "mx-2",
+                  attrs: {
+                    id: "grande" + pizza.nombre,
+                    name: "tamagno" + pizza.nombre,
+                    type: "radio"
+                  }
+                }),
+                _c("label", { attrs: { for: "grande" + pizza.nombre } }, [
+                  _vm._v("Grande")
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1, true)
+            ])
+          ])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h2", { staticClass: "text-center" }, [_vm._v("Inicio")])
+    return _c("div", { attrs: { id: "imagenInicio" } }, [
+      _c("h2", { staticClass: "text-white lead" }, [
+        _vm._v("BIENVENIDO A ROLLPIZZA")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c("a", { staticClass: "btn btn-primary", attrs: { href: "#" } }, [
+        _vm._v("Pedir")
+      ])
     ])
   }
 ]

@@ -27,6 +27,7 @@ import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
 
+
 const guest = (to, from, next) => {
     if (!localStorage.getItem("authToken")) {
       return next();

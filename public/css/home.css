@@ -1,0 +1,46 @@
+#imagenInicio{
+    width: 100vw;
+    min-height: 70vh;
+    position: relative;
+    left: 50%;  
+    margin-left: -50vw;   
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-image: url("../images/contenido/imagenInicio.jpg");
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#imagenInicio>h2{
+    font-size: 2.5rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+
+#pizzasContent>h4{
+    font-size:1.5rem;
+}
+
+#pizzas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-around;
+    justify-items: center;
+    align-items: center;
+    column-gap: 60px;
+    row-gap: 40px;
+}
+.pizza-carta{
+    width:30vw;
+}
+
+ul{
+    list-style: none;
+    margin-left: 5%;
+}
+
+.pizza-imagen{
+    height: 40vh;
+}

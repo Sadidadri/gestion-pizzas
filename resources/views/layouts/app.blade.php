@@ -14,7 +14,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'RolPizza') }}</title>
+    <title>{{ config('app.name', 'RollPizza') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,10 +23,16 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/contenido/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('images/contenido/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/contenido/favicon-16x16.png') }}">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Cargo mis propios estilos -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    @yield('estilos')
 </head>
 <body>
     <div id="app">
@@ -85,6 +91,7 @@
         </nav>
 
         <main class="py-4">
+            
             @yield('content')
         </main>
     </div>

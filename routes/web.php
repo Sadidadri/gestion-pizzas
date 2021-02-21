@@ -16,12 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+//Página de inicio
+Route::get('/register', function () {
+    return view('register');
+});
  
 
 //Prueba de vue
-Route::get('{any}', function () {
-    return view('app');
-})->where('any', '.*');
+//Route::get('{any}', function () {
+//    return view('app');
+//})->where('any', '.*');
 
 /**
  * Vistas CRUD Pizzas
@@ -67,4 +72,6 @@ Route::get('/ingredientes_pizza/{id}/edit', function () {
 Route::get('/pizzas_pedido', function () {
     return view('ver_pizzas_pedido');
 });
+
+
 
