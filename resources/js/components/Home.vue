@@ -5,7 +5,7 @@
         </div>
 
         <div id="pizzasContent">
-            <h3 class="text-center my-5">Nuestras Pizzas</h3>
+            <h3 class="text-center my-5">Pide nuestras Pizzas</h3>
             <div id="pizzas">
 
                 <div v-for="pizza in pizzas" class="card pizza-carta">
@@ -16,9 +16,9 @@
                         <p class="card-text">Ingredientes:</p>
                         <p class="card-text">Tamaño:</p>
                         <p> 
-                            <input class="mx-2" :id="'pequegna'+pizza.nombre" :name="'tamagno'+pizza.nombre" type="radio"><label :for="'pequegna'+pizza.nombre">Pequeña</label>
-                            <input class="mx-2" :id="'mediana'+pizza.nombre" :name="'tamagno'+pizza.nombre" type="radio"><label :for="'mediana'+pizza.nombre">Mediana</label>
-                            <input class="mx-2" :id="'grande'+pizza.nombre" :name="'tamagno'+pizza.nombre" type="radio"><label :for="'grande'+pizza.nombre">Grande</label>
+                            <input class="mx-2" data-tipo="pequegna" :id="'pequegna'+pizza.nombre" :name="'tamagno'+pizza.nombre" v-on:click="calculatePrice(pizza.precio_base,$event)" type="radio" checked  ><label :for="'pequegna'+pizza.nombre">Pequeña</label>
+                            <input class="mx-2" data-tipo="mediana" :id="'mediana'+pizza.nombre" :name="'tamagno'+pizza.nombre" v-on:click="calculatePrice(pizza.precio_base,$event)" type="radio"><label :for="'mediana'+pizza.nombre">Mediana</label>
+                            <input class="mx-2" data-tipo="grande" :id="'grande'+pizza.nombre" :name="'tamagno'+pizza.nombre" v-on:click="calculatePrice(pizza.precio_base,$event)" type="radio"><label :for="'grande'+pizza.nombre">Familiar</label>
                         </p>
                         <div class="text-center">
                             <a href="#" class="btn btn-primary">Pedir</a>
@@ -64,6 +64,22 @@
                     this.response = response.data
                     return this.response[0].name
                 })
+            },
+            calculatePrice(precioPizza,event){
+                let inputTamagno = event.target;
+                let tamagno = inputTamagno.getAttribute("data-tipo");
+                let precio_final = parseFloat(precioPizza);
+                let precioTag = $(inputTamagno).parent().prev().prev().prev().children();
+
+                //Segun el tamagno modificamos el precio
+                if (tamagno == "mediana"){
+                    precio_final += 4;
+                }else if (tamagno == "grande"){
+                    precio_final += 7;
+                }
+
+                precioTag.text(precio_final.toFixed(2)+" €");
+
             }
         }
             

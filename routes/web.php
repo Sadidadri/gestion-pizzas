@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 //Página de inicio
 Route::get('/', function () {
     return view('home');
-});
+})->middleware('web');
 
 //Página de inicio
 Route::get('/register', function () {
     return view('register');
-});
+})->middleware('web');
  
 
 //Prueba de vue

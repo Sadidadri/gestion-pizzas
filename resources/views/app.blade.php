@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Envío del rol del usuario al frontend-->
-    @if (!Auth::guest())
+    @if (Auth::user())
         <meta name="user-role" content="{{ Auth::user()->getRole() }}">
     @else
         <meta name="user-role" content="invitado">

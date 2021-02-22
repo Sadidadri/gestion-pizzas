@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- Envío del rol del usuario al frontend-->
-    @if (!Auth::guest())
+    @auth
         <meta name="user-role" content="{{ Auth::user()->getRole() }}">
-    @else
+    @endauth
+    @guest
         <meta name="user-role" content="invitado">
-    @endif
+    @endguest
+    
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

@@ -2986,6 +2986,20 @@ __webpack_require__.r(__webpack_exports__);
         _this2.response = response.data;
         return _this2.response[0].name;
       });
+    },
+    calculatePrice: function calculatePrice(precioPizza, event) {
+      var inputTamagno = event.target;
+      var tamagno = inputTamagno.getAttribute("data-tipo");
+      var precio_final = parseFloat(precioPizza);
+      var precioTag = $(inputTamagno).parent().prev().prev().prev().children(); //Segun el tamagno modificamos el precio
+
+      if (tamagno == "mediana") {
+        precio_final += 4;
+      } else if (tamagno == "grande") {
+        precio_final += 7;
+      }
+
+      precioTag.text(precio_final.toFixed(2) + " €");
     }
   }
 });
@@ -40227,7 +40241,7 @@ var render = function() {
                         [_vm._v("Sobre Nosotros")]
                       ),
                       _vm._v(" "),
-                      this.$userIsAdmin
+                      this.userIsAdmin
                         ? _c(
                             "router-link",
                             {
@@ -41809,7 +41823,7 @@ var render = function() {
     _vm._v(" "),
     _c("div", { attrs: { id: "pizzasContent" } }, [
       _c("h3", { staticClass: "text-center my-5" }, [
-        _vm._v("Nuestras Pizzas")
+        _vm._v("Pide nuestras Pizzas")
       ]),
       _vm._v(" "),
       _c(
@@ -41843,9 +41857,16 @@ var render = function() {
                 _c("input", {
                   staticClass: "mx-2",
                   attrs: {
+                    "data-tipo": "pequegna",
                     id: "pequegna" + pizza.nombre,
                     name: "tamagno" + pizza.nombre,
-                    type: "radio"
+                    type: "radio",
+                    checked: ""
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.calculatePrice(pizza.precio_base, $event)
+                    }
                   }
                 }),
                 _c("label", { attrs: { for: "pequegna" + pizza.nombre } }, [
@@ -41855,9 +41876,15 @@ var render = function() {
                 _c("input", {
                   staticClass: "mx-2",
                   attrs: {
+                    "data-tipo": "mediana",
                     id: "mediana" + pizza.nombre,
                     name: "tamagno" + pizza.nombre,
                     type: "radio"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.calculatePrice(pizza.precio_base, $event)
+                    }
                   }
                 }),
                 _c("label", { attrs: { for: "mediana" + pizza.nombre } }, [
@@ -41867,13 +41894,19 @@ var render = function() {
                 _c("input", {
                   staticClass: "mx-2",
                   attrs: {
+                    "data-tipo": "grande",
                     id: "grande" + pizza.nombre,
                     name: "tamagno" + pizza.nombre,
                     type: "radio"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.calculatePrice(pizza.precio_base, $event)
+                    }
                   }
                 }),
                 _c("label", { attrs: { for: "grande" + pizza.nombre } }, [
-                  _vm._v("Grande")
+                  _vm._v("Familiar")
                 ])
               ]),
               _vm._v(" "),
