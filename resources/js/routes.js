@@ -1,6 +1,7 @@
 import Home from './components/Home.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
+import RegisterComplete from './components/RegisterComplete.vue';
 import Verify from './components/Verify.vue';
 
 import AllPizzas from './components/AllPizzas.vue';
@@ -63,6 +64,12 @@ export const routes = [
         name: "Register",
         beforeEnter: guest,
         component: Register
+      },
+      {
+        path: "/register/complete",
+        name: "RegisterComplete",
+        beforeEnter: guest,
+        component: RegisterComplete
       },
       {
         path: "/verify/:hash",

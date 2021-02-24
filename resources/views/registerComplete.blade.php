@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Registrar usuario') }}</div>
+                <div class="card-header">{{ __('Registro con éxito') }}</div>
 
                 <div class="card-body">
-                    <register></register>
+                    <registroCompletado></registroCompletado>
                 </div>
             </div>
         </div>

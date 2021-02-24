@@ -2,7 +2,6 @@
 
 @section('estilos')
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')

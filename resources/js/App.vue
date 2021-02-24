@@ -12,9 +12,9 @@
                         <div class="navbar-nav d-flex justify-content-around">
                             <router-link to="/" class="nav-item nav-link menu-item">Inicio</router-link>
                             <router-link to="/" class="nav-item nav-link menu-item">Sobre Nosotros</router-link>
-                            <router-link to="/" v-if="this.userIsAdmin" class="nav-item nav-link menu-item">Panel Administración</router-link>
-                            <router-link to="/login" v-show="!user" class="nav-item nav-link menu-item">Iniciar Sesión</router-link>
-                            <router-link to="to"@click.native="logout" id="logout-link " v-on:click.native="logout" v-show="user" class="nav-item nav-link menu-item">Cerrar Sesión</router-link>
+                            <!--<router-link to="/" v-if="" class="nav-item nav-link menu-item">Panel Administración</router-link>
+                            <router-link to="/login" v-if="!userIsLogged" class="nav-item nav-link menu-item">Iniciar Sesión</router-link>
+                            <router-link to="to"@click.native="logout" id="logout-link" v-if="userIsLogged" class="nav-item nav-link menu-item">Cerrar Sesión</router-link> -->
                         </div>
                     </div>
                 </nav>
@@ -31,21 +31,22 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data(){
     return{
-      userIsAdmin:false,
+      
     }
   },
   computed: {
     ...mapGetters("auth", ["user"])
   },
   mounted() {
-    if (localStorage.getItem("authToken")) {
-      this.getUserData();
-    }
     
-    if($('meta[name=author]').attr('content') == "admin"){
-      this.userIsAdmin = true;
-    }
 
+    //if (!localStorage.getItem("userLogged")) {
+    //  this.getUserData();
+    //}else{
+    //  this.userIsLogged = true;
+    //}
+    
+    console.log(this.$store.state.auth);
   },
   methods: {
     ...mapActions("auth", ["sendLogoutRequest", "getUserData"]),

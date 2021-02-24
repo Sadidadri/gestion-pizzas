@@ -31,6 +31,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Cargo mis propios estilos -->
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @yield('estilos')
 </head>

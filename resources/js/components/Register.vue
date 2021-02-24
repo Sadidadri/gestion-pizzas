@@ -58,7 +58,7 @@
               placeholder="Repetir contraseña"
             />
           </div>
-          <button type="button" @click="register" class="btn btn-primary">
+          <button type="submit" @click="register" class="btn btn-primary">
             Registrarse
           </button>
         </form>
@@ -89,10 +89,11 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["sendRegisterRequest"]),
-    register: function() {
+    register: function(event) {
+      event.preventDefault();
       this.sendRegisterRequest(this.details).then(() => {
-        this.$router.push({ name: "Home" });
       });
+      this.$router.push({ name: "RegisterComplete" });
     }
   }
 };

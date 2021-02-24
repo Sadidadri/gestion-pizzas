@@ -30,6 +30,10 @@ Vue.component('home', require('./components/Home.vue'));
 
 //Vista para el Login
 Vue.component('login', require('./components/Login.vue'));
+//Vista para Registro
+Vue.component('registro', require('./components/Register.vue'));
+Vue.component('registroCompletado', require('./components/RegisterComplete.vue'));
+
 
 //Obtener roles del usuario
 Vue.prototype.$userRoles = document.querySelector("meta[name='user-role']").getAttribute('content');

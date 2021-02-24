@@ -34,7 +34,7 @@
               {{ errors.password[0] }}
             </div>
           </div>
-          <button type="button" @click="login" class="btn btn-primary">
+          <button type="submit" @click="login" class="btn btn-primary">
             Enviar
           </button>
         </form>
@@ -64,7 +64,8 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["sendLoginRequest"]),
-    login: function() {
+    login: function(event) {
+      event.preventDefault();
       this.sendLoginRequest(this.details).then(() => {
         this.$router.push({ name: "Home" });
       });

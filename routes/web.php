@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->middleware('web');
+//Pagina de inicio de sesion
+Route::get('/login', function () {
+    return view('login');
+})->middleware('web');
 
-//Página de inicio
+//Página de registro
 Route::get('/register', function () {
     return view('register');
 })->middleware('web');
