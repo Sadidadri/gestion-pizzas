@@ -20,6 +20,10 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 })->middleware('web');
+//Página de cierre de sesión
+Route::get('/logout', function () {
+    return view('logout');
+})->middleware('web');
 
 //Página de registro
 Route::get('/register', function () {

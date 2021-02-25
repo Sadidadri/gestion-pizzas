@@ -35,6 +35,7 @@ export default {
         .then(response => {
           commit("setUserData", response.data.user);
           localStorage.setItem("authToken", response.data.token);
+          localStorage.setItem("userLogged",true)
         });
     },
     sendRegisterRequest({ commit }, data) {
@@ -44,12 +45,14 @@ export default {
         .then(response => {
           commit("setUserData", response.data.user);
           localStorage.setItem("authToken", response.data.token);
+          localStorage.setItem("userLogged",true)
         });
     },
     sendLogoutRequest({ commit }) {
       axios.post("http://localhost:8000/api/" + "logout").then(() => {
         commit("setUserData", null);
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userLogged");
       });
     },
     sendVerifyResendRequest() {

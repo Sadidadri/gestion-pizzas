@@ -1,5 +1,6 @@
 import Home from './components/Home.vue';
 import Login from './components/Login.vue';
+import Logout from './components/Logout.vue';
 import Register from './components/Register.vue';
 import RegisterComplete from './components/RegisterComplete.vue';
 import Verify from './components/Verify.vue';
@@ -58,6 +59,11 @@ export const routes = [
         path: '/login',
         beforeEnter: guest,
         component: Login
+    },
+    {
+      name: 'Logout',
+      path: '/logout',
+      component: Logout
     },
     {
         path: "/register",

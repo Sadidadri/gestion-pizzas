@@ -30,6 +30,8 @@ Vue.component('home', require('./components/Home.vue'));
 
 //Vista para el Login
 Vue.component('login', require('./components/Login.vue'));
+//Vista para el Logout
+Vue.component('logout', require('./components/Logout.vue'));
 //Vista para Registro
 Vue.component('registro', require('./components/Register.vue'));
 Vue.component('registroCompletado', require('./components/RegisterComplete.vue'));

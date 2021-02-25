@@ -12,9 +12,9 @@
                         <div class="navbar-nav d-flex justify-content-around">
                             <router-link to="/" class="nav-item nav-link menu-item">Inicio</router-link>
                             <router-link to="/" class="nav-item nav-link menu-item">Sobre Nosotros</router-link>
-                            <!--<router-link to="/" v-if="" class="nav-item nav-link menu-item">Panel Administración</router-link>
-                            <router-link to="/login" v-if="!userIsLogged" class="nav-item nav-link menu-item">Iniciar Sesión</router-link>
-                            <router-link to="to"@click.native="logout" id="logout-link" v-if="userIsLogged" class="nav-item nav-link menu-item">Cerrar Sesión</router-link> -->
+                            <!--<router-link to="/" v-if="" class="nav-item nav-link menu-item">Panel Administración</router-link> -->
+                            <router-link to="/login" v-if="!userIsLogged()" class="nav-item nav-link menu-item">Iniciar Sesión</router-link>
+                            <a href="/" v-on:click="logout($event)" id="logout-link" v-if="userIsLogged()" class="nav-item nav-link menu-item">Cerrar Sesión</a> 
                         </div>
                     </div>
                 </nav>
@@ -31,14 +31,15 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data(){
     return{
-      
+     
     }
   },
   computed: {
     ...mapGetters("auth", ["user"])
   },
-  mounted() {
+  mounted() { 
     
+    //if (!localStorage.getItem("userLogged")
 
     //if (!localStorage.getItem("userLogged")) {
     //  this.getUserData();
@@ -50,9 +51,17 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["sendLogoutRequest", "getUserData"]),
-    logout() {
+    logout(event) {
+      event.preventDefault();
       this.sendLogoutRequest();
-      this.$router.push("/");
+      this.$router.push("/logout");
+    },
+    userIsLogged(){
+      if (localStorage.getItem('userLogged')){
+        return true;
+      }
+
+      return false;
     }
   }
 };
