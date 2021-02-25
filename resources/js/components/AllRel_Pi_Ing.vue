@@ -20,9 +20,9 @@
             <tr v-for="rel in rel_pi_ings">
                 <td class="align-middle">{{ rel.id }}</td>
                 <td class="align-middle">{{ rel.ingrediente.nombre }}</td>
-                <td class="align-middle"><img :src="'images/ingredientes/'+rel.ingrediente.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle"><img :src="'../images/ingredientes/'+rel.ingrediente.imagen" alt="image" width="100" height="100" /></td>
                 <td class="align-middle">{{ rel.pizza.nombre }}</td>
-                <td class="align-middle"><img :src="'images/pizzas/'+rel.pizza.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle"><img :src="'../images/pizzas/'+rel.pizza.imagen" alt="image" width="100" height="100" /></td>
                 <td class="align-middle">
                     <div class="btn-group" role="group">
                         <router-link :to="{name: 'Editar_ingredientes_pizza', params: { id: rel.id }}" class="btn btn-success mx-1">Editar</router-link>

@@ -58,11 +58,8 @@ Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 Route::get('user', function() {
     return User::all();
 });
-Route::get('usuarios', function() {
-    return User::all();
-});
 
-Route::get('usuarios/{id}', function($id) {
+Route::get('user/{id}', function($id) {
     return User::find($id);
 });
 

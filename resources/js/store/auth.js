@@ -36,6 +36,8 @@ export default {
           commit("setUserData", response.data.user);
           localStorage.setItem("authToken", response.data.token);
           localStorage.setItem("userLogged",true)
+          localStorage.setItem("userID",response.data.user.id);
+          localStorage.setItem("userRole",response.data.user.role);
         });
     },
     sendRegisterRequest({ commit }, data) {
@@ -46,6 +48,8 @@ export default {
           commit("setUserData", response.data.user);
           localStorage.setItem("authToken", response.data.token);
           localStorage.setItem("userLogged",true)
+          localStorage.setItem("userID",response.data.user.id);
+          localStorage.setItem("userRole",response.data.user.role);
         });
     },
     sendLogoutRequest({ commit }) {
@@ -53,17 +57,10 @@ export default {
         commit("setUserData", null);
         localStorage.removeItem("authToken");
         localStorage.removeItem("userLogged");
+        localStorage.removeItem("userID");
+        localStorage.removeItem("userRole");
       });
     },
-    sendVerifyResendRequest() {
-      return axios.get("http://localhost:8000/api/" + "email/resend");
-    },
-    sendVerifyRequest({ dispatch }, hash) {
-      return axios
-        .get("http://localhost:8000/api/" + "email/verify/" + hash)
-        .then(() => {
-          dispatch("getUserData");
-        });
-    }
+    
   }
 };

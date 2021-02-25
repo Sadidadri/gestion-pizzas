@@ -22,7 +22,7 @@ Route::get('/login', function () {
 })->middleware('web');
 //Página de cierre de sesión
 Route::get('/logout', function () {
-    return view('logout');
+    return view('logoutadmin');
 })->middleware('web');
 
 //Página de registro
@@ -31,53 +31,53 @@ Route::get('/register', function () {
 })->middleware('web');
  
 
-//Prueba de vue
-//Route::get('{any}', function () {
-//    return view('app');
-//})->where('any', '.*');
+//Vista de Admin
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware('web');
 
 /**
  * Vistas CRUD Pizzas
  */
-Route::get('/pizzas', function () {
+Route::get('/admin/pizzas', function () {
     return view('ver_pizzas');
 });
 
-Route::get('/pizzas/new', function () {
+Route::get('/admin/pizzas/new', function () {
     return view('crear_pizzas');
 });
-Route::get('/pizzas/{id}/edit', function () {
+Route::get('/admin/pizzas/{id}/edit', function () {
     return view('crear_pizzas');
 })->where('id', '\d');
 
 /**
  * Vistas CRUD ingredientes
  */
-Route::get('/ingredientes', function () {
+Route::get('/admin/ingredientes', function () {
     return view('ver_ingredientes');
 });
 
-Route::get('/pedidos', function () {
+Route::get('/admin/pedidos', function () {
     return view('ver_pedidos');
 });
 
 /**
  * Vistas CRUD Ingredientes asociados a las pizzas
  */
-Route::get('/ingredientes_pizza', function () {
+Route::get('/admin/ingredientes_pizza', function () {
     return view('ver_ingredientes_pizza');
 });
 
-Route::get('/ingredientes_pizza/new', function () {
+Route::get('/admin/ingredientes_pizza/new', function () {
     return view('crear_ingredientes_pizza');
 });
 
-Route::get('/ingredientes_pizza/{id}/edit', function () {
+Route::get('/admin/ingredientes_pizza/{id}/edit', function () {
     return view('editar_ingredientes_pizza');
 })->where('id', '\d');
 
 
-Route::get('/pizzas_pedido', function () {
+Route::get('/admin/pizzas_pedido', function () {
     return view('ver_pizzas_pedido');
 });
 

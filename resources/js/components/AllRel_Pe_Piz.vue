@@ -64,7 +64,7 @@
                                 info["pedido"] = r_pedido.data;
                                 //Añadimos info del usuario
                                 this.axios
-                                    .get('http://localhost:8000/api/usuarios/'+info["pedido"]["id_usuario"])
+                                    .get('http://localhost:8000/api/user/'+info["pedido"]["id_usuario"])
                                     .then( usuario => {
                                         info["usuario"] = usuario.data.name; 
                                 });

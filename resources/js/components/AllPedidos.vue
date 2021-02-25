@@ -50,7 +50,7 @@
                         pedido["nombre_usuario"] = "loading...";
                         let info = pedido
                         this.axios
-                            .get('http://localhost:8000/api/usuarios/'+pedido.id_usuario)
+                            .get('http://localhost:8000/api/user/'+pedido.id_usuario)
                             .then(usuario => {
                                 info["nombre_usuario"] = usuario.data.name;
                                 info["correo_usuario"] = usuario.data.email

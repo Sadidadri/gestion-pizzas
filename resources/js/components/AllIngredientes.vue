@@ -19,7 +19,7 @@
                 <td class="align-middle text-center">{{ ingrediente.id }}</td>
                 <td class="align-middle text-center">{{ ingrediente.nombre }}</td>
                 <td class="align-middle text-center">{{ ingrediente.categoria }}</td>
-                <td class="align-middle text-center"><img :src="'images/ingredientes/'+ingrediente.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle text-center"><img :src="'../images/ingredientes/'+ingrediente.imagen" alt="image" width="100" height="100" /></td>
                 <td class="align-middle text-center">
                     <div class="btn-group" role="group">
                         <router-link :to="{name: 'Editar_ingrediente', params: { id: ingrediente.id }}" class="btn btn-success mx-1">Editar</router-link>

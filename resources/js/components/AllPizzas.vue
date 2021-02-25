@@ -18,7 +18,7 @@
             <tr v-for="pizza in pizzas" :key="pizza.id">
                 <td class="align-middle text-center">{{ pizza.id }}</td>
                 <td class="align-middle text-center">{{ pizza.nombre }}</td>
-                <td class="align-middle text-center"><img :src="'images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
+                <td class="align-middle text-center"><img :src="'../images/pizzas/'+pizza.imagen" alt="image" width="100" height="100" /></td>
                 <td class="align-middle text-center">{{ pizza.precio_base }}</td>
                 <td class="align-middle text-center">
                     <div class="btn-group" role="group">

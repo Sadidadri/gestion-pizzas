@@ -37,9 +37,8 @@ Vue.component('registro', require('./components/Register.vue'));
 Vue.component('registroCompletado', require('./components/RegisterComplete.vue'));
 
 
-//Obtener roles del usuario
-Vue.prototype.$userRoles = document.querySelector("meta[name='user-role']").getAttribute('content');
-
+//Vista Admin
+Vue.component('admin', require('./components/Admin.vue'));
 //Componentes CRUD pizzas
 Vue.component('ver_pizzas',require('./components/AllPizzas.vue').default);
 Vue.component('crear_pizzas',require('./components/CreatePizza.vue').default);

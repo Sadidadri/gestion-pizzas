@@ -3,23 +3,20 @@ import Login from './components/Login.vue';
 import Logout from './components/Logout.vue';
 import Register from './components/Register.vue';
 import RegisterComplete from './components/RegisterComplete.vue';
-import Verify from './components/Verify.vue';
 
+
+//Vista Administrador
+import Admin from './components/Admin.vue';
 import AllPizzas from './components/AllPizzas.vue';
 import CreatePizza from './components/CreatePizza.vue';
 import EditPizza from './components/EditPizza.vue';
-
 import AllIngredientes from './components/AllIngredientes.vue';
 import CreateIngrediente from './components/CreateIngrediente.vue';
 import EditIngrediente from './components/EditIngrediente.vue';
-
 import AllPedidos from './components/AllPedidos.vue';
-
-
 import AllRel_Pi_Ing from './components/AllRel_Pi_Ing.vue';
 import CreateRel_Pi_Ing from './components/CreateRel_Pi_Ing.vue';
 import EditRel_Pi_Ing from './components/EditRel_Pi_Ing.vue';
-
 import AllRel_Pe_Piz from './components/AllRel_Pe_Piz.vue';
  
 
@@ -77,71 +74,73 @@ export const routes = [
         beforeEnter: guest,
         component: RegisterComplete
       },
-      {
-        path: "/verify/:hash",
-        name: "Verify",
-        beforeEnter: auth,
-        props: true,
-        component: Verify
-      },
+
+    //Dashboard Admin
+    {
+      path: "/admin",
+      name: "Admin",
+      beforeEnter: auth,
+      props: true,
+      component: Admin
+    },
     //CRUD Pizzas
     {
         name: 'Pizzas',
-        path: '/pizzas',
+        path: '/admin/pizzas',
         component: AllPizzas
     },
     {
         name: 'Create_pizza',
-        path: '/pizzas/new',
+        path: '/admin/pizzas/new',
         component: CreatePizza
     },
     {
         name: 'Editar_pizza',
-        path: '/pizzas/:id/edit',
+        path: '/admin/pizzas/:id/edit',
         component: EditPizza
     },
     //CRUD Ingredientes
     {
         name: 'Ingredientes',
-        path: '/ingredientes',
+        path: '/admin/ingredientes',
         component: AllIngredientes
     },
     {
         name: 'Create_ingrediente',
-        path: '/ingredientes/new',
+        path: '/admin/ingredientes/new',
         component: CreateIngrediente
     },
     {
         name: 'Editar_ingrediente',
-        path: '/ingredientes/:id/edit',
+        path: '/admin/ingredientes/:id/edit',
         component: EditIngrediente
     },
     //CRUD Pedidos
     {
         name: 'Pedidos',
-        path: '/pedidos',
+        path: '/admin/pedidos',
         component: AllPedidos
     },
     //CRUD Ingredientes asociados a las pizzas
     {
         name: 'Ingredientes_Pizza',
-        path: '/ingredientes_pizza',
+        path: '/admin/ingredientes_pizza',
         component: AllRel_Pi_Ing
     },
     {
         name: 'Create_ingrediente_pizza',
-        path: '/ingredientes_pizza/new',
+        path: '/admin/ingredientes_pizza/new',
         component: CreateRel_Pi_Ing
     },
     {
         name: 'Editar_ingredientes_pizza',
-        path: '/ingredientes_pizza/:id/edit',
+        path: '/admin/ingredientes_pizza/:id/edit',
         component: EditRel_Pi_Ing
     },
     //CRUD Pizzas asociadas a un pedido
     {
         name: 'Pizzas_Pedido',
-        path: '/pizzas_pedido',
+        path: '/admin/pizzas_pedido',
         component: AllRel_Pe_Piz
     },
 ];
