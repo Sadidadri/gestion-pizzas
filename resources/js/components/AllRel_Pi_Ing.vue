@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-if="isAdmin()">
         <h2 class="text-center">Listado de Relaciones Pizzas e ingredientes</h2>
         <div class="text-center">
-            <router-link to="/ingredientes_pizza/new" class="btn btn-primary my-4 py-2">Insertar nuevo ingrediente en Pizza</router-link>
+            <router-link to="/administrador/ingredientes_pizza/new" class="btn btn-primary my-4 py-2">Insertar nuevo ingrediente en Pizza</router-link>
         </div>
 
         <table class="table">
@@ -88,6 +88,15 @@
                     console.log(error);
                 });
             }
-        }}
+            },
+            isAdmin(){
+                if (localStorage.getItem('userLogged')){
+                    if(localStorage.getItem('userRole') === "admin"){
+                    return true;
+                    }
+                }
+                    return false;
+                }
+        }
     }
 </script>

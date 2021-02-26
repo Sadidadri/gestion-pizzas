@@ -6,7 +6,7 @@ import RegisterComplete from './components/RegisterComplete.vue';
 
 
 //Vista Administrador
-import Admin from './components/Admin.vue';
+import Administrador from './components/Administrador.vue';
 import AllPizzas from './components/AllPizzas.vue';
 import CreatePizza from './components/CreatePizza.vue';
 import EditPizza from './components/EditPizza.vue';
@@ -77,70 +77,70 @@ export const routes = [
 
     //Dashboard Admin
     {
-      path: "/admin",
-      name: "Admin",
+      path: "/administrador",
+      name: "Administrador",
       beforeEnter: auth,
       props: true,
-      component: Admin
+      component: Administrador
     },
     //CRUD Pizzas
     {
         name: 'Pizzas',
-        path: '/admin/pizzas',
+        path: '/administrador/pizzas',
         component: AllPizzas
     },
     {
         name: 'Create_pizza',
-        path: '/admin/pizzas/new',
+        path: '/administrador/pizzas/new',
         component: CreatePizza
     },
     {
         name: 'Editar_pizza',
-        path: '/admin/pizzas/:id/edit',
+        path: '/administrador/pizzas/:id/edit',
         component: EditPizza
     },
     //CRUD Ingredientes
     {
         name: 'Ingredientes',
-        path: '/admin/ingredientes',
+        path: '/administrador/ingredientes',
         component: AllIngredientes
     },
     {
         name: 'Create_ingrediente',
-        path: '/admin/ingredientes/new',
+        path: '/administrador/ingredientes/new',
         component: CreateIngrediente
     },
     {
         name: 'Editar_ingrediente',
-        path: '/admin/ingredientes/:id/edit',
+        path: '/administrador/ingredientes/:id/edit',
         component: EditIngrediente
     },
     //CRUD Pedidos
     {
         name: 'Pedidos',
-        path: '/admin/pedidos',
+        path: '/administrador/pedidos',
         component: AllPedidos
     },
     //CRUD Ingredientes asociados a las pizzas
     {
         name: 'Ingredientes_Pizza',
-        path: '/admin/ingredientes_pizza',
+        path: '/administrador/ingredientes_pizza',
         component: AllRel_Pi_Ing
     },
     {
         name: 'Create_ingrediente_pizza',
-        path: '/admin/ingredientes_pizza/new',
+        path: '/administrador/ingredientes_pizza/new',
         component: CreateRel_Pi_Ing
     },
     {
         name: 'Editar_ingredientes_pizza',
-        path: '/admin/ingredientes_pizza/:id/edit',
+        path: '/administrador/ingredientes_pizza/:id/edit',
         component: EditRel_Pi_Ing
     },
     //CRUD Pizzas asociadas a un pedido
     {
         name: 'Pizzas_Pedido',
-        path: '/admin/pizzas_pedido',
+        path: '/administrador/pizzas_pedido',
         component: AllRel_Pe_Piz
     },
 ];

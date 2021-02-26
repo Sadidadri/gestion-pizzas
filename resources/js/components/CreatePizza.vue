@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="isAdmin()">
         <h3 class="text-center">Crear Nueva Pizza</h3>
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -39,7 +39,15 @@
                     ))
                     .catch(err => console.log(err))
                     .finally(() => this.loading = false)
-            }
+            },
+            isAdmin(){
+                if (localStorage.getItem('userLogged')){
+                    if(localStorage.getItem('userRole') === "admin"){
+                    return true;
+                    }
+                }
+                    return false;
+                }
         }
     }
 </script>

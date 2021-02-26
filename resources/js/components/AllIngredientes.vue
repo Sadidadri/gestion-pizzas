@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-if="isAdmin()">
         <h2 class="text-center">Listado de Ingredientes</h2>
         <div class="text-center"> 
-            <router-link to="/ingredientes/new" class="btn btn-primary my-4 py-2">Crear ingrediente</router-link>
+            <router-link to="/administrador/ingredientes/new" class="btn btn-primary my-4 py-2">Crear ingrediente</router-link>
         </div>
         <table class="table">
             <thead>
@@ -62,6 +62,15 @@
                     console.log(error);
                 })
             }
-        }}
+            },
+            isAdmin(){
+                if (localStorage.getItem('userLogged')){
+                    if(localStorage.getItem('userRole') === "admin"){
+                    return true;
+                    }
+                }
+                    return false;
+                }
+        }
     }
 </script>

@@ -32,52 +32,52 @@ Route::get('/register', function () {
  
 
 //Vista de Admin
-Route::get('/admin', function () {
-    return view('admin');
+Route::get('/administrador', function () {
+    return view('administrador');
 })->middleware('web');
 
 /**
  * Vistas CRUD Pizzas
  */
-Route::get('/admin/pizzas', function () {
+Route::get('/administrador/pizzas', function () {
     return view('ver_pizzas');
 });
 
-Route::get('/admin/pizzas/new', function () {
+Route::get('/administrador/pizzas/new', function () {
     return view('crear_pizzas');
 });
-Route::get('/admin/pizzas/{id}/edit', function () {
+Route::get('/administrador/pizzas/{id}/edit', function () {
     return view('crear_pizzas');
 })->where('id', '\d');
 
 /**
  * Vistas CRUD ingredientes
  */
-Route::get('/admin/ingredientes', function () {
+Route::get('/administrador/ingredientes', function () {
     return view('ver_ingredientes');
 });
 
-Route::get('/admin/pedidos', function () {
+Route::get('/administrador/pedidos', function () {
     return view('ver_pedidos');
 });
 
 /**
  * Vistas CRUD Ingredientes asociados a las pizzas
  */
-Route::get('/admin/ingredientes_pizza', function () {
+Route::get('/administrador/ingredientes_pizza', function () {
     return view('ver_ingredientes_pizza');
 });
 
-Route::get('/admin/ingredientes_pizza/new', function () {
+Route::get('/administrador/ingredientes_pizza/new', function () {
     return view('crear_ingredientes_pizza');
 });
 
-Route::get('/admin/ingredientes_pizza/{id}/edit', function () {
+Route::get('/administrador/ingredientes_pizza/{id}/edit', function () {
     return view('editar_ingredientes_pizza');
 })->where('id', '\d');
 
 
-Route::get('/admin/pizzas_pedido', function () {
+Route::get('/administrador/pizzas_pedido', function () {
     return view('ver_pizzas_pedido');
 });
 

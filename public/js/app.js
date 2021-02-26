@@ -1914,10 +1914,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Admin.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Admin.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1933,13 +1933,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {};
   },
   created: function created() {},
   mounted: function mounted() {},
-  methods: {}
+  methods: {
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
+    }
+  }
 });
 
 /***/ }),
@@ -2019,6 +2041,15 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       }
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2148,6 +2179,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       return time;
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2229,6 +2269,15 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       }
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2391,6 +2440,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
 
       return time;
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2519,6 +2577,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           console.log(error);
         });
       }
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2580,6 +2647,15 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         return _this.loading = false;
       });
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2641,6 +2717,15 @@ __webpack_require__.r(__webpack_exports__);
       })["finally"](function () {
         return _this.loading = false;
       });
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2724,6 +2809,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   },
   created: function created() {
@@ -2793,6 +2887,15 @@ __webpack_require__.r(__webpack_exports__);
           name: 'Ingredientes'
         });
       });
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2857,6 +2960,15 @@ __webpack_require__.r(__webpack_exports__);
           name: 'Pizzas'
         });
       });
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -2943,6 +3055,15 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    isAdmin: function isAdmin() {
+      if (localStorage.getItem('userLogged')) {
+        if (localStorage.getItem('userRole') === "admin") {
+          return true;
+        }
+      }
+
+      return false;
     }
   }
 });
@@ -3364,7 +3485,7 @@ vue__WEBPACK_IMPORTED_MODULE_5__.default.component('logout', __webpack_require__
 vue__WEBPACK_IMPORTED_MODULE_5__.default.component('registro', __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue"));
 vue__WEBPACK_IMPORTED_MODULE_5__.default.component('registroCompletado', __webpack_require__(/*! ./components/RegisterComplete.vue */ "./resources/js/components/RegisterComplete.vue")); //Vista Admin
 
-vue__WEBPACK_IMPORTED_MODULE_5__.default.component('admin', __webpack_require__(/*! ./components/Admin.vue */ "./resources/js/components/Admin.vue")); //Componentes CRUD pizzas
+vue__WEBPACK_IMPORTED_MODULE_5__.default.component('administrador', __webpack_require__(/*! ./components/Administrador.vue */ "./resources/js/components/Administrador.vue")); //Componentes CRUD pizzas
 
 vue__WEBPACK_IMPORTED_MODULE_5__.default.component('ver_pizzas', __webpack_require__(/*! ./components/AllPizzas.vue */ "./resources/js/components/AllPizzas.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_5__.default.component('crear_pizzas', __webpack_require__(/*! ./components/CreatePizza.vue */ "./resources/js/components/CreatePizza.vue").default);
@@ -3479,7 +3600,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Logout_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Logout.vue */ "./resources/js/components/Logout.vue");
 /* harmony import */ var _components_Register_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Register.vue */ "./resources/js/components/Register.vue");
 /* harmony import */ var _components_RegisterComplete_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/RegisterComplete.vue */ "./resources/js/components/RegisterComplete.vue");
-/* harmony import */ var _components_Admin_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Admin.vue */ "./resources/js/components/Admin.vue");
+/* harmony import */ var _components_Administrador_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Administrador.vue */ "./resources/js/components/Administrador.vue");
 /* harmony import */ var _components_AllPizzas_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/AllPizzas.vue */ "./resources/js/components/AllPizzas.vue");
 /* harmony import */ var _components_CreatePizza_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/CreatePizza.vue */ "./resources/js/components/CreatePizza.vue");
 /* harmony import */ var _components_EditPizza_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/EditPizza.vue */ "./resources/js/components/EditPizza.vue");
@@ -3557,59 +3678,59 @@ var routes = [//Vista Principal Home/Inicio
   component: _components_RegisterComplete_vue__WEBPACK_IMPORTED_MODULE_4__.default
 }, //Dashboard Admin
 {
-  path: "/admin",
-  name: "Admin",
+  path: "/administrador",
+  name: "Administrador",
   beforeEnter: auth,
   props: true,
-  component: _components_Admin_vue__WEBPACK_IMPORTED_MODULE_5__.default
+  component: _components_Administrador_vue__WEBPACK_IMPORTED_MODULE_5__.default
 }, //CRUD Pizzas
 {
   name: 'Pizzas',
-  path: '/admin/pizzas',
+  path: '/administrador/pizzas',
   component: _components_AllPizzas_vue__WEBPACK_IMPORTED_MODULE_6__.default
 }, {
   name: 'Create_pizza',
-  path: '/admin/pizzas/new',
+  path: '/administrador/pizzas/new',
   component: _components_CreatePizza_vue__WEBPACK_IMPORTED_MODULE_7__.default
 }, {
   name: 'Editar_pizza',
-  path: '/admin/pizzas/:id/edit',
+  path: '/administrador/pizzas/:id/edit',
   component: _components_EditPizza_vue__WEBPACK_IMPORTED_MODULE_8__.default
 }, //CRUD Ingredientes
 {
   name: 'Ingredientes',
-  path: '/admin/ingredientes',
+  path: '/administrador/ingredientes',
   component: _components_AllIngredientes_vue__WEBPACK_IMPORTED_MODULE_9__.default
 }, {
   name: 'Create_ingrediente',
-  path: '/admin/ingredientes/new',
+  path: '/administrador/ingredientes/new',
   component: _components_CreateIngrediente_vue__WEBPACK_IMPORTED_MODULE_10__.default
 }, {
   name: 'Editar_ingrediente',
-  path: '/admin/ingredientes/:id/edit',
+  path: '/administrador/ingredientes/:id/edit',
   component: _components_EditIngrediente_vue__WEBPACK_IMPORTED_MODULE_11__.default
 }, //CRUD Pedidos
 {
   name: 'Pedidos',
-  path: '/admin/pedidos',
+  path: '/administrador/pedidos',
   component: _components_AllPedidos_vue__WEBPACK_IMPORTED_MODULE_12__.default
 }, //CRUD Ingredientes asociados a las pizzas
 {
   name: 'Ingredientes_Pizza',
-  path: '/admin/ingredientes_pizza',
+  path: '/administrador/ingredientes_pizza',
   component: _components_AllRel_Pi_Ing_vue__WEBPACK_IMPORTED_MODULE_13__.default
 }, {
   name: 'Create_ingrediente_pizza',
-  path: '/admin/ingredientes_pizza/new',
+  path: '/administrador/ingredientes_pizza/new',
   component: _components_CreateRel_Pi_Ing_vue__WEBPACK_IMPORTED_MODULE_14__.default
 }, {
   name: 'Editar_ingredientes_pizza',
-  path: '/admin/ingredientes_pizza/:id/edit',
+  path: '/administrador/ingredientes_pizza/:id/edit',
   component: _components_EditRel_Pi_Ing_vue__WEBPACK_IMPORTED_MODULE_15__.default
 }, //CRUD Pizzas asociadas a un pedido
 {
   name: 'Pizzas_Pedido',
-  path: '/admin/pizzas_pedido',
+  path: '/administrador/pizzas_pedido',
   component: _components_AllRel_Pe_Piz_vue__WEBPACK_IMPORTED_MODULE_16__.default
 }];
 
@@ -39112,10 +39233,10 @@ component.options.__file = "resources/js/App.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin.vue":
-/*!*******************************************!*\
-  !*** ./resources/js/components/Admin.vue ***!
-  \*******************************************/
+/***/ "./resources/js/components/Administrador.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/Administrador.vue ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39123,8 +39244,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Admin_vue_vue_type_template_id_58b78718___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Admin.vue?vue&type=template&id=58b78718& */ "./resources/js/components/Admin.vue?vue&type=template&id=58b78718&");
-/* harmony import */ var _Admin_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Admin.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Administrador_vue_vue_type_template_id_e5b4083c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Administrador.vue?vue&type=template&id=e5b4083c& */ "./resources/js/components/Administrador.vue?vue&type=template&id=e5b4083c&");
+/* harmony import */ var _Administrador_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Administrador.vue?vue&type=script&lang=js& */ "./resources/js/components/Administrador.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -39134,9 +39255,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _Admin_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _Admin_vue_vue_type_template_id_58b78718___WEBPACK_IMPORTED_MODULE_0__.render,
-  _Admin_vue_vue_type_template_id_58b78718___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _Administrador_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _Administrador_vue_vue_type_template_id_e5b4083c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Administrador_vue_vue_type_template_id_e5b4083c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -39146,7 +39267,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Admin.vue"
+component.options.__file = "resources/js/components/Administrador.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -39791,10 +39912,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin.vue?vue&type=script&lang=js&":
-/*!********************************************************************!*\
-  !*** ./resources/js/components/Admin.vue?vue&type=script&lang=js& ***!
-  \********************************************************************/
+/***/ "./resources/js/components/Administrador.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Administrador.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -39802,8 +39923,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Admin_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Admin.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Admin.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Admin_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Administrador_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Administrador.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Administrador_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -40080,19 +40201,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/Admin.vue?vue&type=template&id=58b78718&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/Admin.vue?vue&type=template&id=58b78718& ***!
-  \**************************************************************************/
+/***/ "./resources/js/components/Administrador.vue?vue&type=template&id=e5b4083c&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/Administrador.vue?vue&type=template&id=e5b4083c& ***!
+  \**********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Admin_vue_vue_type_template_id_58b78718___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Admin_vue_vue_type_template_id_58b78718___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Administrador_vue_vue_type_template_id_e5b4083c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Administrador_vue_vue_type_template_id_e5b4083c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Admin_vue_vue_type_template_id_58b78718___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Admin.vue?vue&type=template&id=58b78718& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Admin.vue?vue&type=template&id=58b78718&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Administrador_vue_vue_type_template_id_e5b4083c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Administrador.vue?vue&type=template&id=e5b4083c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador.vue?vue&type=template&id=e5b4083c&");
 
 
 /***/ }),
@@ -40453,7 +40574,7 @@ var render = function() {
                             "router-link",
                             {
                               staticClass: "nav-item nav-link menu-item",
-                              attrs: { to: "/admin" }
+                              attrs: { to: "/administrador" }
                             },
                             [_vm._v("Panel de Administración")]
                           )
@@ -40507,10 +40628,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Admin.vue?vue&type=template&id=58b78718&":
-/*!*****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Admin.vue?vue&type=template&id=58b78718& ***!
-  \*****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador.vue?vue&type=template&id=e5b4083c&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Administrador.vue?vue&type=template&id=e5b4083c& ***!
+  \*************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -40526,9 +40647,97 @@ var render = function() {
   return _c("div", { attrs: { id: "content" } }, [
     this.isAdmin()
       ? _c("div", [
-          _c("h1", { staticClass: "text-center" }, [_vm._v("Hola Admin")])
+          _c("h1", { staticClass: "text-center" }, [_vm._v("Hola Admin")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "my-5 d-flex justify-content-center" }, [
+            _c("ul", [
+              _c("li", [
+                _c(
+                  "p",
+                  [
+                    _vm._v("Administrar "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: "administrador/pizzas" } },
+                      [_vm._v("Pizzas")]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "p",
+                  [
+                    _vm._v("Administrar "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: "administrador/ingredientes" } },
+                      [_vm._v("Ingredientes")]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "p",
+                  [
+                    _vm._v("Administrar "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: "administrador/pedidos" } },
+                      [_vm._v("Pedidos")]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "p",
+                  [
+                    _vm._v("Seleccionar "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: "administrador/ingredientes_pizza" } },
+                      [_vm._v("Ingredientes para las Pizzas")]
+                    )
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "p",
+                  [
+                    _vm._v("Administrar "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: "administrador/pizzas_pedido" } },
+                      [_vm._v("Pizzas de cada Pedido")]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
         ])
-      : _vm._e()
+      : _c("div", [
+          _c(
+            "h1",
+            {
+              staticClass: "text-center mt-5",
+              staticStyle: { color: "lightgray" }
+            },
+            [_vm._v("Error 404. Página no encontrada")]
+          )
+        ])
   ])
 }
 var staticRenderFns = []
@@ -40554,98 +40763,100 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", { staticClass: "text-center" }, [
-      _vm._v("Listado de Ingredientes")
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-center" },
-      [
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h2", { staticClass: "text-center" }, [
+          _vm._v("Listado de Ingredientes")
+        ]),
+        _vm._v(" "),
         _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary my-4 py-2",
-            attrs: { to: "/ingredientes/new" }
-          },
-          [_vm._v("Crear ingrediente")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.ingredientes, function(ingrediente) {
-          return _c("tr", { key: ingrediente.id }, [
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _vm._v(_vm._s(ingrediente.id))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _vm._v(_vm._s(ingrediente.nombre))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _vm._v(_vm._s(ingrediente.categoria))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _c("img", {
-                attrs: {
-                  src: "../images/ingredientes/" + ingrediente.imagen,
-                  alt: "image",
-                  width: "100",
-                  height: "100"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _c(
-                "div",
-                { staticClass: "btn-group", attrs: { role: "group" } },
-                [
+          "div",
+          { staticClass: "text-center" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary my-4 py-2",
+                attrs: { to: "/administrador/ingredientes/new" }
+              },
+              [_vm._v("Crear ingrediente")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.ingredientes, function(ingrediente) {
+              return _c("tr", { key: ingrediente.id }, [
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _vm._v(_vm._s(ingrediente.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _vm._v(_vm._s(ingrediente.nombre))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _vm._v(_vm._s(ingrediente.categoria))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "../images/ingredientes/" + ingrediente.imagen,
+                      alt: "image",
+                      width: "100",
+                      height: "100"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
                   _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-success mx-1",
-                      attrs: {
-                        to: {
-                          name: "Editar_ingrediente",
-                          params: { id: ingrediente.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Editar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger mx-2",
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteIngrediente(ingrediente.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Eliminar")]
+                    "div",
+                    { staticClass: "btn-group", attrs: { role: "group" } },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-success mx-1",
+                          attrs: {
+                            to: {
+                              name: "Editar_ingrediente",
+                              params: { id: ingrediente.id }
+                            }
+                          }
+                        },
+                        [_vm._v("Editar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger mx-2",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteIngrediente(ingrediente.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Eliminar")]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
-            ])
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -40689,66 +40900,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", { staticClass: "text-center" }, [_vm._v("Listado de Pedidos")]),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.pedidos, function(pedido) {
-          return _c("tr", { key: pedido.id }, [
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(pedido.id))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(pedido.nombre_usuario))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(pedido.correo_usuario))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(pedido.precio_final) + "€")
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(_vm.getDate(pedido.created_at)))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(_vm.getDate(pedido.updated_at)))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _c(
-                "div",
-                { staticClass: "btn-group", attrs: { role: "group" } },
-                [
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h2", { staticClass: "text-center" }, [
+          _vm._v("Listado de Pedidos")
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.pedidos, function(pedido) {
+              return _c("tr", { key: pedido.id }, [
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(pedido.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(pedido.nombre_usuario))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(pedido.correo_usuario))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(pedido.precio_final) + "€")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(_vm.getDate(pedido.created_at)))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(_vm.getDate(pedido.updated_at)))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePedido(pedido.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Eliminar")]
+                    "div",
+                    { staticClass: "btn-group", attrs: { role: "group" } },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePedido(pedido.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Eliminar")]
+                      )
+                    ]
                   )
-                ]
-              )
-            ])
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -40796,93 +41011,98 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", { staticClass: "text-center" }, [_vm._v("Listado de Pizzas")]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-center" },
-      [
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h2", { staticClass: "text-center" }, [_vm._v("Listado de Pizzas")]),
+        _vm._v(" "),
         _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary my-4 py-2",
-            attrs: { to: "/pizzas/new" }
-          },
-          [_vm._v("Crear pizza")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.pizzas, function(pizza) {
-          return _c("tr", { key: pizza.id }, [
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _vm._v(_vm._s(pizza.id))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _vm._v(_vm._s(pizza.nombre))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _c("img", {
-                attrs: {
-                  src: "../images/pizzas/" + pizza.imagen,
-                  alt: "image",
-                  width: "100",
-                  height: "100"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _vm._v(_vm._s(pizza.precio_base))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle text-center" }, [
-              _c(
-                "div",
-                { staticClass: "btn-group", attrs: { role: "group" } },
-                [
+          "div",
+          { staticClass: "text-center" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary my-4 py-2",
+                attrs: { to: "/administrador/pizzas/new" }
+              },
+              [_vm._v("Crear pizza")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.pizzas, function(pizza) {
+              return _c("tr", { key: pizza.id }, [
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _vm._v(_vm._s(pizza.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _vm._v(_vm._s(pizza.nombre))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "../images/pizzas/" + pizza.imagen,
+                      alt: "image",
+                      width: "100",
+                      height: "100"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
+                  _vm._v(_vm._s(pizza.precio_base))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle text-center" }, [
                   _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-success mx-1",
-                      attrs: {
-                        to: { name: "Editar_pizza", params: { id: pizza.id } }
-                      }
-                    },
-                    [_vm._v("Editar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger mx-2",
-                      on: {
-                        click: function($event) {
-                          return _vm.deletePizza(pizza.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Eliminar")]
+                    "div",
+                    { staticClass: "btn-group", attrs: { role: "group" } },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-success mx-1",
+                          attrs: {
+                            to: {
+                              name: "Editar_pizza",
+                              params: { id: pizza.id }
+                            }
+                          }
+                        },
+                        [_vm._v("Editar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger mx-2",
+                          on: {
+                            click: function($event) {
+                              return _vm.deletePizza(pizza.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Eliminar")]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
-            ])
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -40926,74 +41146,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", { staticClass: "text-center" }, [
-      _vm._v("Listado de Relaciones Pedido y Pizzas")
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.rel_pe_pizs, function(rel) {
-          return _c("tr", [
-            _c("td", { staticClass: "align-middle" }, [_vm._v(_vm._s(rel.id))]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.pedido.id))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.usuario))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(_vm.getDate(rel.pedido.created_at)))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.pizza.nombre))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.cantidad))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.tamagno))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.tipo_masa))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _c(
-                "div",
-                { staticClass: "btn-group", attrs: { role: "group" } },
-                [
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h2", { staticClass: "text-center" }, [
+          _vm._v("Listado de Relaciones Pedido y Pizzas")
+        ]),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.rel_pe_pizs, function(rel) {
+              return _c("tr", [
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.pedido.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.usuario))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(_vm.getDate(rel.pedido.created_at)))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.pizza.nombre))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.cantidad))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.tamagno))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.tipo_masa))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
                   _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteRel_Pe_Piz(rel.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Eliminar")]
+                    "div",
+                    { staticClass: "btn-group", attrs: { role: "group" } },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteRel_Pe_Piz(rel.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Eliminar")]
+                      )
+                    ]
                   )
-                ]
-              )
-            ])
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41045,107 +41269,111 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h2", { staticClass: "text-center" }, [
-      _vm._v("Listado de Relaciones Pizzas e ingredientes")
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "text-center" },
-      [
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h2", { staticClass: "text-center" }, [
+          _vm._v("Listado de Relaciones Pizzas e ingredientes")
+        ]),
+        _vm._v(" "),
         _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary my-4 py-2",
-            attrs: { to: "/ingredientes_pizza/new" }
-          },
-          [_vm._v("Insertar nuevo ingrediente en Pizza")]
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.rel_pi_ings, function(rel) {
-          return _c("tr", [
-            _c("td", { staticClass: "align-middle" }, [_vm._v(_vm._s(rel.id))]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.ingrediente.nombre))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _c("img", {
-                attrs: {
-                  src: "../images/ingredientes/" + rel.ingrediente.imagen,
-                  alt: "image",
-                  width: "100",
-                  height: "100"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _vm._v(_vm._s(rel.pizza.nombre))
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _c("img", {
-                attrs: {
-                  src: "../images/pizzas/" + rel.pizza.imagen,
-                  alt: "image",
-                  width: "100",
-                  height: "100"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "align-middle" }, [
-              _c(
-                "div",
-                { staticClass: "btn-group", attrs: { role: "group" } },
-                [
+          "div",
+          { staticClass: "text-center" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary my-4 py-2",
+                attrs: { to: "/administrador/ingredientes_pizza/new" }
+              },
+              [_vm._v("Insertar nuevo ingrediente en Pizza")]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.rel_pi_ings, function(rel) {
+              return _c("tr", [
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.id))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.ingrediente.nombre))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "../images/ingredientes/" + rel.ingrediente.imagen,
+                      alt: "image",
+                      width: "100",
+                      height: "100"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(_vm._s(rel.pizza.nombre))
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "../images/pizzas/" + rel.pizza.imagen,
+                      alt: "image",
+                      width: "100",
+                      height: "100"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
                   _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-success mx-1",
-                      attrs: {
-                        to: {
-                          name: "Editar_ingredientes_pizza",
-                          params: { id: rel.id }
-                        }
-                      }
-                    },
-                    [_vm._v("Editar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      on: {
-                        click: function($event) {
-                          return _vm.deleteRel_Pi_Ing(rel.id)
-                        }
-                      }
-                    },
-                    [_vm._v("Eliminar")]
+                    "div",
+                    { staticClass: "btn-group", attrs: { role: "group" } },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-success mx-1",
+                          attrs: {
+                            to: {
+                              name: "Editar_ingredientes_pizza",
+                              params: { id: rel.id }
+                            }
+                          }
+                        },
+                        [_vm._v("Editar")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteRel_Pi_Ing(rel.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Eliminar")]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
-              )
-            ])
-          ])
-        }),
-        0
-      )
-    ])
-  ])
+                ])
+              ])
+            }),
+            0
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41191,108 +41419,114 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [
-      _vm._v("Crear Nuevo Ingrediente")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.addIngrediente($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ingrediente.nombre,
-                    expression: "ingrediente.nombre"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.ingrediente.nombre },
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h3", { staticClass: "text-center" }, [
+          _vm._v("Crear Nuevo Ingrediente")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.ingrediente, "nombre", $event.target.value)
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addIngrediente($event)
                   }
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Categoría")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ingrediente.categoria,
-                    expression: "ingrediente.categoria"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.ingrediente.categoria },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ingrediente.nombre,
+                        expression: "ingrediente.nombre"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.ingrediente.nombre },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.ingrediente, "nombre", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.ingrediente, "categoria", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Imagen")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ingrediente.imagen,
-                    expression: "ingrediente.imagen"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.ingrediente.imagen },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Categoría")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ingrediente.categoria,
+                        expression: "ingrediente.categoria"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.ingrediente.categoria },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.ingrediente,
+                          "categoria",
+                          $event.target.value
+                        )
+                      }
                     }
-                    _vm.$set(_vm.ingrediente, "imagen", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]
-        )
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Imagen")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ingrediente.imagen,
+                        expression: "ingrediente.imagen"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.ingrediente.imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.ingrediente, "imagen", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41330,106 +41564,108 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [_vm._v("Crear Nueva Pizza")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.addPizza($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pizza.nombre,
-                    expression: "pizza.nombre"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.pizza.nombre },
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h3", { staticClass: "text-center" }, [_vm._v("Crear Nueva Pizza")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.pizza, "nombre", $event.target.value)
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addPizza($event)
                   }
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Imagen")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pizza.imagen,
-                    expression: "pizza.imagen"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.pizza.imagen },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pizza.nombre,
+                        expression: "pizza.nombre"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.pizza.nombre },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pizza, "nombre", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.pizza, "imagen", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Precio")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pizza.precio_base,
-                    expression: "pizza.precio_base"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.pizza.precio_base },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Imagen")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pizza.imagen,
+                        expression: "pizza.imagen"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.pizza.imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pizza, "imagen", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.pizza, "precio_base", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]
-        )
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Precio")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pizza.precio_base,
+                        expression: "pizza.precio_base"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.pizza.precio_base },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pizza, "precio_base", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41467,118 +41703,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [
-      _vm._v("Insertar nuevo ingrediente en una pizza")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.addIngrediente($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Ingrediente")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.relacion.id_ingrediente,
-                      expression: "relacion.id_ingrediente"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.relacion,
-                        "id_ingrediente",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h3", { staticClass: "text-center" }, [
+          _vm._v("Insertar nuevo ingrediente en una pizza")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.addIngrediente($event)
                   }
-                },
-                _vm._l(_vm.ingredientes, function(ingrediente) {
-                  return _c("option", { domProps: { value: ingrediente.id } }, [
-                    _vm._v(_vm._s(ingrediente.nombre))
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Pizza")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Ingrediente")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.relacion.id_pizza,
-                      expression: "relacion.id_pizza"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.relacion,
-                        "id_pizza",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.relacion.id_ingrediente,
+                          expression: "relacion.id_ingrediente"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.relacion,
+                            "id_ingrediente",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.ingredientes, function(ingrediente) {
+                      return _c(
+                        "option",
+                        { domProps: { value: ingrediente.id } },
+                        [_vm._v(_vm._s(ingrediente.nombre))]
                       )
-                    }
-                  }
-                },
-                _vm._l(_vm.pizzas, function(pizza) {
-                  return _c("option", { domProps: { value: pizza.id } }, [
-                    _vm._v(_vm._s(pizza.nombre))
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]
-        )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Pizza")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.relacion.id_pizza,
+                          expression: "relacion.id_pizza"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.relacion,
+                            "id_pizza",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.pizzas, function(pizza) {
+                      return _c("option", { domProps: { value: pizza.id } }, [
+                        _vm._v(_vm._s(pizza.nombre))
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41616,106 +41856,114 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [_vm._v("Editar Ingrediente")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.updateIngrediente($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ingrediente.nombre,
-                    expression: "ingrediente.nombre"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.ingrediente.nombre },
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h3", { staticClass: "text-center" }, [
+          _vm._v("Editar Ingrediente")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.ingrediente, "nombre", $event.target.value)
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.updateIngrediente($event)
                   }
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Categoría")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ingrediente.categoria,
-                    expression: "ingrediente.categoria"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.ingrediente.categoria },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ingrediente.nombre,
+                        expression: "ingrediente.nombre"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.ingrediente.nombre },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.ingrediente, "nombre", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.ingrediente, "categoria", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Imagen")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ingrediente.imagen,
-                    expression: "ingrediente.imagen"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.ingrediente.imagen },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Categoría")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ingrediente.categoria,
+                        expression: "ingrediente.categoria"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.ingrediente.categoria },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.ingrediente,
+                          "categoria",
+                          $event.target.value
+                        )
+                      }
                     }
-                    _vm.$set(_vm.ingrediente, "imagen", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]
-        )
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Imagen")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.ingrediente.imagen,
+                        expression: "ingrediente.imagen"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.ingrediente.imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.ingrediente, "imagen", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41753,106 +42001,108 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [_vm._v("Editar Pizza")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.updatePizza($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pizza.nombre,
-                    expression: "pizza.nombre"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.pizza.nombre },
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h3", { staticClass: "text-center" }, [_vm._v("Editar Pizza")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.pizza, "nombre", $event.target.value)
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.updatePizza($event)
                   }
                 }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Imagen")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pizza.imagen,
-                    expression: "pizza.imagen"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.pizza.imagen },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Nombre")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pizza.nombre,
+                        expression: "pizza.nombre"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.pizza.nombre },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pizza, "nombre", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.pizza, "imagen", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Precio")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.pizza.precio_base,
-                    expression: "pizza.precio_base"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.pizza.precio_base },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Imagen")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pizza.imagen,
+                        expression: "pizza.imagen"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.pizza.imagen },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pizza, "imagen", $event.target.value)
+                      }
                     }
-                    _vm.$set(_vm.pizza, "precio_base", $event.target.value)
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]
-        )
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Precio")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.pizza.precio_base,
+                        expression: "pizza.precio_base"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.pizza.precio_base },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.pizza, "precio_base", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {
@@ -41890,118 +42140,122 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", { staticClass: "text-center" }, [
-      _vm._v("Editar ingrediente asociado a una Pizza")
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.updateIngrediente($event)
-              }
-            }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Ingrediente")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.relacion.id_ingrediente,
-                      expression: "relacion.id_ingrediente"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.relacion,
-                        "id_ingrediente",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
-                    }
+  return _vm.isAdmin()
+    ? _c("div", [
+        _c("h3", { staticClass: "text-center" }, [
+          _vm._v("Editar ingrediente asociado a una Pizza")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.updateIngrediente($event)
                   }
-                },
-                _vm._l(_vm.ingredientes, function(ingrediente) {
-                  return _c("option", { domProps: { value: ingrediente.id } }, [
-                    _vm._v(_vm._s(ingrediente.nombre))
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Pizza")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Ingrediente")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
                     {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.relacion.id_pizza,
-                      expression: "relacion.id_pizza"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.$set(
-                        _vm.relacion,
-                        "id_pizza",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.relacion.id_ingrediente,
+                          expression: "relacion.id_ingrediente"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.relacion,
+                            "id_ingrediente",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.ingredientes, function(ingrediente) {
+                      return _c(
+                        "option",
+                        { domProps: { value: ingrediente.id } },
+                        [_vm._v(_vm._s(ingrediente.nombre))]
                       )
-                    }
-                  }
-                },
-                _vm._l(_vm.pizzas, function(pizza) {
-                  return _c("option", { domProps: { value: pizza.id } }, [
-                    _vm._v(_vm._s(pizza.nombre))
-                  ])
-                }),
-                0
-              )
-            ]),
-            _vm._v(" "),
-            _vm._m(0)
-          ]
-        )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Pizza")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.relacion.id_pizza,
+                          expression: "relacion.id_pizza"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.relacion,
+                            "id_pizza",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    _vm._l(_vm.pizzas, function(pizza) {
+                      return _c("option", { domProps: { value: pizza.id } }, [
+                        _vm._v(_vm._s(pizza.nombre))
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = [
   function() {

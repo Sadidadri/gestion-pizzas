@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div v-if="isAdmin()">
         <h2 class="text-center">Listado de Pizzas</h2>
         <div class="text-center"> 
-            <router-link to="/pizzas/new" class="btn btn-primary my-4 py-2">Crear pizza</router-link>
+            <router-link to="/administrador/pizzas/new" class="btn btn-primary my-4 py-2">Crear pizza</router-link>
         </div>
         <table class="table">
             <thead>
@@ -52,16 +52,25 @@
             deletePizza(id) { 
                 if(confirm("¿Estás seguro de que quieres eliminar la pizza con id "+id+"?")){
 
-                this.axios
-                    .delete(`http://localhost:8000/api/pizzas/${id}`)
-                    .then(response => {
-                        let i = this.pizzas.map(data => data.id).indexOf(id);
-                        this.pizzas.splice(i, 1)
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-            }
-        }}
+                    this.axios
+                        .delete(`http://localhost:8000/api/pizzas/${id}`)
+                        .then(response => {
+                            let i = this.pizzas.map(data => data.id).indexOf(id);
+                            this.pizzas.splice(i, 1)
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                }
+            },
+            isAdmin(){
+                if (localStorage.getItem('userLogged')){
+                    if(localStorage.getItem('userRole') === "admin"){
+                    return true;
+                    }
+                }
+                    return false;
+                }
+        }
     }
 </script>

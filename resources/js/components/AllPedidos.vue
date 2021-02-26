@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="isAdmin()">
         <h2 class="text-center">Listado de Pedidos</h2>
  
         <table class="table">
@@ -90,7 +90,15 @@
                     return "0"+time;
                 }
                 return time;
-            }
+            },
+            isAdmin(){
+                if (localStorage.getItem('userLogged')){
+                    if(localStorage.getItem('userRole') === "admin"){
+                    return true;
+                    }
+                }
+                    return false;
+                }
             
         }
     }

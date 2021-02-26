@@ -12,7 +12,7 @@
                         <div class="navbar-nav d-flex justify-content-around">
                             <router-link to="/" class="nav-item nav-link menu-item">Inicio</router-link>
                             <router-link to="/" class="nav-item nav-link menu-item">Sobre Nosotros</router-link>
-                            <router-link to="/admin" v-if="isAdmin()" class="nav-item nav-link menu-item">Panel de Administración</router-link>
+                            <router-link to="/administrador" v-if="isAdmin()" class="nav-item nav-link menu-item">Panel de Administración</router-link>
                             <router-link to="/login" v-if="!userIsLogged()" class="nav-item nav-link menu-item">Iniciar Sesión</router-link>
                             <a href="/" v-on:click="logout($event)" id="logout-link" v-if="userIsLogged()" class="nav-item nav-link menu-item">Cerrar Sesión</a> 
                         </div>

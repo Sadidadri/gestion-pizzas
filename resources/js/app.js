@@ -38,7 +38,7 @@ Vue.component('registroCompletado', require('./components/RegisterComplete.vue')
 
 
 //Vista Admin
-Vue.component('admin', require('./components/Admin.vue'));
+Vue.component('administrador', require('./components/Administrador.vue'));
 //Componentes CRUD pizzas
 Vue.component('ver_pizzas',require('./components/AllPizzas.vue').default);
 Vue.component('crear_pizzas',require('./components/CreatePizza.vue').default);
