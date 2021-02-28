@@ -25,6 +25,9 @@ window.Vue = require('vue');
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
+//Vista para probar la cesta
+Vue.component('cesta', require('./components/Cesta.vue'));
+
 //Vista de Inicio/Home
 Vue.component('home', require('./components/Home.vue'));
 

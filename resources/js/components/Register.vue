@@ -70,7 +70,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "Home",
+  name: "registro",
   data: function() {
     return {
       details: {

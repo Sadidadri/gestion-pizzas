@@ -4,6 +4,7 @@ import Logout from './components/Logout.vue';
 import Register from './components/Register.vue';
 import RegisterComplete from './components/RegisterComplete.vue';
 
+import Cesta from './components/Cesta.vue';
 
 //Vista Administrador
 import Administrador from './components/Administrador.vue';
@@ -45,6 +46,12 @@ const guest = (to, from, next) => {
 
 
 export const routes = [
+  //Ruta para probar la cesta
+  {
+    name: 'Cesta',
+    path: '/cesta',
+    component: Cesta
+  },
     //Vista Principal Home/Inicio
     {
         name: 'Home',

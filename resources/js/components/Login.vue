@@ -46,8 +46,10 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+
+
 export default {
-  name: "Home",
+  name: "login",
   data: function() {
     return {
       details: {

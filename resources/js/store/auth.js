@@ -59,6 +59,7 @@ export default {
         localStorage.removeItem("userLogged");
         localStorage.removeItem("userID");
         localStorage.removeItem("userRole");
+        localStorage.removeItem('pizzasPedidas');
       });
     },
     
