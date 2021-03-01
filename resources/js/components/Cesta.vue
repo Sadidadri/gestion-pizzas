@@ -2,7 +2,8 @@
     <div id="content">
         <div class="cestaContent">
             <h5 class="text-center">Estado de tu pedido:</h5>
-            
+            <p v-for="pizza in pizzasCesta">1x - {{pizza.nombre}} - {{pizza.tamagno}} - {{pizza.precio}}€</p>
+            <p id="precioTotal" class="text-right" v-if="pizzasCesta.length">Total: <b>{{this.calcularTotal()}}€</b></p>
             <div id="botonesCesta" class="d-flex justify-content-between">
                 <a class="close" href="#">Pedir</a>
                 <a class="close" href="#">Volver</a></p>
@@ -22,16 +23,19 @@
 <script>
     export default {
         name:"cesta",
-        data() {
-            return {
-                
+        props:{
+            pizzasCesta:{
+                type:Array
             }
         },
-        created() {
-
-            
+        data() {
+            return {
+            }
         },
         mounted(){
+            
+            //console.log(pizzasCesta)
+            //Funciones para controlar el desplegable de la cesta con jquery
             function deselect(e) {
                 $('.cestaContent').slideFadeToggle(function() {
                 e.removeClass('selected');
@@ -60,7 +64,15 @@
             };
         },
         methods: {
-            
+            calcularTotal(){
+                let precio = 0;
+
+                for (let pizza of this.pizzasCesta){
+                    precio += parseFloat(pizza.precio);
+                }
+                
+                return precio.toFixed(2);
+            }
         }
     }
 

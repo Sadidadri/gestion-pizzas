@@ -1,6 +1,6 @@
 <template>
     <div id="content">
-        <cesta/>
+        <cesta v-bind:pizzasCesta="this.pizzasPedidas" />
         <div id="imagenInicio">
             <h2 class="text-white lead">BIENVENIDO A ROLLPIZZA</h2>
         </div>
@@ -51,19 +51,21 @@
             }
         },
         created() {
+            //localStorage.removeItem('pizzasPedidas');
 
             this.getPizzas();
             
         },
         mounted(){
-            if (localStorage.getItem('pizzasPedidas')) {
-                try {
-                    this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
-                    console.log(localStorage.getItem('pizzasPedidas'));
-                } catch(e) {
-                    localStorage.removeItem('pizzasPedidas');
-                }
-            }
+            //if (localStorage.getItem('pizzasPedidas')) {
+            //    try {
+            //        this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
+            //        //console.log(localStorage.getItem('pizzasPedidas'));
+            //    } catch(e) {
+            //        localStorage.removeItem('pizzasPedidas');
+            //    }
+            //}
+            //console.log(this.pizzasPedidas)
         },
         methods: {
             getPizzas(){
@@ -100,22 +102,25 @@
 
             },
             addPizza(event) {
+                event.preventDefault();
                 //Primero obtenemos los valores del formulario, en este caso, la pizza seleccionada, su tamaño y precio
                 
                 //Buscamos el formulario que el usuario clickó:
                 let boton = event.target; 
                 let $form = $(boton).parent().parent();
                 //Recopilamos la información que nos envía
-                console.log($form.serializeArray());
+                let formValues = $form.serializeArray();
+                let nombrePizza = formValues[1].value;
+                let precioPizza = formValues[2].value;
+                let tamagnoPizza = formValues[0].value;
+                //Implementar más tarde validación:
 
 
-                event.preventDefault();
-                if (!this.newPizza) {
-                    return;
-                }
-                this.pizzasPedidas.push(this.newPizza);
-                this.newPizza = '';
-                this.savePizzas();
+                //Enviamos esta información a la Cesta
+                let pizzaSolicitada = {nombre:nombrePizza,tamagno:tamagnoPizza,precio:precioPizza};
+                this.pizzasPedidas.push(pizzaSolicitada);
+                //this.savePizzas();
+                //console.log(this.pizzasPedidas)
             },
             removePizza(x) {
                 this.pizzasPedidas.splice(x, 1);

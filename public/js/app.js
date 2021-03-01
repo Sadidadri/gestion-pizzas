@@ -2603,6 +2603,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
 //
 //
 //
@@ -2626,11 +2633,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "cesta",
+  props: {
+    pizzasCesta: {
+      type: Array
+    }
+  },
   data: function data() {
     return {};
   },
-  created: function created() {},
   mounted: function mounted() {
+    //console.log(pizzasCesta)
+    //Funciones para controlar el desplegable de la cesta con jquery
     function deselect(e) {
       $('.cestaContent').slideFadeToggle(function () {
         e.removeClass('selected');
@@ -2661,7 +2674,27 @@ __webpack_require__.r(__webpack_exports__);
       }, 'fast', easing, callback);
     };
   },
-  methods: {}
+  methods: {
+    calcularTotal: function calcularTotal() {
+      var precio = 0;
+
+      var _iterator = _createForOfIteratorHelper(this.pizzasCesta),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var pizza = _step.value;
+          precio += parseFloat(pizza.precio);
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return precio.toFixed(2);
+    }
+  }
 });
 
 /***/ }),
@@ -3208,17 +3241,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    //localStorage.removeItem('pizzasPedidas');
     this.getPizzas();
   },
-  mounted: function mounted() {
-    if (localStorage.getItem('pizzasPedidas')) {
-      try {
-        this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
-        console.log(localStorage.getItem('pizzasPedidas'));
-      } catch (e) {
-        localStorage.removeItem('pizzasPedidas');
-      }
-    }
+  mounted: function mounted() {//if (localStorage.getItem('pizzasPedidas')) {
+    //    try {
+    //        this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
+    //        //console.log(localStorage.getItem('pizzasPedidas'));
+    //    } catch(e) {
+    //        localStorage.removeItem('pizzasPedidas');
+    //    }
+    //}
+    //console.log(this.pizzasPedidas)
   },
   methods: {
     getPizzas: function getPizzas() {
@@ -3255,21 +3289,25 @@ __webpack_require__.r(__webpack_exports__);
       precioInput.val(precio_final.toFixed(2));
     },
     addPizza: function addPizza(event) {
-      //Primero obtenemos los valores del formulario, en este caso, la pizza seleccionada, su tamaño y precio
+      event.preventDefault(); //Primero obtenemos los valores del formulario, en este caso, la pizza seleccionada, su tamaño y precio
       //Buscamos el formulario que el usuario clickó:
+
       var boton = event.target;
       var $form = $(boton).parent().parent(); //Recopilamos la información que nos envía
 
-      console.log($form.serializeArray());
-      event.preventDefault();
+      var formValues = $form.serializeArray();
+      var nombrePizza = formValues[1].value;
+      var precioPizza = formValues[2].value;
+      var tamagnoPizza = formValues[0].value; //Implementar más tarde validación:
+      //Enviamos esta información a la Cesta
 
-      if (!this.newPizza) {
-        return;
-      }
-
-      this.pizzasPedidas.push(this.newPizza);
-      this.newPizza = '';
-      this.savePizzas();
+      var pizzaSolicitada = {
+        nombre: nombrePizza,
+        tamagno: tamagnoPizza,
+        precio: precioPizza
+      };
+      this.pizzasPedidas.push(pizzaSolicitada); //this.savePizzas();
+      //console.log(this.pizzasPedidas)
     },
     removePizza: function removePizza(x) {
       this.pizzasPedidas.splice(x, 1);
@@ -8470,7 +8508,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".selected {\r\n    background-color:#1F75CC;\r\n    color:white;\r\n    z-index:100;\r\n  }\r\n  \r\n  .cestaContent {\r\n    right:20vw;\r\n    background-color:#FFFFFF;\r\n    border:1px solid #999999;\r\n    cursor:default;\r\n    display:none;\r\n    margin-top: 15px;\r\n    position:absolute;\r\n    text-align:left;\r\n    width:394px;\r\n    z-index:50;\r\n    padding: 25px 25px 20px;\r\n  }\r\n  \r\n  \r\n  .cestaContent p, .cestaContent.div {\r\n    border-bottom: 1px solid #EFEFEF;\r\n    margin: 8px 0;\r\n    padding-bottom: 8px;\r\n  }", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".selected {\r\n    background-color:#1F75CC;\r\n    color:white;\r\n    z-index:100;\r\n  }\r\n  \r\n  .cestaContent {\r\n    right:20vw;\r\n    background-color:#FFFFFF;\r\n    border:1px solid #999999;\r\n    cursor:default;\r\n    display:none;\r\n    margin-top: 15px;\r\n    position:absolute;\r\n    text-align:left;\r\n    width:394px;\r\n    z-index:50;\r\n    padding: 25px 25px 20px;\r\n  }\r\n  \r\n  \r\n  .cestaContent p, .cestaContent.div {\r\n    border-bottom: 1px solid #EFEFEF;\r\n    margin: 8px 0;\r\n    padding-bottom: 8px;\r\n  }\r\n\r\n  #precioTotal{\r\n    font-size:1.1rem;\r\n  }", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -41217,7 +41255,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "nav-item nav-link menu-item",
-                          attrs: { to: "/cesta" }
+                          attrs: { to: "/" }
                         },
                         [_vm._v("Sobre Nosotros")]
                       ),
@@ -42072,42 +42110,78 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "content" } }, [
+    _c(
+      "div",
+      { staticClass: "cestaContent" },
+      [
+        _c("h5", { staticClass: "text-center" }, [
+          _vm._v("Estado de tu pedido:")
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.pizzasCesta, function(pizza) {
+          return _c("p", [
+            _vm._v(
+              "1x - " +
+                _vm._s(pizza.nombre) +
+                " - " +
+                _vm._s(pizza.tamagno) +
+                " - " +
+                _vm._s(pizza.precio) +
+                "€"
+            )
+          ])
+        }),
+        _vm._v(" "),
+        _vm.pizzasCesta.length
+          ? _c(
+              "p",
+              { staticClass: "text-right", attrs: { id: "precioTotal" } },
+              [
+                _vm._v("Total: "),
+                _c("b", [_vm._v(_vm._s(this.calcularTotal()) + "€")])
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._m(0)
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _vm._m(1)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "content" } }, [
-      _c("div", { staticClass: "cestaContent" }, [
-        _c("h5", { staticClass: "text-center" }, [
-          _vm._v("Estado de tu pedido:")
+    return _c(
+      "div",
+      {
+        staticClass: "d-flex justify-content-between",
+        attrs: { id: "botonesCesta" }
+      },
+      [
+        _c("a", { staticClass: "close", attrs: { href: "#" } }, [
+          _vm._v("Pedir")
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "d-flex justify-content-between",
-            attrs: { id: "botonesCesta" }
-          },
-          [
-            _c("a", { staticClass: "close", attrs: { href: "#" } }, [
-              _vm._v("Pedir")
-            ]),
-            _vm._v(" "),
-            _c("a", { staticClass: "close", attrs: { href: "#" } }, [
-              _vm._v("Volver")
-            ]),
-            _c("p")
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-right" }, [
-        _c("a", { attrs: { id: "cestabutton", href: "#" } }, [
-          _vm._v("Ver cesta")
-        ])
+        _c("a", { staticClass: "close", attrs: { href: "#" } }, [
+          _vm._v("Volver")
+        ]),
+        _c("p")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-right" }, [
+      _c("a", { attrs: { id: "cestabutton", href: "#" } }, [
+        _vm._v("Ver cesta")
       ])
     ])
   }
@@ -43012,7 +43086,7 @@ var render = function() {
     "div",
     { attrs: { id: "content" } },
     [
-      _c("cesta"),
+      _c("cesta", { attrs: { pizzasCesta: this.pizzasPedidas } }),
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
