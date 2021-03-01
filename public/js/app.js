@@ -2642,7 +2642,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {};
   },
   mounted: function mounted() {
-    //console.log(pizzasCesta)
     //Funciones para controlar el desplegable de la cesta con jquery
     function deselect(e) {
       $('.cestaContent').slideFadeToggle(function () {
@@ -3197,6 +3196,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Cesta__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Cesta */ "./resources/js/components/Cesta.vue");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
 //
 //
 //
@@ -3284,11 +3290,18 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     calculatePrice: function calculatePrice(precioPizza, event) {
-      var inputTamagno = event.target;
-      var tamagno = inputTamagno.getAttribute("data-tipo");
+      //Para poder actualizar el precio segun cambie un input, vamos a buscar primero al formulario mediante el event target
+      var $inputSeleccionado = $(event.target);
+      var $form = $inputSeleccionado.parent().parent(); //Una vez con el formulario, obtenemos la informacion necesaria de sus elementos hijos
+
+      var $pTamagno = $form.find("p[class=tamagnos]");
+      var inputTamagno = $pTamagno.find("input:checked");
+      var tamagno = inputTamagno.val();
       var precio_final = parseFloat(precioPizza);
-      var precioTag = $(inputTamagno).parent().prev().prev().prev().children();
-      var precioInput = $(inputTamagno).parent().next().next(); //Segun el tamagno modificamos el precio
+      var precioTag = $form.find("p[data-p=precio]").children();
+      var precioInput = $form.find("input[name=precioPizza]");
+      var cantidad = $form.find("select[name=cantidad]").val();
+      console.log(precioTag); //Segun el tamagno modificamos el precio
 
       if (tamagno == "mediana") {
         precio_final += 4;
@@ -3296,6 +3309,7 @@ __webpack_require__.r(__webpack_exports__);
         precio_final += 7;
       }
 
+      precio_final = precio_final * cantidad;
       precioTag.text(precio_final.toFixed(2) + " €");
       precioInput.val(precio_final.toFixed(2));
     },
@@ -3307,13 +3321,15 @@ __webpack_require__.r(__webpack_exports__);
       var $form = $(boton).parent().parent(); //Recopilamos la información que nos envía
 
       var formValues = $form.serializeArray();
-      var nombrePizza = formValues[1].value;
-      var precioPizza = formValues[2].value;
-      var tamagnoPizza = formValues[0].value; //Implementar más tarde validación:
+      var nombrePizza = formValues[2].value;
+      var precioPizza = formValues[3].value;
+      var tamagnoPizza = formValues[1].value;
+      var cantidadPizza = formValues[0].value; //Implementar más tarde validación:
       //Enviamos esta información a la Cesta
 
       var pizzaSolicitada = {
         nombre: nombrePizza,
+        cantidad: cantidadPizza,
         tamagno: tamagnoPizza,
         precio: precioPizza
       };
@@ -3333,17 +3349,28 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       //Recorremos los items de la cesta
-      //for (let pizza of this.pizzasPedidas) {
-      //    
-      //}
-      //Creamos ticket del pedido que enviaremos a la API:
+      var _iterator = _createForOfIteratorHelper(this.pizzasPedidas),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var pizza = _step.value;
+        } //Creamos ticket del pedido que enviaremos a la API:
+
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      var idPedido = 0;
       var newPedido = {
         "id_usuario": localStorage.getItem("userID"),
         "precio_final": localStorage.getItem("precioPedido")
       };
       this.axios.post('http://localhost:8000/api/pedidos', newPedido).then(function (response) {
         return (//Aqui mover a la vista de pedido realizado
-          console.log(response) //this.$router.push({ name: 'Pizzas' })
+          idPedido = response.data.id //this.$router.push({ name: 'Pizzas' })
 
         );
       })["catch"](function (err) {
@@ -42162,7 +42189,8 @@ var render = function() {
         _vm._l(_vm.pizzasCesta, function(pizza) {
           return _c("p", [
             _vm._v(
-              "1x - " +
+              _vm._s(pizza.cantidad) +
+                "x - " +
                 _vm._s(pizza.nombre) +
                 " - " +
                 _vm._s(pizza.tamagno) +
@@ -43182,18 +43210,50 @@ var render = function() {
                   _vm._v(_vm._s(pizza.nombre))
                 ]),
                 _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v("Precio: "),
-                  _c("b", [_vm._v(_vm._s(pizza.precio_base) + " €")])
-                ]),
+                _c(
+                  "p",
+                  { staticClass: "card-text", attrs: { "data-p": "precio" } },
+                  [
+                    _vm._v("Precio: "),
+                    _c("b", [_vm._v(_vm._s(pizza.precio_base) + " €")])
+                  ]
+                ),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
                   _vm._v("Ingredientes:")
                 ]),
                 _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _c("label", { attrs: { for: "cantidad" } }, [
+                    _vm._v("Cantidad: ")
+                  ]),
+                  _c(
+                    "select",
+                    {
+                      attrs: { name: "cantidad" },
+                      on: {
+                        change: function($event) {
+                          return _vm.calculatePrice(pizza.precio_base, $event)
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
+                      _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
+                      _c("option", { attrs: { value: "3" } }, [_vm._v("3")]),
+                      _c("option", { attrs: { value: "4" } }, [_vm._v("4")]),
+                      _c("option", { attrs: { value: "5" } }, [_vm._v("5")]),
+                      _c("option", { attrs: { value: "6" } }, [_vm._v("6")]),
+                      _c("option", { attrs: { value: "7" } }, [_vm._v("7")]),
+                      _c("option", { attrs: { value: "8" } }, [_vm._v("8")]),
+                      _c("option", { attrs: { value: "9" } }, [_vm._v("9")])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [_vm._v("Tamaño:")]),
                 _vm._v(" "),
-                _c("p", [
+                _c("p", { staticClass: "tamagnos" }, [
                   _c("input", {
                     staticClass: "mx-2",
                     attrs: {
@@ -43271,9 +43331,17 @@ var render = function() {
                           staticClass: "btn btn-primary",
                           attrs: { type: "submit", href: "#" },
                           on: {
-                            click: function($event) {
-                              return _vm.addPizza($event)
-                            }
+                            click: [
+                              function($event) {
+                                return _vm.addPizza($event)
+                              },
+                              function($event) {
+                                return _vm.calculatePrice(
+                                  pizza.precio_base,
+                                  $event
+                                )
+                              }
+                            ]
                           }
                         },
                         [_vm._v("Pedir")]

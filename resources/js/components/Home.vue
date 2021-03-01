@@ -13,10 +13,11 @@
                     <img class="card-img-top pizza-imagen" :src="'images/pizzas/'+pizza.imagen" alt="Card image cap">
                     <form class="card-body">
                         <h4 class="card-title text-center mb-2">{{pizza.nombre}}</h4>
-                        <p class="card-text">Precio: <b>{{pizza.precio_base}} €</b></p>
+                        <p data-p="precio" class="card-text">Precio: <b>{{pizza.precio_base}} €</b></p>
                         <p class="card-text">Ingredientes:</p>
+                        <p class="card-text"><label for="cantidad">Cantidad: </label><select name="cantidad" @change="calculatePrice(pizza.precio_base,$event)"><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option><option value=5>5</option><option value=6>6</option><option value=7>7</option><option value=8>8</option><option value=9>9</option></select></p>
                         <p class="card-text">Tamaño:</p>
-                        <p> 
+                        <p class="tamagnos"> 
                             <input class="mx-2" data-tipo="pequegna" :id="'pequegna'+pizza.nombre" :name="'tamagno'+pizza.nombre" value="pequegna" v-on:click="calculatePrice(pizza.precio_base,$event)" type="radio" checked  ><label :for="'pequegna'+pizza.nombre">Pequeña</label>
                             <input class="mx-2" data-tipo="mediana" :id="'mediana'+pizza.nombre" :name="'tamagno'+pizza.nombre" value="mediana" v-on:click="calculatePrice(pizza.precio_base,$event)" type="radio"><label :for="'mediana'+pizza.nombre">Mediana</label>
                             <input class="mx-2" data-tipo="familiar" :id="'familiar'+pizza.nombre" :name="'tamagno'+pizza.nombre" value="familiar" v-on:click="calculatePrice(pizza.precio_base,$event)" type="radio"><label :for="'familiar'+pizza.nombre">Familiar</label>
@@ -24,7 +25,7 @@
                         <input name="nombrePizza" type="hidden" :value="pizza.nombre" readonly>
                         <input name="precioPizza" type="hidden" :value="pizza.precio_base" readonly>
                         <div class="text-center">
-                            <a v-if="userIsLogged()" @click="addPizza($event)" type="submit" href="#" class="btn btn-primary">Pedir</a>
+                            <a v-if="userIsLogged()" @click="addPizza($event)" v-on:click="calculatePrice(pizza.precio_base,$event)" type="submit" href="#" class="btn btn-primary">Pedir</a>
                             <p v-else>Para poder realizar un pedido, necesitas iniciar sesión.</p>
                         </div>
                     </form>
@@ -86,18 +87,27 @@
                 })
             },
             calculatePrice(precioPizza,event){
-                let inputTamagno = event.target;
-                let tamagno = inputTamagno.getAttribute("data-tipo");
+                //Para poder actualizar el precio segun cambie un input, vamos a buscar primero al formulario mediante el event target
+                let $inputSeleccionado = $(event.target);
+                let $form = $inputSeleccionado.parent().parent();
+                //Una vez con el formulario, obtenemos la informacion necesaria de sus elementos hijos
+                let $pTamagno = $form.find("p[class=tamagnos]");
+                let inputTamagno = $pTamagno.find("input:checked");
+                let tamagno = inputTamagno.val();
                 let precio_final = parseFloat(precioPizza);
-                let precioTag = $(inputTamagno).parent().prev().prev().prev().children();
-                let precioInput = $(inputTamagno).parent().next().next();
+                let precioTag = $form.find("p[data-p=precio]").children();
+                let precioInput = $form.find("input[name=precioPizza]");
+                let cantidad = $form.find("select[name=cantidad]").val();
 
+                console.log(precioTag)
                 //Segun el tamagno modificamos el precio
                 if (tamagno == "mediana"){
                     precio_final += 4;
                 }else if (tamagno == "familiar"){
                     precio_final += 7;
                 }
+
+                precio_final = precio_final * cantidad;
 
                 precioTag.text(precio_final.toFixed(2)+" €");
                 precioInput.val(precio_final.toFixed(2));
@@ -112,14 +122,15 @@
                 let $form = $(boton).parent().parent();
                 //Recopilamos la información que nos envía
                 let formValues = $form.serializeArray();
-                let nombrePizza = formValues[1].value;
-                let precioPizza = formValues[2].value;
-                let tamagnoPizza = formValues[0].value;
+                let nombrePizza = formValues[2].value;
+                let precioPizza = formValues[3].value;
+                let tamagnoPizza = formValues[1].value;
+                let cantidadPizza = formValues[0].value;
                 //Implementar más tarde validación:
 
 
                 //Enviamos esta información a la Cesta
-                let pizzaSolicitada = {nombre:nombrePizza,tamagno:tamagnoPizza,precio:precioPizza};
+                let pizzaSolicitada = {nombre:nombrePizza,cantidad:cantidadPizza,tamagno:tamagnoPizza,precio:precioPizza};
                 this.pizzasPedidas.push(pizzaSolicitada);
                 this.savePizzas();
             },
@@ -134,17 +145,18 @@
             },
             realizarPedido(){
                 //Recorremos los items de la cesta
-                //for (let pizza of this.pizzasPedidas) {
-                //    
-                //}
+                for (let pizza of this.pizzasPedidas) {
+                    
+                }
 
                 //Creamos ticket del pedido que enviaremos a la API:
+                let idPedido = 0;
                 let newPedido = {"id_usuario":localStorage.getItem("userID"),"precio_final":localStorage.getItem("precioPedido")};
                 this.axios
                     .post('http://localhost:8000/api/pedidos', newPedido)
                     .then(response => (
                         //Aqui mover a la vista de pedido realizado
-                        console.log(response)
+                        idPedido = response.data.id
                         //this.$router.push({ name: 'Pizzas' })
                     ))
                     .catch(err => console.log(err))

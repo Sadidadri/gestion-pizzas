@@ -2,7 +2,7 @@
     <div id="content">
         <div class="cestaContent">
             <h5 class="text-center">Estado de tu pedido:</h5>
-            <p v-for="pizza in pizzasCesta">1x - {{pizza.nombre}} - {{pizza.tamagno}} - {{pizza.precio}}€ <a href="/" @click="eliminarPizzaCesta($event,pizza)"><span class="material-icons" style="vertical-align:bottom">highlight_off</span></a></p>
+            <p v-for="pizza in pizzasCesta">{{pizza.cantidad}}x - {{pizza.nombre}} - {{pizza.tamagno}} - {{pizza.precio}}€ <a href="/" @click="eliminarPizzaCesta($event,pizza)"><span class="material-icons" style="vertical-align:bottom">highlight_off</span></a></p>
             <p id="precioTotal" class="text-right" v-if="pizzasCesta.length">Total: <b>{{this.calcularTotal()}}€</b></p>
             <p v-else>La lista está vacía.</p>
             <div id="botonesCesta" class="d-flex justify-content-between">
@@ -35,7 +35,6 @@
         },
         mounted(){
             
-            //console.log(pizzasCesta)
             //Funciones para controlar el desplegable de la cesta con jquery
             function deselect(e) {
                 $('.cestaContent').slideFadeToggle(function() {
