@@ -2,11 +2,12 @@
     <div id="content">
         <div class="cestaContent">
             <h5 class="text-center">Estado de tu pedido:</h5>
-            <p v-for="pizza in pizzasCesta">1x - {{pizza.nombre}} - {{pizza.tamagno}} - {{pizza.precio}}€</p>
+            <p v-for="pizza in pizzasCesta">1x - {{pizza.nombre}} - {{pizza.tamagno}} - {{pizza.precio}}€ <a href="/" @click="eliminarPizzaCesta($event,pizza)"><span class="material-icons" style="vertical-align:bottom">highlight_off</span></a></p>
             <p id="precioTotal" class="text-right" v-if="pizzasCesta.length">Total: <b>{{this.calcularTotal()}}€</b></p>
+            <p v-else>La lista está vacía.</p>
             <div id="botonesCesta" class="d-flex justify-content-between">
-                <a class="close" href="#">Pedir</a>
-                <a class="close" href="#">Volver</a></p>
+                <a class="close" href="#" v-if="pizzasCesta.length" @click="realizarPedido()">Pedir</a>
+                <a class="close" href="#" >Volver</a></p>
             </div>
         </div>
 
@@ -71,7 +72,15 @@
                     precio += parseFloat(pizza.precio);
                 }
                 
+                localStorage.setItem('precioPedido',precio.toFixed(2));
                 return precio.toFixed(2);
+            },
+            eliminarPizzaCesta(event,pizza){
+                event.preventDefault();
+                this.$parent.removePizza(pizza);
+            },
+            realizarPedido(){
+                this.$parent.realizarPedido();
             }
         }
     }

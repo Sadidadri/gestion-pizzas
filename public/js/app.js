@@ -1879,7 +1879,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2631,6 +2630,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "cesta",
   props: {
@@ -2692,7 +2692,15 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _iterator.f();
       }
 
+      localStorage.setItem('precioPedido', precio.toFixed(2));
       return precio.toFixed(2);
+    },
+    eliminarPizzaCesta: function eliminarPizzaCesta(event, pizza) {
+      event.preventDefault();
+      this.$parent.removePizza(pizza);
+    },
+    realizarPedido: function realizarPedido() {
+      this.$parent.realizarPedido();
     }
   }
 });
@@ -3225,6 +3233,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -3241,20 +3250,22 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    //localStorage.removeItem('pizzasPedidas');
     this.getPizzas();
   },
-  mounted: function mounted() {//if (localStorage.getItem('pizzasPedidas')) {
-    //    try {
-    //        this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
-    //        //console.log(localStorage.getItem('pizzasPedidas'));
-    //    } catch(e) {
-    //        localStorage.removeItem('pizzasPedidas');
-    //    }
-    //}
-    //console.log(this.pizzasPedidas)
+  mounted: function mounted() {
+    if (localStorage.getItem('pizzasPedidas')) {
+      try {
+        this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
+      } catch (e) {
+        localStorage.removeItem('pizzasPedidas');
+      }
+    } //console.log(this.pizzasPedidas)
+
   },
   methods: {
+    userIsLogged: function userIsLogged() {
+      return this.$parent.userIsLogged();
+    },
     getPizzas: function getPizzas() {
       var _this = this;
 
@@ -3281,7 +3292,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (tamagno == "mediana") {
         precio_final += 4;
-      } else if (tamagno == "grande") {
+      } else if (tamagno == "familiar") {
         precio_final += 7;
       }
 
@@ -3306,16 +3317,44 @@ __webpack_require__.r(__webpack_exports__);
         tamagno: tamagnoPizza,
         precio: precioPizza
       };
-      this.pizzasPedidas.push(pizzaSolicitada); //this.savePizzas();
-      //console.log(this.pizzasPedidas)
+      this.pizzasPedidas.push(pizzaSolicitada);
+      this.savePizzas();
     },
     removePizza: function removePizza(x) {
-      this.pizzasPedidas.splice(x, 1);
+      var index = this.pizzasPedidas.indexOf(x);
+      this.pizzasPedidas.splice(index, 1);
       this.savePizzas();
     },
     savePizzas: function savePizzas() {
       var parsed = JSON.stringify(this.pizzasPedidas);
       localStorage.setItem('pizzasPedidas', parsed);
+    },
+    realizarPedido: function realizarPedido() {
+      var _this3 = this;
+
+      //Recorremos los items de la cesta
+      //for (let pizza of this.pizzasPedidas) {
+      //    
+      //}
+      //Creamos ticket del pedido que enviaremos a la API:
+      var newPedido = {
+        "id_usuario": localStorage.getItem("userID"),
+        "precio_final": localStorage.getItem("precioPedido")
+      };
+      this.axios.post('http://localhost:8000/api/pedidos', newPedido).then(function (response) {
+        return (//Aqui mover a la vista de pedido realizado
+          console.log(response) //this.$router.push({ name: 'Pizzas' })
+
+        );
+      })["catch"](function (err) {
+        return console.log(err);
+      })["finally"](function () {
+        return _this3.loading = false;
+      }); //Borramos los items de la cesta y el precio del pedido
+
+      localStorage.removeItem('pizzasPedidas');
+      localStorage.removeItem('precioPedido');
+      this.pizzasPedidas = [];
     }
   }
 });
@@ -3976,6 +4015,7 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.removeItem("userID");
         localStorage.removeItem("userRole");
         localStorage.removeItem('pizzasPedidas');
+        localStorage.removeItem('precioPedido');
       });
     }
   }
@@ -42128,7 +42168,28 @@ var render = function() {
                 _vm._s(pizza.tamagno) +
                 " - " +
                 _vm._s(pizza.precio) +
-                "€"
+                "€ "
+            ),
+            _c(
+              "a",
+              {
+                attrs: { href: "/" },
+                on: {
+                  click: function($event) {
+                    return _vm.eliminarPizzaCesta($event, pizza)
+                  }
+                }
+              },
+              [
+                _c(
+                  "span",
+                  {
+                    staticClass: "material-icons",
+                    staticStyle: { "vertical-align": "bottom" }
+                  },
+                  [_vm._v("highlight_off")]
+                )
+              ]
             )
           ])
         }),
@@ -42142,39 +42203,45 @@ var render = function() {
                 _c("b", [_vm._v(_vm._s(this.calcularTotal()) + "€")])
               ]
             )
-          : _vm._e(),
+          : _c("p", [_vm._v("La lista está vacía.")]),
         _vm._v(" "),
-        _vm._m(0)
+        _c(
+          "div",
+          {
+            staticClass: "d-flex justify-content-between",
+            attrs: { id: "botonesCesta" }
+          },
+          [
+            _vm.pizzasCesta.length
+              ? _c(
+                  "a",
+                  {
+                    staticClass: "close",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.realizarPedido()
+                      }
+                    }
+                  },
+                  [_vm._v("Pedir")]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c("a", { staticClass: "close", attrs: { href: "#" } }, [
+              _vm._v("Volver")
+            ]),
+            _c("p")
+          ]
+        )
       ],
       2
     ),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "d-flex justify-content-between",
-        attrs: { id: "botonesCesta" }
-      },
-      [
-        _c("a", { staticClass: "close", attrs: { href: "#" } }, [
-          _vm._v("Pedir")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "close", attrs: { href: "#" } }, [
-          _vm._v("Volver")
-        ]),
-        _c("p")
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -43086,7 +43153,9 @@ var render = function() {
     "div",
     { attrs: { id: "content" } },
     [
-      _c("cesta", { attrs: { pizzasCesta: this.pizzasPedidas } }),
+      _vm.userIsLogged()
+        ? _c("cesta", { attrs: { pizzasCesta: this.pizzasPedidas } })
+        : _vm._e(),
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
@@ -43167,10 +43236,10 @@ var render = function() {
                   _c("input", {
                     staticClass: "mx-2",
                     attrs: {
-                      "data-tipo": "grande",
-                      id: "grande" + pizza.nombre,
+                      "data-tipo": "familiar",
+                      id: "familiar" + pizza.nombre,
                       name: "tamagno" + pizza.nombre,
-                      value: "grande",
+                      value: "familiar",
                       type: "radio"
                     },
                     on: {
@@ -43179,7 +43248,7 @@ var render = function() {
                       }
                     }
                   }),
-                  _c("label", { attrs: { for: "grande" + pizza.nombre } }, [
+                  _c("label", { attrs: { for: "familiar" + pizza.nombre } }, [
                     _vm._v("Familiar")
                   ])
                 ]),
@@ -43195,19 +43264,25 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "text-center" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "submit", href: "#" },
-                      on: {
-                        click: function($event) {
-                          return _vm.addPizza($event)
-                        }
-                      }
-                    },
-                    [_vm._v("Pedir")]
-                  )
+                  _vm.userIsLogged()
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit", href: "#" },
+                          on: {
+                            click: function($event) {
+                              return _vm.addPizza($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Pedir")]
+                      )
+                    : _c("p", [
+                        _vm._v(
+                          "Para poder realizar un pedido, necesitas iniciar sesión."
+                        )
+                      ])
                 ])
               ])
             ])

@@ -31,6 +31,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/contenido/favicon-16x16.png') }}">
 
     <!-- Styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Cargo mis propios estilos -->
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">

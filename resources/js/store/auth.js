@@ -60,6 +60,7 @@ export default {
         localStorage.removeItem("userID");
         localStorage.removeItem("userRole");
         localStorage.removeItem('pizzasPedidas');
+        localStorage.removeItem('precioPedido');
       });
     },
     
