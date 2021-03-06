@@ -6,7 +6,7 @@
             <p id="precioTotal" class="text-right" v-if="pizzasCesta.length">Total: <b>{{this.calcularTotal()}}€</b></p>
             <p v-else>La lista está vacía.</p>
             <div id="botonesCesta" class="d-flex justify-content-between">
-                <a class="close" href="#" v-if="pizzasCesta.length" @click="realizarPedido()">Pedir</a>
+                <a class="close" href="#" v-if="pizzasCesta.length" @click="realizarPedido($event)">Pedir</a>
                 <a class="close" href="#" >Volver</a></p>
             </div>
         </div>
@@ -78,8 +78,8 @@
                 event.preventDefault();
                 this.$parent.removePizza(pizza);
             },
-            realizarPedido(){
-                this.$parent.realizarPedido();
+            realizarPedido(event){
+                this.$parent.realizarPedido(event);
             }
         }
     }

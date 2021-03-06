@@ -24,8 +24,9 @@
                         </p>
                         <input name="nombrePizza" type="hidden" :value="pizza.nombre" readonly>
                         <input name="precioPizza" type="hidden" :value="pizza.precio_base" readonly>
+                        <input name="idPizza" type="hidden" :value="pizza.id" readonly>
                         <div class="text-center">
-                            <a v-if="userIsLogged()" @click="addPizza($event)" v-on:click="calculatePrice(pizza.precio_base,$event)" type="submit" href="#" class="btn btn-primary">Pedir</a>
+                            <a v-if="userIsLogged()" @click="addPizza($event)" v-on:click="calculatePrice(pizza.precio_base,$event)" type="submit" href="#" class="btn btn-primary">Añadir</a>
                             <p v-else>Para poder realizar un pedido, necesitas iniciar sesión.</p>
                         </div>
                     </form>
@@ -79,6 +80,9 @@
                 })
                 .catch(error => console.log(error));
             },
+            getIngredientes(){
+
+            },
             getPizzaById (id) {
             return axios.get('/names/?ids=' + id)
                 .then(response => {
@@ -99,7 +103,6 @@
                 let precioInput = $form.find("input[name=precioPizza]");
                 let cantidad = $form.find("select[name=cantidad]").val();
 
-                console.log(precioTag)
                 //Segun el tamagno modificamos el precio
                 if (tamagno == "mediana"){
                     precio_final += 4;
@@ -124,13 +127,14 @@
                 let formValues = $form.serializeArray();
                 let nombrePizza = formValues[2].value;
                 let precioPizza = formValues[3].value;
+                let idPizza = formValues[4].value;
                 let tamagnoPizza = formValues[1].value;
                 let cantidadPizza = formValues[0].value;
                 //Implementar más tarde validación:
 
 
                 //Enviamos esta información a la Cesta
-                let pizzaSolicitada = {nombre:nombrePizza,cantidad:cantidadPizza,tamagno:tamagnoPizza,precio:precioPizza};
+                let pizzaSolicitada = {id:idPizza,nombre:nombrePizza,cantidad:cantidadPizza,tamagno:tamagnoPizza,precio:precioPizza};
                 this.pizzasPedidas.push(pizzaSolicitada);
                 this.savePizzas();
             },
@@ -143,24 +147,38 @@
                 const parsed = JSON.stringify(this.pizzasPedidas);
                 localStorage.setItem('pizzasPedidas', parsed);
             },
-            realizarPedido(){
-                //Recorremos los items de la cesta
-                for (let pizza of this.pizzasPedidas) {
-                    
-                }
+            async callApiPedidos(newPedido){
+                
+                let resPedidoID = 0
 
-                //Creamos ticket del pedido que enviaremos a la API:
-                let idPedido = 0;
-                let newPedido = {"id_usuario":localStorage.getItem("userID"),"precio_final":localStorage.getItem("precioPedido")};
-                this.axios
+                //Primero realizamos un Post con la informacion del pedido
+                const pedidoEnviado = await this.axios
                     .post('http://localhost:8000/api/pedidos', newPedido)
                     .then(response => (
-                        //Aqui mover a la vista de pedido realizado
-                        idPedido = response.data.id
-                        //this.$router.push({ name: 'Pizzas' })
+                        resPedidoID = response.data.id
                     ))
                     .catch(err => console.log(err))
-                    .finally(() => this.loading = false);
+
+                //Recorremos los items de la cesta y lo añadimos a la relacion del pedido
+                for (let pizza of this.pizzasPedidas) {
+                    let newRelPePiz = {"id_pedido":resPedidoID,"id_pizza":pizza.id,"cantidad":pizza.cantidad,"tamagno":pizza.tamagno,"tipo_masa":"Clasica"};
+                    console.log(newRelPePiz);
+                    const pizza_pedidoEnviada = await this.axios
+                    .post('http://localhost:8000/api/pizzas_pedido', newRelPePiz)
+                    .then(response => (
+                        console.log(response)
+                    ))
+                    .catch(err => console.log(err))
+                }
+
+            },
+            realizarPedido(event){
+                event.preventDefault();
+                
+                //Creamos ticket del pedido que enviaremos a la API:
+                let newPedido = {"id_usuario":localStorage.getItem("userID"),"precio_final":localStorage.getItem("precioPedido")};
+                this.callApiPedidos(newPedido);
+
                 //Borramos los items de la cesta y el precio del pedido
                 localStorage.removeItem('pizzasPedidas');
                 localStorage.removeItem('precioPedido');
