@@ -15,23 +15,40 @@ class PizzaSeeder extends Seeder
     public function run()
     {
         //Ejemplos de pizzas
-       $ingrediente = new Pizza();
-       $ingrediente->nombre = "Pizza Margarita";
-       $ingrediente->imagen = "pizza_margarita.jpg";
-       $ingrediente->precio_base = 4.50;
-       $ingrediente->save();
+       $pizza = new Pizza();
+       $pizza->nombre = "Pizza Margarita";
+       $pizza->imagen = "pizza_margarita.jpg";
+       $pizza->precio_base = 4.50;
+       $pizza->save();
 
-       $ingrediente = new Pizza();
-       $ingrediente->nombre = "Pizza Cuatro Quesos";
-       $ingrediente->imagen = "pizza_cuatro_quesos.jpg";
-       $ingrediente->precio_base = 6.00;
-       $ingrediente->save();
+       $pizza = new Pizza();
+       $pizza->nombre = "Pizza Cuatro Quesos";
+       $pizza->imagen = "pizza_cuatro_quesos.jpg";
+       $pizza->precio_base = 6.00;
+       $pizza->save();
 
-       $ingrediente = new Pizza();
-       $ingrediente->nombre = "Pizza Barbacoa";
-       $ingrediente->imagen = "pizza_barbacoa.jpg";
-       $ingrediente->precio_base = 6.50;
-       $ingrediente->save();
+       $pizza = new Pizza();
+       $pizza->nombre = "Pizza Barbacoa";
+       $pizza->imagen = "pizza_barbacoa.jpg";
+       $pizza->precio_base = 6.50;
+       $pizza->save();
        
+       $pizza = new Pizza();
+       $pizza->nombre = "Pizza Honolulu";
+       $pizza->imagen = "pizza_honolulu.jpg";
+       $pizza->precio_base = 6.00;
+       $pizza->save();
+
+       $pizza = new Pizza();
+       $pizza->nombre = "Pizza Carbonara";
+       $pizza->imagen = "pizza_carbonara.jpg";
+       $pizza->precio_base = 6.50;
+       $pizza->save();
+
+       $pizza = new Pizza();
+       $pizza->nombre = "Pizza Pimentera";
+       $pizza->imagen = "pizza_pimentera.jpg";
+       $pizza->precio_base = 6.00;
+       $pizza->save();
     }
 }

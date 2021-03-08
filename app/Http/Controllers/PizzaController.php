@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pizza;
 use Illuminate\Http\Request;
+use App\Models\Ingrediente;
+use App\Models\Rel_Pi_Ing;
 
 class PizzaController extends Controller
 {
@@ -39,6 +41,26 @@ class PizzaController extends Controller
     public function show(Pizza $pizza)
     {
         return $pizza;
+    }
+
+    /**
+     * Obtiene los ingredientes de la pizza dada y los devuelve en una cadena
+     *
+     * @param  \App\Models\Pizza  $pizza
+     * @return \Illuminate\Http\Response
+     */
+    public static function getIngredientes(Pizza $pizza)
+    {
+        $ingredientes = [];
+
+        $relaciones = Rel_Pi_Ing::where('id_pizza',$pizza["id"])->get();
+
+        foreach ($relaciones as $relacion) {
+            array_push($ingredientes,Ingrediente::where('id',$relacion["id_ingrediente"])->get()[0]);
+        }
+
+
+        return $ingredientes;
     }
 
     /**

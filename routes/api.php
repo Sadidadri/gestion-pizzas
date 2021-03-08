@@ -74,7 +74,21 @@ Route::get('/usuarios/{user}', [UserController::class,'show']);
  */
 
 Route::get('pizzas', function() {
-    return Pizza::all();
+    $pizzas = Pizza::all();
+
+    foreach ($pizzas as $pizza) {
+        $ingredientes = PizzaController::getIngredientes($pizza);
+        $pizza["ingredientes"] = $ingredientes;
+    }
+
+    return $pizzas;
+});
+
+Route::get('pizzas/{id}/ingredientes', function($id) {
+    //obtenemos los ingredientes de la pizza seleccionada
+    $ingredientes = PizzaController::getIngredientes(Pizza::find($id));
+
+    return $ingredientes;
 });
 
 Route::get('pizzas/{id}', function($id) {
@@ -105,7 +119,7 @@ Route::delete('pizzas/{id}', function($id) {
     return "La pizza ".$pizza->nombre." ha sido borrada con éxito";
 });
 
-Route::get('/pizzas', [PizzaController::class,'index']);
+//Route::get('/pizzas', [PizzaController::class,'index']);
 Route::get('/pizzas/{pizza}', [PizzaController::class,'show']);
 Route::post('/pizzas', [PizzaController::class,'store']);
 Route::put('/pizzas/{pizza}', [PizzaController::class,'update']);

@@ -22,7 +22,8 @@
         </header>
         
 
-        <router-view> </router-view>
+        <router-view class="router-view"> </router-view>
+      <footer class="bg-dark py-2 mt-5"> <p class="text-white text-center">©2021 <a href="https://www.linkedin.com/in/adri%C3%A1n-%C3%A1ngel-moya-moruno-bb191617a/">Adrián Ángel Moya Moruno</a> - Web Developer</p></footer>
     </div>
 </template>
 <script>

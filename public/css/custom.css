@@ -6,3 +6,23 @@
 .menu-item{
     font-size: 1rem;
 }
+
+footer{
+    bottom: 0;
+    width: 100vw;
+    position: relative;
+    left: 50%;  
+    margin-left: -50vw; 
+}
+
+footer>p{
+    margin-bottom: 0;
+}
+
+footer>p>a:hover{
+    text-decoration: none;
+}
+
+.router-view{
+    min-height: 75vh;
+}

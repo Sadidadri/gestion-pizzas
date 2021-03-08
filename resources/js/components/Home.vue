@@ -14,7 +14,7 @@
                     <form class="card-body">
                         <h4 class="card-title text-center mb-2">{{pizza.nombre}}</h4>
                         <p data-p="precio" class="card-text">Precio: <b>{{pizza.precio_base}} €</b></p>
-                        <p class="card-text">Ingredientes: {{pizza.ingredientes}}</p>
+                        <p class="card-text ingredientes">Ingredientes: <span v-for="ingrediente in pizza.ingredientes">{{ingrediente.nombre}}, </span></p>
                         <p class="card-text"><label for="cantidad">Cantidad: </label><select name="cantidad" @change="calculatePrice(pizza.precio_base,$event)"><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option><option value=5>5</option><option value=6>6</option><option value=7>7</option><option value=8>8</option><option value=9>9</option></select></p>
                         <p class="card-text">Tamaño:</p>
                         <p class="tamagnos"> 
@@ -48,13 +48,10 @@
                 pizzas: [],
                 ingredientes: {},
                 pizzasPedidas: [],
-                newPizza:null,
-                ingredientesPizza:"",
-                relaciones:[]
+                newPizza:null
             }
         },
         created() {
-
             this.getPizzas();
             
         },
@@ -68,7 +65,24 @@
                 }
             }
 
-            
+
+        
+        },
+        updated(){
+            function eliminarUltimaComaIngredientes(){
+                let $ingredientes_p = $("#pizzas>div>form>.ingredientes");
+                for (let p of $ingredientes_p) {
+                    $(p).children().last().text(function(){   
+                        let texto = $(this).text();
+                        return texto.substring(0,texto.length-2) ;
+                    });
+                }
+            }
+
+            //Ejecuto jquery
+            $(function() {
+                eliminarUltimaComaIngredientes();
+            });
         },
         methods: {
             userIsLogged(){
@@ -78,32 +92,9 @@
                 this.axios
                 .get('http://localhost:8000/api/pizzas/')
                 .then(response => {
-                    //Añadimos una nueva propiedad que rellenaremos mas adelante
-                    response.data.forEach(pizza => pizza.ingredientes = this.getIngredientes(pizza.id)),
                     this.pizzas = response.data;
                 })
                 .catch(error => console.log(error));
-            },
-            getIngredientes(pizzaID){
-                this.relaciones = []
-                this.ingredientesPizza = ""
-                const relacionesRequest = this.axios
-                .get('http://localhost:8000/api/ingredientes_pizza/pizza='+pizzaID)
-                .then(response => {
-                    this.relaciones = response.data
-                })
-                .catch(error => console.log(error));
-
-                for(let relacion of this.relaciones){
-                    const ingredientesRequest = this.axios
-                    .get('http://localhost:8000/api/ingredientes/'+relacion.id_ingrediente)
-                    .then(response => {
-                        this.ingredientesPizza += response.data.nombre+", ";
-                    })
-                }
-
-                return this.ingredientesPizza.slice(0,-2);
-
             },
             getPizzaById (id) {
             return axios.get('/names/?ids=' + id)

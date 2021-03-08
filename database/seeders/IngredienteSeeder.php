@@ -34,6 +34,12 @@ class IngredienteSeeder extends Seeder
         $ingrediente->categoria = "salsas";
         $ingrediente->imagen = "salsa_gaucha.jpg";
         $ingrediente->save();
+
+        $ingrediente = new Ingrediente();
+        $ingrediente->nombre = "Salsa de Nata";
+        $ingrediente->categoria = "salsas";
+        $ingrediente->imagen = "salsa_nata.jpg";
+        $ingrediente->save();
        
         //Quesos
         $ingrediente = new Ingrediente();
@@ -85,6 +91,18 @@ class IngredienteSeeder extends Seeder
         $ingrediente->imagen = "pimiento_rojo.jpg";
         $ingrediente->save();
 
+        $ingrediente = new Ingrediente();
+        $ingrediente->nombre = "Champiñón";
+        $ingrediente->categoria = "verdura";
+        $ingrediente->imagen = "champignon.jpg";
+        $ingrediente->save();
+
+        //fruta
+        $ingrediente = new Ingrediente();
+        $ingrediente->nombre = "Piña";
+        $ingrediente->categoria = "fruta";
+        $ingrediente->imagen = "pigna.jpg";
+        $ingrediente->save();
         
         //Carnes
         $ingrediente = new Ingrediente();
@@ -103,6 +121,12 @@ class IngredienteSeeder extends Seeder
         $ingrediente->nombre = "Pollo";
         $ingrediente->categoria = "carne";
         $ingrediente->imagen = "pollo.jpg";
+        $ingrediente->save();
+
+        $ingrediente = new Ingrediente();
+        $ingrediente->nombre = "Jamón de York";
+        $ingrediente->categoria = "carne";
+        $ingrediente->imagen = "jamon_york.jpg";
         $ingrediente->save();
     }
 }

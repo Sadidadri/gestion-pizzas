@@ -1890,6 +1890,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -3270,9 +3271,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       pizzas: [],
       ingredientes: {},
       pizzasPedidas: [],
-      newPizza: null,
-      ingredientesPizza: "",
-      relaciones: []
+      newPizza: null
     };
   },
   created: function created() {
@@ -3287,6 +3286,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     }
   },
+  updated: function updated() {
+    function eliminarUltimaComaIngredientes() {
+      var $ingredientes_p = $("#pizzas>div>form>.ingredientes");
+
+      var _iterator = _createForOfIteratorHelper($ingredientes_p),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var p = _step.value;
+          $(p).children().last().text(function () {
+            var texto = $(this).text();
+            return texto.substring(0, texto.length - 2);
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+    } //Ejecuto jquery
+
+
+    $(function () {
+      eliminarUltimaComaIngredientes();
+    });
+  },
   methods: {
     userIsLogged: function userIsLogged() {
       return this.$parent.userIsLogged();
@@ -3295,49 +3321,17 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var _this = this;
 
       this.axios.get('http://localhost:8000/api/pizzas/').then(function (response) {
-        //Añadimos una nueva propiedad que rellenaremos mas adelante
-        response.data.forEach(function (pizza) {
-          return pizza.ingredientes = _this.getIngredientes(pizza.id);
-        }), _this.pizzas = response.data;
+        _this.pizzas = response.data;
       })["catch"](function (error) {
         return console.log(error);
       });
-    },
-    getIngredientes: function getIngredientes(pizzaID) {
-      var _this2 = this;
-
-      this.relaciones = [];
-      this.ingredientesPizza = "";
-      var relacionesRequest = this.axios.get('http://localhost:8000/api/ingredientes_pizza/pizza=' + pizzaID).then(function (response) {
-        _this2.relaciones = response.data;
-      })["catch"](function (error) {
-        return console.log(error);
-      });
-
-      var _iterator = _createForOfIteratorHelper(this.relaciones),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var relacion = _step.value;
-          var ingredientesRequest = this.axios.get('http://localhost:8000/api/ingredientes/' + relacion.id_ingrediente).then(function (response) {
-            _this2.ingredientesPizza += response.data.nombre + ", ";
-          });
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-
-      return this.ingredientesPizza.slice(0, -2);
     },
     getPizzaById: function getPizzaById(id) {
-      var _this3 = this;
+      var _this2 = this;
 
       return axios.get('/names/?ids=' + id).then(function (response) {
-        _this3.response = response.data;
-        return _this3.response[0].name;
+        _this2.response = response.data;
+        return _this2.response[0].name;
       });
     },
     calculatePrice: function calculatePrice(precioPizza, event) {
@@ -3398,7 +3392,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       localStorage.setItem('pizzasPedidas', parsed);
     },
     callApiPedidos: function callApiPedidos(newPedido) {
-      var _this4 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         var resPedidoID, pedidoEnviado, contenidoPedidoMail, _iterator2, _step2, pizza, lineaPedido, newRelPePiz, pizza_pedidoEnviada;
@@ -3410,7 +3404,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                 resPedidoID = 0; //Primero realizamos un Post con la informacion del pedido
 
                 _context.next = 3;
-                return _this4.axios.post('http://localhost:8000/api/pedidos', newPedido).then(function (response) {
+                return _this3.axios.post('http://localhost:8000/api/pedidos', newPedido).then(function (response) {
                   return resPedidoID = response.data.id;
                 })["catch"](function (err) {
                   return console.log(err);
@@ -3424,7 +3418,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   "precio_final": newPedido["precio_final"]
                 }; //Recorremos los items de la cesta y lo añadimos a la relacion del pedido
 
-                _iterator2 = _createForOfIteratorHelper(_this4.pizzasPedidas);
+                _iterator2 = _createForOfIteratorHelper(_this3.pizzasPedidas);
                 _context.prev = 6;
 
                 _iterator2.s();
@@ -3448,7 +3442,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   "tipo_masa": "Clasica"
                 };
                 _context.next = 15;
-                return _this4.axios.post('http://localhost:8000/api/pizzas_pedido', newRelPePiz).then(function (response) {
+                return _this3.axios.post('http://localhost:8000/api/pizzas_pedido', newRelPePiz).then(function (response) {
                   return console.log(response);
                 })["catch"](function (err) {
                   return console.log(err);
@@ -3480,7 +3474,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
               case 26:
                 //Enviamos nuestra informacion al gestor de mails de laravel
-                _this4.axios.post('http://localhost:8000/api/pizzas_pedido/send_mail', contenidoPedidoMail).then(function (response) {
+                _this3.axios.post('http://localhost:8000/api/pizzas_pedido/send_mail', contenidoPedidoMail).then(function (response) {
                   return console.log(response);
                 })["catch"](function (err) {
                   return console.log(err);
@@ -3495,7 +3489,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }))();
     },
     realizarPedido: function realizarPedido(event) {
-      var _this5 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var newPedido;
@@ -3510,13 +3504,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
                   "precio_final": localStorage.getItem("precioPedido")
                 };
                 _context2.next = 4;
-                return _this5.callApiPedidos(newPedido);
+                return _this4.callApiPedidos(newPedido);
 
               case 4:
                 //Borramos los items de la cesta y el precio del pedido
                 localStorage.removeItem('pizzasPedidas');
                 localStorage.removeItem('precioPedido');
-                _this5.pizzasPedidas = [];
+                _this4.pizzasPedidas = [];
                 window.alert("¡Su pedido ha sido realizado con éxito! Le enviamos un email con toda la información :)");
 
               case 8:
@@ -42279,12 +42273,36 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("router-view")
+      _c("router-view", { staticClass: "router-view" }),
+      _vm._v(" "),
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "bg-dark py-2 mt-5" }, [
+      _c("p", { staticClass: "text-white text-center" }, [
+        _vm._v("©2021 "),
+        _c(
+          "a",
+          {
+            attrs: {
+              href:
+                "https://www.linkedin.com/in/adri%C3%A1n-%C3%A1ngel-moya-moruno-bb191617a/"
+            }
+          },
+          [_vm._v("Adrián Ángel Moya Moruno")]
+        ),
+        _vm._v(" - Web Developer")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44124,9 +44142,19 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v("Ingredientes: " + _vm._s(pizza.ingredientes))
-                ]),
+                _c(
+                  "p",
+                  { staticClass: "card-text ingredientes" },
+                  [
+                    _vm._v("Ingredientes: "),
+                    _vm._l(pizza.ingredientes, function(ingrediente) {
+                      return _c("span", [
+                        _vm._v(_vm._s(ingrediente.nombre) + ", ")
+                      ])
+                    })
+                  ],
+                  2
+                ),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
                   _c("label", { attrs: { for: "cantidad" } }, [
