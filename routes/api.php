@@ -202,6 +202,9 @@ Route::delete('/pedidos/{pedido}', [PedidoController::class,'delete']);
 Route::get('ingredientes_pizza', function() {
     return Rel_Pi_Ing::all();
 });
+Route::get('ingredientes_pizza/pizza={id_pizza}', function($id_pizza) {
+    return Rel_Pi_Ing::where('id_pizza',$id_pizza)->get();
+});
 
 Route::get('ingredientes_pizza/{id}', function($id) {
     return Rel_Pi_Ing::find($id);
@@ -252,7 +255,16 @@ Route::get('pizzas_pedido/{id}', function($id) {
 });
 
 Route::post('pizzas_pedido', function(Request $request) {
-    return Rel_Pe_Piz::store($request->all);
+    $relacion = Rel_Pe_Piz::store($request->all);
+
+    return $relacion;
+});
+
+Route::post('pizzas_pedido/send_mail', function(Request $request) {
+
+    RelPePizController::sendMail($request->pizzas,$request->precio_final,$request->user);
+
+    return $request;
 });
 
 Route::put('pizzas_pedido/{id}', function(Request $request, $id) {

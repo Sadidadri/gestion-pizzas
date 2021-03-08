@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rel_Pe_Piz;
 use Illuminate\Http\Request;
+use App\Jobs\PedidoJob;
 
 class RelPePizController extends Controller
 {
@@ -28,6 +29,16 @@ class RelPePizController extends Controller
         $pizzas_pedido = Rel_Pe_Piz::create($request->all());
 
         return response()->json($pizzas_pedido, 201);
+    }
+    /**
+     * Envía un email al usuario que efectuó un pedido
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public static function sendMail($contenidoPedido,$precio,$usuarioDestino)
+    {
+        PedidoJob::dispatch($contenidoPedido,$precio,$usuarioDestino);
     }
 
     /**

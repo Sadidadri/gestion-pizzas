@@ -3211,15 +3211,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Cesta__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cesta */ "./resources/js/components/Cesta.vue");
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 //
 //
@@ -3267,12 +3267,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      pizzas: {},
-      rel_pi_ings: {},
+      pizzas: [],
       ingredientes: {},
-      informacion: {},
       pizzasPedidas: [],
-      newPizza: null
+      newPizza: null,
+      ingredientesPizza: "",
+      relaciones: []
     };
   },
   created: function created() {
@@ -3285,8 +3285,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       } catch (e) {
         localStorage.removeItem('pizzasPedidas');
       }
-    } //console.log(this.pizzasPedidas)
-
+    }
   },
   methods: {
     userIsLogged: function userIsLogged() {
@@ -3296,18 +3295,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this = this;
 
       this.axios.get('http://localhost:8000/api/pizzas/').then(function (response) {
-        _this.pizzas = response.data;
+        //Añadimos una nueva propiedad que rellenaremos mas adelante
+        response.data.forEach(function (pizza) {
+          return pizza.ingredientes = _this.getIngredientes(pizza.id);
+        }), _this.pizzas = response.data;
       })["catch"](function (error) {
         return console.log(error);
       });
     },
-    getIngredientes: function getIngredientes() {},
-    getPizzaById: function getPizzaById(id) {
+    getIngredientes: function getIngredientes(pizzaID) {
       var _this2 = this;
 
+      this.relaciones = [];
+      this.ingredientesPizza = "";
+      var relacionesRequest = this.axios.get('http://localhost:8000/api/ingredientes_pizza/pizza=' + pizzaID).then(function (response) {
+        _this2.relaciones = response.data;
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+
+      var _iterator = _createForOfIteratorHelper(this.relaciones),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var relacion = _step.value;
+          var ingredientesRequest = this.axios.get('http://localhost:8000/api/ingredientes/' + relacion.id_ingrediente).then(function (response) {
+            _this2.ingredientesPizza += response.data.nombre + ", ";
+          });
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return this.ingredientesPizza.slice(0, -2);
+    },
+    getPizzaById: function getPizzaById(id) {
+      var _this3 = this;
+
       return axios.get('/names/?ids=' + id).then(function (response) {
-        _this2.response = response.data;
-        return _this2.response[0].name;
+        _this3.response = response.data;
+        return _this3.response[0].name;
       });
     },
     calculatePrice: function calculatePrice(precioPizza, event) {
@@ -3368,10 +3398,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       localStorage.setItem('pizzasPedidas', parsed);
     },
     callApiPedidos: function callApiPedidos(newPedido) {
-      var _this3 = this;
+      var _this4 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var resPedidoID, pedidoEnviado, _iterator, _step, pizza, newRelPePiz, pizza_pedidoEnviada;
+        var resPedidoID, pedidoEnviado, contenidoPedidoMail, _iterator2, _step2, pizza, lineaPedido, newRelPePiz, pizza_pedidoEnviada;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -3380,7 +3410,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 resPedidoID = 0; //Primero realizamos un Post con la informacion del pedido
 
                 _context.next = 3;
-                return _this3.axios.post('http://localhost:8000/api/pedidos', newPedido).then(function (response) {
+                return _this4.axios.post('http://localhost:8000/api/pedidos', newPedido).then(function (response) {
                   return resPedidoID = response.data.id;
                 })["catch"](function (err) {
                   return console.log(err);
@@ -3388,19 +3418,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 3:
                 pedidoEnviado = _context.sent;
-                //Recorremos los items de la cesta y lo añadimos a la relacion del pedido
-                _iterator = _createForOfIteratorHelper(_this3.pizzasPedidas);
-                _context.prev = 5;
+                contenidoPedidoMail = {
+                  "user": localStorage.getItem("userMail"),
+                  "pizzas": [],
+                  "precio_final": newPedido["precio_final"]
+                }; //Recorremos los items de la cesta y lo añadimos a la relacion del pedido
 
-                _iterator.s();
+                _iterator2 = _createForOfIteratorHelper(_this4.pizzasPedidas);
+                _context.prev = 6;
 
-              case 7:
-                if ((_step = _iterator.n()).done) {
-                  _context.next = 16;
+                _iterator2.s();
+
+              case 8:
+                if ((_step2 = _iterator2.n()).done) {
+                  _context.next = 18;
                   break;
                 }
 
-                pizza = _step.value;
+                pizza = _step2.value;
+                //Aqui creamos la estructura del mail que mandaremos despues:
+                lineaPedido = pizza.cantidad + "x - " + pizza.nombre + " - " + pizza.tamagno + " - " + pizza.precio + "€";
+                contenidoPedidoMail["pizzas"].push(lineaPedido); //Aqui actualizamos nuestra BD con la info recibida del pedido
+
                 newRelPePiz = {
                   "id_pedido": resPedidoID,
                   "id_pizza": pizza.id,
@@ -3408,58 +3447,85 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "tamagno": pizza.tamagno,
                   "tipo_masa": "Clasica"
                 };
-                console.log(newRelPePiz);
-                _context.next = 13;
-                return _this3.axios.post('http://localhost:8000/api/pizzas_pedido', newRelPePiz).then(function (response) {
+                _context.next = 15;
+                return _this4.axios.post('http://localhost:8000/api/pizzas_pedido', newRelPePiz).then(function (response) {
                   return console.log(response);
                 })["catch"](function (err) {
                   return console.log(err);
                 });
 
-              case 13:
+              case 15:
                 pizza_pedidoEnviada = _context.sent;
 
-              case 14:
-                _context.next = 7;
-                break;
-
               case 16:
-                _context.next = 21;
+                _context.next = 8;
                 break;
 
               case 18:
-                _context.prev = 18;
-                _context.t0 = _context["catch"](5);
+                _context.next = 23;
+                break;
 
-                _iterator.e(_context.t0);
+              case 20:
+                _context.prev = 20;
+                _context.t0 = _context["catch"](6);
 
-              case 21:
-                _context.prev = 21;
+                _iterator2.e(_context.t0);
 
-                _iterator.f();
+              case 23:
+                _context.prev = 23;
 
-                return _context.finish(21);
+                _iterator2.f();
 
-              case 24:
+                return _context.finish(23);
+
+              case 26:
+                //Enviamos nuestra informacion al gestor de mails de laravel
+                _this4.axios.post('http://localhost:8000/api/pizzas_pedido/send_mail', contenidoPedidoMail).then(function (response) {
+                  return console.log(response);
+                })["catch"](function (err) {
+                  return console.log(err);
+                });
+
+              case 27:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[5, 18, 21, 24]]);
+        }, _callee, null, [[6, 20, 23, 26]]);
       }))();
     },
     realizarPedido: function realizarPedido(event) {
-      event.preventDefault(); //Creamos ticket del pedido que enviaremos a la API:
+      var _this5 = this;
 
-      var newPedido = {
-        "id_usuario": localStorage.getItem("userID"),
-        "precio_final": localStorage.getItem("precioPedido")
-      };
-      this.callApiPedidos(newPedido); //Borramos los items de la cesta y el precio del pedido
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var newPedido;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                event.preventDefault(); //Creamos ticket del pedido que enviaremos a la API:
 
-      localStorage.removeItem('pizzasPedidas');
-      localStorage.removeItem('precioPedido');
-      this.pizzasPedidas = [];
+                newPedido = {
+                  "id_usuario": localStorage.getItem("userID"),
+                  "precio_final": localStorage.getItem("precioPedido")
+                };
+                _context2.next = 4;
+                return _this5.callApiPedidos(newPedido);
+
+              case 4:
+                //Borramos los items de la cesta y el precio del pedido
+                localStorage.removeItem('pizzasPedidas');
+                localStorage.removeItem('precioPedido');
+                _this5.pizzasPedidas = [];
+                window.alert("¡Su pedido ha sido realizado con éxito! Le enviamos un email con toda la información :)");
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
@@ -4096,6 +4162,7 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem("userLogged", true);
         localStorage.setItem("userID", response.data.user.id);
         localStorage.setItem("userRole", response.data.user.role);
+        localStorage.setItem("userMail", response.data.user.email);
       });
     },
     sendRegisterRequest: function sendRegisterRequest(_ref3, data) {
@@ -4109,6 +4176,7 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.setItem("userLogged", true);
         localStorage.setItem("userID", response.data.user.id);
         localStorage.setItem("userRole", response.data.user.role);
+        localStorage.setItem("userMail", response.data.user.email);
       });
     },
     sendLogoutRequest: function sendLogoutRequest(_ref4) {
@@ -4119,6 +4187,7 @@ __webpack_require__.r(__webpack_exports__);
         localStorage.removeItem("userLogged");
         localStorage.removeItem("userID");
         localStorage.removeItem("userRole");
+        localStorage.removeItem("userMail");
         localStorage.removeItem('pizzasPedidas');
         localStorage.removeItem('precioPedido');
       });
@@ -44056,7 +44125,7 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
-                  _vm._v("Ingredientes:")
+                  _vm._v("Ingredientes: " + _vm._s(pizza.ingredientes))
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [

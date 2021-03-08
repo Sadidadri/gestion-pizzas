@@ -38,6 +38,7 @@ export default {
           localStorage.setItem("userLogged",true)
           localStorage.setItem("userID",response.data.user.id);
           localStorage.setItem("userRole",response.data.user.role);
+          localStorage.setItem("userMail",response.data.user.email);
         });
     },
     sendRegisterRequest({ commit }, data) {
@@ -50,6 +51,7 @@ export default {
           localStorage.setItem("userLogged",true)
           localStorage.setItem("userID",response.data.user.id);
           localStorage.setItem("userRole",response.data.user.role);
+          localStorage.setItem("userMail",response.data.user.email);
         });
     },
     sendLogoutRequest({ commit }) {
@@ -59,6 +61,7 @@ export default {
         localStorage.removeItem("userLogged");
         localStorage.removeItem("userID");
         localStorage.removeItem("userRole");
+        localStorage.removeItem("userMail");
         localStorage.removeItem('pizzasPedidas');
         localStorage.removeItem('precioPedido');
       });

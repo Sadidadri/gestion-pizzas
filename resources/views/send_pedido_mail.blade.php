@@ -9,9 +9,10 @@
     <p>¡Muchas gracias por realizar su pedido con RollPizza!</p>
     <p>Has pedido:</p>
     <ul>
-        <li><p>a</p></li>
-        <li><p>b</p></li>
-        <li><p>c</p></li>
+        @foreach ($contenidoPedido as $lineaPedido)
+            <li>{{ $lineaPedido }}</li>
+        @endforeach
     </ul>
+    <p>Total: <b>{{$precio}}€</b></p>
 </body>
 </html>

@@ -14,7 +14,7 @@
                     <form class="card-body">
                         <h4 class="card-title text-center mb-2">{{pizza.nombre}}</h4>
                         <p data-p="precio" class="card-text">Precio: <b>{{pizza.precio_base}} €</b></p>
-                        <p class="card-text">Ingredientes:</p>
+                        <p class="card-text">Ingredientes: {{pizza.ingredientes}}</p>
                         <p class="card-text"><label for="cantidad">Cantidad: </label><select name="cantidad" @change="calculatePrice(pizza.precio_base,$event)"><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option><option value=5>5</option><option value=6>6</option><option value=7>7</option><option value=8>8</option><option value=9>9</option></select></p>
                         <p class="card-text">Tamaño:</p>
                         <p class="tamagnos"> 
@@ -45,12 +45,12 @@
         },
         data() {
             return {
-                pizzas: {},
-                rel_pi_ings: {},
+                pizzas: [],
                 ingredientes: {},
-                informacion: {},
                 pizzasPedidas: [],
-                newPizza:null
+                newPizza:null,
+                ingredientesPizza:"",
+                relaciones:[]
             }
         },
         created() {
@@ -59,6 +59,7 @@
             
         },
         mounted(){
+
             if (localStorage.getItem('pizzasPedidas')) {
                 try {
                     this.pizzasPedidas = JSON.parse(localStorage.getItem('pizzasPedidas'));
@@ -66,7 +67,8 @@
                     localStorage.removeItem('pizzasPedidas');
                 }
             }
-            //console.log(this.pizzasPedidas)
+
+            
         },
         methods: {
             userIsLogged(){
@@ -76,11 +78,31 @@
                 this.axios
                 .get('http://localhost:8000/api/pizzas/')
                 .then(response => {
+                    //Añadimos una nueva propiedad que rellenaremos mas adelante
+                    response.data.forEach(pizza => pizza.ingredientes = this.getIngredientes(pizza.id)),
                     this.pizzas = response.data;
                 })
                 .catch(error => console.log(error));
             },
-            getIngredientes(){
+            getIngredientes(pizzaID){
+                this.relaciones = []
+                this.ingredientesPizza = ""
+                const relacionesRequest = this.axios
+                .get('http://localhost:8000/api/ingredientes_pizza/pizza='+pizzaID)
+                .then(response => {
+                    this.relaciones = response.data
+                })
+                .catch(error => console.log(error));
+
+                for(let relacion of this.relaciones){
+                    const ingredientesRequest = this.axios
+                    .get('http://localhost:8000/api/ingredientes/'+relacion.id_ingrediente)
+                    .then(response => {
+                        this.ingredientesPizza += response.data.nombre+", ";
+                    })
+                }
+
+                return this.ingredientesPizza.slice(0,-2);
 
             },
             getPizzaById (id) {
@@ -159,10 +181,17 @@
                     ))
                     .catch(err => console.log(err))
 
+
+                let contenidoPedidoMail = {"user":localStorage.getItem("userMail"),"pizzas":[],"precio_final":newPedido["precio_final"]};
+
                 //Recorremos los items de la cesta y lo añadimos a la relacion del pedido
                 for (let pizza of this.pizzasPedidas) {
+                    //Aqui creamos la estructura del mail que mandaremos despues:
+                    let lineaPedido = pizza.cantidad+"x - "+pizza.nombre+" - "+pizza.tamagno+" - "+pizza.precio+"€";
+                    contenidoPedidoMail["pizzas"].push(lineaPedido);
+
+                    //Aqui actualizamos nuestra BD con la info recibida del pedido
                     let newRelPePiz = {"id_pedido":resPedidoID,"id_pizza":pizza.id,"cantidad":pizza.cantidad,"tamagno":pizza.tamagno,"tipo_masa":"Clasica"};
-                    console.log(newRelPePiz);
                     const pizza_pedidoEnviada = await this.axios
                     .post('http://localhost:8000/api/pizzas_pedido', newRelPePiz)
                     .then(response => (
@@ -171,18 +200,29 @@
                     .catch(err => console.log(err))
                 }
 
+
+                //Enviamos nuestra informacion al gestor de mails de laravel
+                this.axios
+                    .post('http://localhost:8000/api/pizzas_pedido/send_mail', contenidoPedidoMail)
+                    .then(response => (
+                        console.log(response)
+                    ))
+                    .catch(err => console.log(err))
+
             },
-            realizarPedido(event){
+            async realizarPedido(event){
                 event.preventDefault();
                 
                 //Creamos ticket del pedido que enviaremos a la API:
                 let newPedido = {"id_usuario":localStorage.getItem("userID"),"precio_final":localStorage.getItem("precioPedido")};
-                this.callApiPedidos(newPedido);
+                await this.callApiPedidos(newPedido);
 
                 //Borramos los items de la cesta y el precio del pedido
                 localStorage.removeItem('pizzasPedidas');
                 localStorage.removeItem('precioPedido');
                 this.pizzasPedidas = []
+
+                window.alert("¡Su pedido ha sido realizado con éxito! Le enviamos un email con toda la información :)");
             }
         }
             
