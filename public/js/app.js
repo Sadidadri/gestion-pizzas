@@ -3271,7 +3271,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       pizzas: [],
       ingredientes: {},
       pizzasPedidas: [],
-      newPizza: null
+      newPizza: null,
+      cleanIngredientes: false
     };
   },
   created: function created() {
@@ -3286,33 +3287,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       }
     }
   },
-  updated: function updated() {
-    function eliminarUltimaComaIngredientes() {
-      var $ingredientes_p = $("#pizzas>div>form>.ingredientes");
-
-      var _iterator = _createForOfIteratorHelper($ingredientes_p),
-          _step;
-
-      try {
-        for (_iterator.s(); !(_step = _iterator.n()).done;) {
-          var p = _step.value;
-          $(p).children().last().text(function () {
-            var texto = $(this).text();
-            return texto.substring(0, texto.length - 2);
-          });
-        }
-      } catch (err) {
-        _iterator.e(err);
-      } finally {
-        _iterator.f();
-      }
-    } //Ejecuto jquery
-
-
-    $(function () {
-      eliminarUltimaComaIngredientes();
-    });
-  },
+  updated: function updated() {},
   methods: {
     userIsLogged: function userIsLogged() {
       return this.$parent.userIsLogged();
@@ -3333,6 +3308,26 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         _this2.response = response.data;
         return _this2.response[0].name;
       });
+    },
+    formatIngredientes: function formatIngredientes(ingredientes) {
+      //Para darle buen formato a los ingredientes a la hora de mostrarlos
+      var cadena_ingredientes = "";
+
+      var _iterator = _createForOfIteratorHelper(ingredientes),
+          _step;
+
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var ingrediente = _step.value;
+          cadena_ingredientes += ingrediente["nombre"] + ", ";
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
+      return cadena_ingredientes.substring(0, cadena_ingredientes.length - 2);
     },
     calculatePrice: function calculatePrice(precioPizza, event) {
       //Para poder actualizar el precio segun cambie un input, vamos a buscar primero al formulario mediante el event target
@@ -44142,19 +44137,12 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c(
-                  "p",
-                  { staticClass: "card-text ingredientes" },
-                  [
-                    _vm._v("Ingredientes: "),
-                    _vm._l(pizza.ingredientes, function(ingrediente) {
-                      return _c("span", [
-                        _vm._v(_vm._s(ingrediente.nombre) + ", ")
-                      ])
-                    })
-                  ],
-                  2
-                ),
+                _c("p", { staticClass: "card-text ingredientes" }, [
+                  _vm._v(
+                    "Ingredientes: " +
+                      _vm._s(_vm.formatIngredientes(pizza.ingredientes))
+                  )
+                ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "card-text" }, [
                   _c("label", { attrs: { for: "cantidad" } }, [

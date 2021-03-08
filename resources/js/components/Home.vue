@@ -14,7 +14,7 @@
                     <form class="card-body">
                         <h4 class="card-title text-center mb-2">{{pizza.nombre}}</h4>
                         <p data-p="precio" class="card-text">Precio: <b>{{pizza.precio_base}} €</b></p>
-                        <p class="card-text ingredientes">Ingredientes: <span v-for="ingrediente in pizza.ingredientes">{{ingrediente.nombre}}, </span></p>
+                        <p class="card-text ingredientes">Ingredientes: {{formatIngredientes(pizza.ingredientes)}}</p>
                         <p class="card-text"><label for="cantidad">Cantidad: </label><select name="cantidad" @change="calculatePrice(pizza.precio_base,$event)"><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option><option value=5>5</option><option value=6>6</option><option value=7>7</option><option value=8>8</option><option value=9>9</option></select></p>
                         <p class="card-text">Tamaño:</p>
                         <p class="tamagnos"> 
@@ -48,7 +48,8 @@
                 pizzas: [],
                 ingredientes: {},
                 pizzasPedidas: [],
-                newPizza:null
+                newPizza:null,
+                cleanIngredientes:false,
             }
         },
         created() {
@@ -69,20 +70,8 @@
         
         },
         updated(){
-            function eliminarUltimaComaIngredientes(){
-                let $ingredientes_p = $("#pizzas>div>form>.ingredientes");
-                for (let p of $ingredientes_p) {
-                    $(p).children().last().text(function(){   
-                        let texto = $(this).text();
-                        return texto.substring(0,texto.length-2) ;
-                    });
-                }
-            }
 
-            //Ejecuto jquery
-            $(function() {
-                eliminarUltimaComaIngredientes();
-            });
+            
         },
         methods: {
             userIsLogged(){
@@ -102,6 +91,15 @@
                     this.response = response.data
                     return this.response[0].name
                 })
+            },
+            formatIngredientes(ingredientes){ //Para darle buen formato a los ingredientes a la hora de mostrarlos
+                let cadena_ingredientes = "";
+
+                for (let ingrediente of ingredientes) {
+                    cadena_ingredientes += ingrediente["nombre"]+", ";
+                }
+
+                return cadena_ingredientes.substring(0,cadena_ingredientes.length-2);
             },
             calculatePrice(precioPizza,event){
                 //Para poder actualizar el precio segun cambie un input, vamos a buscar primero al formulario mediante el event target
