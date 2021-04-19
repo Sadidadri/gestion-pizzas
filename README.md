@@ -1,4 +1,6 @@
-
+<div align="center">
+    <img width="400"></img>
+</div>
 <p align="center">
     Desarrollada por <a href="https://www.driangel.com">Adrián Ángel Moya Moruno</a>
 </p>
