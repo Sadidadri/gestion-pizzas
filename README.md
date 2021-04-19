@@ -16,5 +16,5 @@ Website of pizza orders made with Laravel and VueJS frameworks. The application'
 ## Demo
 
 A demostration of the project:
-<iframe width="600" height="400" src="https://www.youtube.com/watch?v=u0T68uv6OjM"></iframe>
+<iframe width="600" height="400" src="https://www.youtube.com/embed/u0T68uv6OjM"></iframe>
 
