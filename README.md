@@ -12,3 +12,8 @@ Página web de pedidos de pizzas realizada con el framework Laravel y VueJS. El 
 ## About RollPizza
 
 Website of pizza orders made with Laravel and VueJS frameworks. The application's server has an API that serves all the necessary information for the right operabilty of the client's side.
+
+## Demo
+
+A demostration of the project:
+<video width="600" src="https://www.youtube.com/watch?v=u0T68uv6OjM"></video>
