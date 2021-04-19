@@ -15,6 +15,6 @@ Website of pizza orders made with Laravel and VueJS frameworks. The application'
 
 ## Demo
 
-A demostration of the project:
+Click en la imagen para acceder a la demo:
 [![Demo of RollPizza](https://www.driangel.com/img/LoguitoRollPizza.png)](https://www.youtube.com/watch?v=u0T68uv6OjM "RollPizza Project Review - Developed with Laravel and VueJs")
 
